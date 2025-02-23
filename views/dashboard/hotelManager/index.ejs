@@ -1,0 +1,266 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta
+      name="viewport"
+      content="width=device-width, initial-scale=1.0"
+    />
+    <link rel="icon" href="data:," />
+    <title>Chasing Horizons</title>
+
+    <link
+      rel="stylesheet"
+      href="/css/dashboard/hotelManager/index.css"
+    />
+    <link
+      rel="stylesheet"
+      href="/css/dashboard/hotelManager/sidebar.css"
+    />
+    <link
+      rel="stylesheet"
+      href="/css/dashboard/hotelManager/styles.css"
+    />
+
+    <link
+      rel="stylesheet"
+      href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css"
+    />
+    <link
+      rel="stylesheet"
+      href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined"
+    />
+    <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+
+    <script
+      defer
+      src="/js/dashboard/hotelManager/sidebar.js"
+    ></script>
+    <script
+      defer
+      src="/js/dashboard/hotelManager/index.js"
+    ></script>
+  </head>
+  <body>
+    <div class="container">
+      <div class="sidebar collapsed" id="sidebar">
+        <div class="logo-title">
+          <span>CHASING HORIZONS</span>
+        </div>
+        <div class="admin">
+          <div class="profile">
+            <span class="admin-photo">
+              <img
+                style="cursor: pointer"
+                onclick="{window.location.href = '/'}"
+                src="/images/logo.png"
+                alt="photo"
+                width="18rem"
+                height="18rem"
+              />
+            </span>
+          </div>
+          <h5>Admin</h5>
+          <h5><%=user.email%></h5>
+          <!-- <div class="admin-icons">
+            <span class="material-symbols-outlined">person</span>
+            <span class="material-symbols-outlined"
+              >settings</span
+            >
+            <span class="material-symbols-outlined">logout</span>
+          </div> -->
+        </div>
+        <hr />
+        <br />
+        <h5 class="dashboard-heading">DASHBOARDS</h5>
+        <div class="sidenav">
+          <div class="link active">
+            <a href="/dashboard/hotelManager">
+              <span class="material-symbols-outlined icon"
+                >dashboard</span
+              >
+              Dashboard</a
+            >
+          </div>
+
+          <div class="link">
+            <a href="/dashboard/hotelManager/booking">
+              <span class="material-symbols-outlined icon"
+                >event</span
+              >
+              Bookings</a
+            >
+          </div>
+
+          <div class="link">
+            <a href="/dashboard/hotelManager/addRoom">
+              <span class="material-symbols-outlined icon"
+                >meeting_room</span
+              >
+              Rooms</a
+            >
+          </div>
+          <!-- <div class="dropdown-container">
+            <a href="/dashboard/hotelManager/rooms">All Rooms</a>
+            <a href="/dashboard/hotelManager/addRoom"
+              >Add Rooms</a
+            >
+          </div> -->
+        </div>
+      </div>
+      <div class="main">
+        <div class="toggle-btn" id="toggle-sidebar">
+          <button
+            class="toggle-btn"
+            style="
+              padding: 5px;
+              border: none;
+              background: transparent;
+            "
+          >
+            <i
+              style="color: white; font-size: 26px"
+              class="fas fa-bars"
+            ></i>
+          </button>
+        </div>
+
+        <div class="cards">
+          <div class="card">
+            <div class="card-content">
+              <h4>New Booking</h4>
+              <h5><%= hotelManagerAnalytics.totalBookings %></h5>
+              <!-- <p class="growth">
+                <span class="icon">⬆</span> +7.5%
+              </p> -->
+            </div>
+          </div>
+          <!-- <div class="card">
+            <div class="card-content">
+              <h4>Available Rooms</h4>
+              <h5>55</h5>
+              <p class="decline">
+                <span class="icon">⬇</span> -5.7%
+              </p>
+            </div>
+          </div> -->
+          <div class="card">
+            <div class="card-content">
+              <h4>Revenue</h4>
+              <h5>
+                <%= hotelManagerAnalytics.totalRevenue %> INR
+              </h5>
+              <!-- <p class="growth">
+                <span class="icon">⬆</span> +5.3%
+              </p> -->
+            </div>
+          </div>
+          <!-- <div class="card">
+            <div class="card-content">
+              <h4>Checkout</h4>
+              <h5>567</h5>
+              <p class="decline">
+                <span class="icon">⬇</span> -2.4%
+              </p>
+            </div>
+          </div> -->
+        </div>
+
+        <!--available rooms -->
+        <!-- <div class="cards2">
+          <div class="card2">
+            <div class="card2-title">Room Availability</div>
+            <div class="progress-bar">
+              <div class="occupied"></div>
+              <div class="reserved"></div>
+              <div class="available"></div>
+              <div class="not-ready"></div>
+            </div>
+            <div class="card2-info">
+              <div class="info-occupied-reserved">
+                <div class="info-item info-label-occupied">
+                  <div class="info-label">Occupied</div>
+                  <div class="info-value">125</div>
+                </div>
+                <div class="info-item info-label-reserved">
+                  <div class="info-label">Reserved</div>
+                  <div class="info-value">87</div>
+                </div>
+              </div>
+              <div class="info-available-notready">
+                <div class="info-item info-label-available">
+                  <div class="info-label">Available</div>
+                  <div class="info-value">57</div>
+                </div>
+                <div class="info-item info-label-notready">
+                  <div class="info-label">Not Ready</div>
+                  <div class="info-value">25</div>
+                </div>
+              </div>
+            </div>
+          </div>
+          <div class="card2">
+            <div class="chart-container">
+              <div class="card2-reservation-title">
+                <h5>Reservation</h5>
+              </div>
+              <canvas
+                id="reservationChart"
+                class="reservationChart"
+              ></canvas>
+            </div>
+          </div>
+        </div> -->
+
+        <!--table of booked rooms -->
+        <div class="available-rooms">
+          <div class="available-rooms-info">
+            <h5>Bookings</h5>
+            <button
+              onclick="{window.location.href = '/dashboard/hotelManager/booking'}"
+            >
+              View All
+            </button>
+          </div>
+          <div class="available-rooms-table">
+            <table>
+              <thead>
+                <tr>
+                  <td>Name</td>
+                  <td>Check in</td>
+                  <td>Checkout</td>
+                  <td>Mobile</td>
+                  <td>Email</td>
+                  <td>Status</td>
+                </tr>
+              </thead>
+              <tbody
+                class="available-rooms-info-table-body"
+              ></tbody>
+            </table>
+          </div>
+        </div>
+
+        <!--guest list and booking sources -->
+        <!-- <div class="cards3">
+          <div class="card3 visitors-chart-container">
+            <h2 class="chart-title">Visitors Chart</h2>
+            <p>Average Daily Users</p>
+            <div class="chart-wrapper">
+              <canvas id="visitorsChart"></canvas>
+            </div>
+          </div>
+          <div class="card3">
+            <h5>Booking Source</h5>
+            <div class="chart-container">
+              <canvas
+                id="bookingSourceChart"
+                class="bookingSourceChart"
+              ></canvas>
+            </div>
+          </div>
+        </div> -->
+      </div>
+    </div>
+  </body>
+</html>
