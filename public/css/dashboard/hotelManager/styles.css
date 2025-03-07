@@ -1,0 +1,21 @@
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+  font-family: "Segoe UI", Tahoma, Geneva, Verdana, sans-serif;
+}
+
+body {
+  background-color: #121826;
+}
+
+.container {
+  display: flex;
+  overflow-x: hidden;
+}
+
+.main {
+  flex: 1;
+  padding: 20px;
+  transition: all 0.3s ease;
+}
