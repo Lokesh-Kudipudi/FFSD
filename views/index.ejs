@@ -1,0 +1,258 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta
+      name="viewport"
+      content="width=device-width, initial-scale=1.0"
+    />
+    <title>Chasing Horizons</title>
+    <link
+      rel="stylesheet"
+      href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.4/css/all.min.css"
+    />
+
+    <link href="/css/index.css" rel="stylesheet" />
+    <link href="/css/header.css" rel="stylesheet" />
+    <link href="/css/footer.css" rel="stylesheet" />
+    <link href="/css/chatbot.css" rel="stylesheet" />
+    <link
+      rel="stylesheet"
+      href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.2/css/all.min.css"
+    />
+    <script defer src="/js/header.js"></script>
+    <script defer src="/js/index.js"></script>
+    <script defer src="/js/chatbot.js"></script>
+  </head>
+  <body>
+    <div style="z-index: 3">
+      <div id="chatIcon">💬</div>
+      <div id="chatContainer">
+        <div class="chat-header">Chat Assistant</div>
+        <div class="chat-messages" id="chatMessages"></div>
+        <div class="chat-input">
+          <input
+            type="text"
+            id="userInput"
+            placeholder="Type your message..."
+          />
+          <button id="chat-button" onclick="sendChatMessage()">
+            Send
+          </button>
+        </div>
+      </div>
+    </div>
+
+    <!-- Hero Section -->
+    <div class="hero">
+      <header
+        class="headerContainer"
+        style="
+          position: absolute;
+          top: 0;
+          z-index: 2;
+          width: 90%;
+        "
+      >
+        <%- include('partials/header.ejs') %>
+      </header>
+      <img
+        src="https://static3.businessinsider.com/image/54cfea306bb3f7d1181b774b/10-travel-destinations-that-are-trending-right-now.jpg"
+        alt="hero-background"
+        class="hero-background"
+      />
+      <div class="hero-content">
+        <h1>Chasing Horizons</h1>
+        <p>Explore, Dream, Achieve.</p>
+      </div>
+    </div>
+
+    <!-- Travel Pro Section -->
+    <section class="travel-pro">
+      <h1>Our Services</h1>
+      <div class="travel-grid">
+        <div class="travel-card">
+          <div class="travel-card-text">
+            <h3>Personalized Travel Packages</h3>
+            <p>
+              Get AI customized trip plans based on your
+              preferences.
+            </p>
+          </div>
+          <img
+            src="https://cdn-icons-png.flaticon.com/128/12238/12238406.png"
+            alt="chip"
+          />
+        </div>
+        <div class="travel-card">
+          <div class="travel-card-text">
+            <h3>Hotel Booking</h3>
+            <p>Book Hotels at your destination place.</p>
+          </div>
+          <img
+            src="https://cdn-icons-png.flaticon.com/128/3009/3009489.png"
+            alt="Explore"
+          />
+        </div>
+        <div class="travel-card">
+          <div class="travel-card-text">
+            <h3>Affordable</h3>
+            <p>
+              We have Affordable prices and luxury experience.
+            </p>
+          </div>
+          <img
+            src="https://cdn-icons-png.flaticon.com/128/1052/1052866.png"
+            alt="Trips"
+          />
+        </div>
+      </div>
+    </section>
+
+    <!-- Itineraries Section -->
+    <section class="itineraries">
+      <div class="itineraries-header">
+        <h2>Find your next adventure</h2>
+        <p>
+          Browse through itineraries and guides crafted by fellow
+          travelers. Get inspired by real experiences and
+          detailed plans for your next adventure.
+        </p>
+      </div>
+
+      <div class="itinerary-grid">
+        <div class="itinerary-card">
+          <img
+            src="https://upload.wikimedia.org/wikipedia/commons/thumb/d/dc/Lotus_Temple_in_New_Delhi_03-2016.jpg/1024px-Lotus_Temple_in_New_Delhi_03-2016.jpg"
+            alt="Paris Cityscape"
+          />
+          <h3
+            onclick="window.location.href= '/tours/tour/T67890'"
+          >
+            Golden Triangle Tour: Delhi, Agra & Jaipur
+          </h3>
+          <p>
+            Discover India's rich history and architectural
+            wonders with this Golden Triangle Tour covering
+            Delhi, Agra, and Jaipur.
+          </p>
+        </div>
+
+        <div class="itinerary-card">
+          <img
+            src="https://cf.bstatic.com/xdata/images/hotel/max1024x768/519403307.jpg?k=f0b5f969ab27c629a8528b5aab3b757ed2db8a6e15f62b846a6034c31323f355&o=&hp=1"
+            alt="Japanese Temple"
+          />
+          <h3
+            onclick="window.location.href= 'hotels/hotel/H12345'"
+          >
+            JW Marriott Hotel Mumbai
+          </h3>
+          <p>
+            Located in the heart of Mumbai, JW Marriott Hotel
+            Mumbai offers luxurious accommodations
+          </p>
+        </div>
+
+        <div class="itinerary-card">
+          <img
+            src="https://upload.wikimedia.org/wikipedia/commons/thumb/0/0e/Varanasi%2C_India%2C_Ghats%2C_Cremation_ceremony_in_progress.jpg/357px-Varanasi%2C_India%2C_Ghats%2C_Cremation_ceremony_in_progress.jpg"
+            alt="Puerto Rico Coast"
+          />
+          <h3
+            onclick="window.location.href = '/tours/tour/T23456' "
+          >
+            Spiritual Varanasi & Sarnath Tour
+          </h3>
+          <p>
+            Embark on a spiritual journey to Varanasi, one of the
+            oldest living cities in the world. Witness ancient
+            rituals, explore sacred temples, and experience the
+            divine atmosphere of the Ganges River.
+          </p>
+        </div>
+      </div>
+    </section>
+
+    <!-- FAQ Section -->
+    <section class="faq">
+      <h2>Frequently Asked Questions</h2>
+      <div class="faq-container">
+        <div class="faq-item">
+          <p>How do I find travel deals?</p>
+          <div class="faq-answer">
+            You can find travel deals by searching on our website
+            for the best offers and discounts.
+          </div>
+        </div>
+        <div class="faq-item">
+          <p>
+            What makes Chasing Horizons a great travel platform?
+          </p>
+          <div class="faq-answer">
+            We provide curated travel experiences, easy booking,
+            and exclusive deals.
+          </div>
+        </div>
+        <div class="faq-item">
+          <p>How can I manage my bookings?</p>
+          <div class="faq-answer">
+            Log in to your account to manage all your bookings in
+            one place.
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- Footer -->
+    <footer class="footer">
+      <div class="footer-container">
+        <div class="footer-about">
+          <h3>Chasing Horizons</h3>
+          <p>
+            Explore the beauty of India with us. Your journey to
+            breathtaking destinations starts here!
+          </p>
+        </div>
+
+        <div class="footer-links">
+          <h4>Quick Links</h4>
+          <ul>
+            <li><a href="/">Home</a></li>
+            <li><a href="/tours">Tours</a></li>
+            <li><a href="/hotels">Hotels</a></li>
+            <li><a href="/contact">Contact</a></li>
+          </ul>
+        </div>
+
+        <div class="footer-social">
+          <h4>Follow Us</h4>
+          <div class="social-icons">
+            <a href="https://www.youtube.com" target="_blank">
+              <i
+                class="fa-brands fa-youtube"
+                style="font-size: 40px"
+              ></i>
+            </a>
+            <a href="https://www.instagram.com" target="_blank">
+              <i
+                class="fa-brands fa-square-instagram"
+                style="font-size: 40px"
+              ></i>
+            </a>
+            <a href="https://x.com/" target="_blank">
+              <i
+                class="fa-brands fa-square-x-twitter"
+                style="font-size: 40px"
+              ></i>
+            </a>
+          </div>
+        </div>
+      </div>
+
+      <div class="footer-bottom">
+        <p>© 2025 Chasing Horizons. All Rights Reserved.</p>
+      </div>
+    </footer>
+  </body>
+</html>
