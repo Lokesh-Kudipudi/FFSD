@@ -1,0 +1,291 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <link rel="icon" href="data:," />
+    <title>Document</title>
+
+    <link rel="stylesheet" href="/css/dashboard/hotelManager/roomsAdd.css" />
+    <link rel="stylesheet" href="/css/dashboard/hotelManager/sidebar.css" />
+    <link rel="stylesheet" href="/css/dashboard/hotelManager/styles.css" />
+
+    <link
+      rel="stylesheet"
+      href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css"
+    />
+    <link
+      rel="stylesheet"
+      href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined"
+    />
+    <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+
+    <script defer src="/js/dashboard/hotelManager/sidebar.js"></script>
+    <style>
+      .room-grid {
+        display: grid;
+        grid-template-columns: 1fr 1fr 1fr;
+        max-width: 1400px;
+        gap: 35px;
+        color: white;
+        margin: 0 auto;
+      }
+      /* Inline your given CSS here if needed */
+      .form-container {
+        background-color: #1c2432;
+        color: white;
+        padding: 20px;
+        max-width: 800px;
+        margin: 30px auto;
+        border-radius: 10px;
+      }
+
+      .form-container input,
+      .form-container textarea {
+        width: 100%;
+        margin-bottom: 10px;
+        padding: 10px;
+        background-color: #333;
+        color: white;
+        border: none;
+        border-radius: 5px;
+      }
+
+      .form-container button {
+        background-color: #1b8b35;
+        color: white;
+        border: none;
+        padding: 10px;
+        border-radius: 5px;
+        cursor: pointer;
+      }
+
+      .features-list {
+        margin-top: 10px;
+      }
+
+      .features-list li {
+        margin-left: 16px;
+      }
+
+      .room-image {
+        width: 100%;
+        border-radius: 10px;
+        margin-bottom: 10px;
+        height: 180px;
+        object-fit: cover;
+      }
+
+      .rating {
+        color: gold;
+      }
+
+      .room-card button {
+        width: 100%;
+        padding: 10px;
+        border: none;
+        border-radius: 5px;
+        cursor: pointer;
+        margin-top: 10px;
+      }
+    </style>
+  </head>
+  <body>
+    <div class="container">
+      <div class="sidebar collapsed" id="sidebar">
+        <div class="logo-title">
+          <span>CHASING HORIZONS</span>
+        </div>
+        <div class="admin">
+          <div class="profile">
+            <span class="admin-photo">
+              <img
+                style="cursor: pointer"
+                onclick="{window.location.href = '/'}"
+                src="/images/logo.png"
+                alt="photo"
+                width="18rem"
+                height="18rem"
+              />
+            </span>
+          </div>
+          <h5>Admin</h5>
+          <h5><%=user.email%></h5>
+          <!-- <div class="admin-icons">
+            <span class="material-symbols-outlined">person</span>
+            <span class="material-symbols-outlined"
+              >settings</span
+            >
+            <span class="material-symbols-outlined">logout</span>
+          </div> -->
+        </div>
+        <hr />
+        <br />
+        <h5 class="dashboard-heading">DASHBOARDS</h5>
+        <div class="sidenav">
+          <div class="link">
+            <a href="/dashboard/hotelManager">
+              <span class="material-symbols-outlined icon">dashboard</span>
+              Dashboard</a
+            >
+          </div>
+
+          <div class="link">
+            <a href="/dashboard/hotelManager/booking">
+              <span class="material-symbols-outlined icon">event</span>
+              Bookings</a
+            >
+          </div>
+
+          <div class="link active">
+            <a href="/dashboard/hotelManager/addRoom">
+              <span class="material-symbols-outlined icon">meeting_room</span>
+              Rooms</a
+            >
+            <!-- <button class="dropdown-btn">
+              <span class="material-symbols-outlined"
+                >keyboard_arrow_down</span
+              >
+            </button> -->
+          </div>
+          <!-- <div class="dropdown-container">
+            <a href="/dashboard/hotelManager/rooms">All Rooms</a>
+            <a href="/dashboard/hotelManager/addRoom"
+              >Add Rooms</a
+            >
+          </div> -->
+        </div>
+      </div>
+      <div class="main">
+        <div class="toggle-btn" id="toggle-sidebar">
+          <button
+            class="toggle-btn"
+            style="padding: 5px; border: none; background: transparent"
+          >
+            <i style="color: white; font-size: 26px" class="fas fa-bars"></i>
+          </button>
+        </div>
+        <h1
+          class="occupancy-heading"
+          style="color: white; text-align: center; margin-bottom: 24px"
+        >
+          Room Types
+        </h1>
+
+        <div class="room-grid">
+          <!-- Room Cards -->
+          <% roomTypes.forEach(roomType => { %>
+          <div class="room-card" data-id="<%=roomType._id%>">
+            <img
+              src="https://r1imghtlak.mmtcdn.com/e0a6f7a03dfb11eb9d0d0242ac110002.jpg"
+              alt="Room"
+              class="room-image"
+            />
+            <h2><%= roomType.title %></h2>
+            <p><%= roomType.price%> INR</p>
+            <p class="rating">Rating: <%=roomType.rating%></p>
+            <ul class="features-list">
+              <% roomType.features.forEach(feature => { %>
+              <li><%=feature%></li>
+              <%});%>
+            </ul>
+            <button>Edit Room</button>
+          </div>
+          <% }); %>
+        </div>
+        <!-- Add/Edit Room Form -->
+        <div class="form-container">
+          <h2>Add / Edit Room Type</h2>
+          <form id="roomForm">
+            <input type="text" placeholder="Room Title" name="title" required />
+            <input
+              type="text"
+              placeholder="Price (in ₹)"
+              name="price"
+              required
+            />
+            <input
+              type="text"
+              placeholder="Rating (1-5)"
+              name="rating"
+              required
+            />
+            <input type="text" placeholder="Image URL" name="image" required />
+            <textarea
+              name="features"
+              placeholder="Features (comma separated)"
+              rows="3"
+            ></textarea>
+            <button type="submit">Save Room</button>
+          </form>
+        </div>
+      </div>
+    </div>
+
+    <script>
+      const roomForm = document.getElementById("roomForm");
+      const roomCards = document.querySelectorAll(".room-card");
+
+      // Populate form for editing
+      roomCards.forEach((card, index) => {
+        card.querySelector("button").addEventListener("click", () => {
+          const title = card.querySelector("h2").textContent;
+          const price = card.querySelector("p").textContent.replace(" INR", "");
+          const rating = card
+            .querySelector(".rating")
+            .textContent.replace("Rating: ", "");
+          const image = card.querySelector(".room-image").src;
+          const features = Array.from(
+            card.querySelectorAll(".features-list li")
+          )
+            .map((li) => li.textContent)
+            .join(", ");
+
+          roomForm.title.value = title;
+          roomForm.price.value = price;
+          roomForm.rating.value = rating;
+          roomForm.image.value = image;
+          roomForm.features.value = features;
+          roomForm.dataset.id = card.getAttribute("data-id"); // Store index for editing
+        });
+      });
+
+      // Handle form submission
+      roomForm.addEventListener("submit", async function (e) {
+        e.preventDefault();
+
+        const formData = {
+          title: this.title.value,
+          price: this.price.value,
+          rating: this.rating.value,
+          image: this.image.value,
+          features: this.features.value.split(",").map((f) => f.trim()),
+        };
+
+        const roomTypeId = this.getAttribute("data-id");
+        const method = roomTypeId ? "PUT" : "POST";
+        const endpoint = roomTypeId
+          ? `/dashboard/api/rooms/${roomTypeId}`
+          : "/dashboard/api/rooms";
+
+        try {
+          const response = await fetch(endpoint, {
+            method,
+            headers: { "Content-Type": "application/json" },
+            body: JSON.stringify(formData),
+          });
+
+          if (response.ok) {
+            alert("Room saved successfully!");
+            location.reload();
+          } else {
+            alert("Failed to save room.");
+          }
+        } catch (error) {
+          console.error("Error saving room:", error);
+          alert("An error occurred.");
+        }
+      });
+    </script>
+  </body>
+</html>
