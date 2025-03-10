@@ -1,0 +1,171 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta
+      name="viewport"
+      content="width=device-width, initial-scale=1.0"
+    />
+    <link rel="icon" href="data:," />
+    <title>Chasing Horizons - Login</title>
+    <link
+      href="/css/auth/signUpHotelManager.css"
+      rel="stylesheet"
+    />
+    <script defer src="/js/auth/signUpHotelManager.js"></script>
+  </head>
+  <body>
+    <div class="container">
+      <div class="left">
+        <h2>ENJOY THE WORLD</h2>
+      </div>
+      <div class="right">
+        <div class="logo" onclick="window.location.href = '/'">
+          <img
+            src="../../images/tours/logo.png"
+            alt="Logo"
+            height="25px"
+          />
+          <span>Chasing Horizons</span>
+        </div>
+
+        <h2 class="form-title" id="formTitle">
+          Create Account - Hotel Manager
+        </h2>
+
+        <form id="authForm">
+          <div
+            style="
+              display: flex;
+              gap: 10px;
+              justify-content: space-between;
+            "
+          >
+            <div class="form-group" id="nameGroup">
+              <label for="name">Name</label>
+              <input
+                type="text"
+                id="name"
+                placeholder="Enter name"
+              />
+              <div class="error-message" id="nameError">
+                Please enter your name
+              </div>
+            </div>
+
+            <div class="form-group">
+              <label for="email">Email Address</label>
+              <input
+                type="email"
+                id="email"
+                placeholder="example@email.com"
+              />
+              <div class="error-message" id="emailError">
+                Please enter a valid email address
+              </div>
+            </div>
+          </div>
+
+          <div
+            style="
+              display: flex;
+              gap: 10px;
+              justify-content: space-between;
+            "
+          >
+            <div class="form-group">
+              <label for="email">Mobile Number</label>
+              <input
+                type="text"
+                id="phone"
+                placeholder="12345678"
+              />
+              <div class="error-message" id="emailError">
+                Please enter a valid Mobile Number
+              </div>
+            </div>
+
+            <div class="form-group">
+              <label for="password">Password</label>
+              <input
+                type="password"
+                id="password"
+                placeholder="••••••••••••••"
+              />
+              <div class="error-message" id="passwordError">
+                Password must be at least 8 characters
+              </div>
+            </div>
+          </div>
+
+          <div style="display: flex">
+            <div class="form-group">
+              <label for="email">Address</label>
+              <input
+                type="text"
+                id="address"
+                placeholder="102-6-124"
+              />
+              <div class="error-message" id="emailError">
+                Please enter your Address
+              </div>
+            </div>
+          </div>
+
+          <button
+            type="submit"
+            class="continue-btn"
+            id="submitBtn"
+          >
+            Continue
+          </button>
+        </form>
+
+        <div class="divider">
+          <span>or</span>
+        </div>
+
+        <!-- <button class="google-btn" id="googleBtn">
+          <svg
+            width="20"
+            height="20"
+            viewBox="0 0 20 20"
+            fill="none"
+            xmlns="http://www.w3.org/2000/svg"
+          >
+            <path
+              d="M19.7874 10.2295C19.7874 9.51234 19.7291 8.79523 19.6042 8.09033H10.2041V11.8581H15.5832C15.3626 13.0957 14.6668 14.1764 13.6319 14.8622V17.3112H16.8553C18.7446 15.6099 19.7874 13.1608 19.7874 10.2295Z"
+              fill="#4285F4"
+            />
+            <path
+              d="M10.2041 20.0001C12.9006 20.0001 15.1675 19.115 16.8553 17.3112L13.6319 14.8622C12.7266 15.4834 11.5639 15.8476 10.2041 15.8476C7.59174 15.8476 5.38258 14.0827 4.58981 11.6608H1.26367V14.1835C2.94142 17.6681 6.34146 20.0001 10.2041 20.0001Z"
+              fill="#34A853"
+            />
+            <path
+              d="M4.58984 11.6608C4.40092 11.0396 4.29428 10.3891 4.29428 9.7295C4.29428 9.0699 4.40092 8.41942 4.58984 7.79822V5.27551H1.2637C0.547825 6.89426 0.141602 8.7317 0.141602 9.7295C0.141602 10.7273 0.547825 12.5647 1.2637 14.1835L4.58984 11.6608Z"
+              fill="#FBBC05"
+            />
+            <path
+              d="M10.2041 3.6114C11.6883 3.6114 13.037 4.12031 14.0886 5.12583L16.9553 2.25912C15.1592 0.591583 12.9006 -0.000244141 10.2041 -0.000244141C6.34146 -0.000244141 2.94142 2.33181 1.26367 5.81636L4.58981 8.33907C5.38258 5.9172 7.59174 3.6114 10.2041 3.6114Z"
+              fill="#EA4335"
+            />
+          </svg>
+          Sign Up with Google
+        </button> -->
+
+        <div class="login-toggle">
+          <span id="toggleText"
+            >Already have an account?
+            <a href="/signIn" id="toggleLink">Sign In</a></span
+          >
+          <span id="toggleText"
+            >Not a Hotel Manager?
+            <a href="/signUp" id="toggleLink"
+              >Sign Up as User</a
+            ></span
+          >
+        </div>
+      </div>
+    </div>
+  </body>
+</html>
