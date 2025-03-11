@@ -1,0 +1,153 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <link rel="icon" href="data:," />
+    <title>Document</title>
+
+    <link rel="stylesheet" href="/css/dashboard/hotelManager/booking.css" />
+    <link rel="stylesheet" href="/css/dashboard/hotelManager/sidebar.css" />
+    <link rel="stylesheet" href="/css/dashboard/hotelManager/styles.css" />
+
+    <link
+      rel="stylesheet"
+      href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css"
+    />
+    <link
+      rel="stylesheet"
+      href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined"
+    />
+    <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+
+    <script defer src="/js/dashboard/hotelManager/sidebar.js"></script>
+    <script defer src="/js/dashboard/hotelManager/booking.js"></script>
+  </head>
+  <body>
+    <div class="container">
+      <div class="sidebar collapsed" id="sidebar">
+        <div class="logo-title">
+          <span>CHASING HORIZONS</span>
+        </div>
+        <div class="admin">
+          <div class="profile">
+            <span class="admin-photo">
+              <img
+                style="cursor: pointer"
+                onclick="{window.location.href = '/'}"
+                src="/images/logo.png"
+                alt="photo"
+                width="18rem"
+                height="18rem"
+              />
+            </span>
+          </div>
+          <h5>Admin</h5>
+          <h5><%=user.email%></h5>
+          <!-- <div class="admin-icons">
+            <span class="material-symbols-outlined">person</span>
+            <span class="material-symbols-outlined"
+              >settings</span
+            >
+            <span class="material-symbols-outlined">logout</span>
+          </div> -->
+        </div>
+        <hr />
+        <br />
+        <h5 class="dashboard-heading">DASHBOARDS</h5>
+        <div class="sidenav">
+          <div class="link">
+            <a href="/dashboard/hotelManager">
+              <span class="material-symbols-outlined icon">dashboard</span>
+              Dashboard</a
+            >
+          </div>
+
+          <div class="link active">
+            <a href="/dashboard/hotelManager/booking">
+              <span class="material-symbols-outlined icon">event</span>
+              Bookings</a
+            >
+          </div>
+
+          <div class="link">
+            <a href="/dashboard/hotelManager/addRoom">
+              <span class="material-symbols-outlined icon">meeting_room</span>
+              Rooms</a
+            >
+          </div>
+          <!-- <div class="dropdown-container">
+            <a href="/dashboard/hotelManager/rooms">All Rooms</a>
+            <a href="/dashboard/hotelManager/addRoom"
+              >Add Rooms</a
+            >
+          </div> -->
+        </div>
+      </div>
+      <div class="main">
+        <div class="toggle-btn" id="toggle-sidebar">
+          <button
+            class="toggle-btn"
+            style="padding: 5px; border: none; background: transparent"
+          >
+            <i style="color: white; font-size: 26px" class="fas fa-bars"></i>
+          </button>
+
+          <div class="main-bookings-header">
+            <div class="allbookings">
+              <h3>All Bookings</h3>
+            </div>
+            <div class="main-bookings-header-icons">
+              <span class="material-symbols-outlined icon">home</span>
+              <ul class="list">
+                <li>Bookings</li>
+                <li>All Bookings</li>
+              </ul>
+            </div>
+          </div>
+
+          <div class="main-bookings">
+            <table class="main-bookings-table">
+              <thead class="main-bookings-table-head">
+                <tr>
+                  <th>Name</th>
+                  <!-- <th>Package</th> -->
+                  <!-- <th>Room Type</th> -->
+                  <th>Status</th>
+                  <th>Check In</th>
+                  <th>Check Out</th>
+                  <th>Email</th>
+                  <th>Mobile</th>
+                  <!-- <th>Actions</th> -->
+                </tr>
+              </thead>
+              <tbody class="main-bookings-table-body">
+                <!-- <tr>
+                  <td><input type="checkbox" /></td>
+                  <td>John Deo</td>
+                  <td>All inclusive</td>
+                  <td>Delux</td>
+                  <td>Cancelled</td>
+                  <td>02/28/2025</td>
+                  <td>02/28/2025</td>
+                  <td>paid</td>
+                  <td>
+                    <span class="material-symbols-outlined email-icon">email</span
+                    >test@gmail.com
+                  </td>
+                  <td>
+                    <span class="material-symbols-outlined phone-icon"
+                      >phone</span
+                    >
+                    1234567890
+                  </td>
+                  <td>...</td>
+                </tr>-->
+              </tbody>
+            </table>
+          </div>
+        </div>
+      </div>
+    </div>
+  </body>
+</html>
