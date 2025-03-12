@@ -1,0 +1,108 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <link rel="icon" href="data:," />
+    <title>Document</title>
+
+    <link rel="stylesheet" href="/css/dashboard/hotelManager/roomsIndex.css" />
+    <link rel="stylesheet" href="/css/dashboard/hotelManager/sidebar.css" />
+    <link rel="stylesheet" href="/css/dashboard/hotelManager/styles.css" />
+
+    <link
+      rel="stylesheet"
+      href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css"
+    />
+    <link
+      rel="stylesheet"
+      href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined"
+    />
+    <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+
+    <script defer src="/js/dashboard/hotelManager/sidebar.js"></script>
+    <script defer src="/js/dashboard/hotelManager/roomsIndex.js"></script>
+  </head>
+  <body>
+    <div class="container">
+      <div class="sidebar collapsed" id="sidebar">
+        <div class="logo-title">
+          <span>CHASING HORIZONS</span>
+        </div>
+        <div class="admin">
+          <div class="profile">
+            <span class="admin-photo">
+              <img
+                src="/images/logo.png"
+                alt="photo"
+                width="18rem"
+                height="18rem"
+              />
+            </span>
+          </div>
+          <h5>Admin</h5>
+          <h5>admin@163.com</h5>
+          <div class="admin-icons">
+            <span class="material-symbols-outlined">person</span>
+            <span class="material-symbols-outlined">settings</span>
+            <span class="material-symbols-outlined">logout</span>
+          </div>
+        </div>
+        <hr />
+        <br />
+        <h5 class="dashboard-heading">DASHBOARDS</h5>
+        <div class="sidenav">
+          <div class="link">
+            <a href="/dashboard/hotelManager">
+              <span class="material-symbols-outlined icon">dashboard</span>
+              Dashboard</a
+            >
+          </div>
+
+          <div class="link">
+            <a href="/dashboard/hotelManager/booking">
+              <span class="material-symbols-outlined icon">event</span>
+              Bookings</a
+            >
+          </div>
+
+          <div class="link active">
+            <a href="/dashboard/hotelManager/rooms">
+              <span class="material-symbols-outlined icon">meeting_room</span>
+              Rooms</a
+            >
+            <button class="dropdown-btn">
+              <span class="material-symbols-outlined">keyboard_arrow_down</span>
+            </button>
+          </div>
+          <div class="dropdown-container">
+            <a href="/dashboard/hotelManager/rooms">All Rooms</a>
+            <a href="/dashboard/hotelManager/addRoom">Add Rooms</a>
+          </div>
+        </div>
+      </div>
+      <div class="main">
+        <div class="toggle-btn" id="toggle-sidebar">
+          <button class="toggle-btn" style="color: black">☰</button>
+        </div>
+
+        <h1 class="occupancy-heading">Occupancy</h1>
+        <div class="filter-container">
+          <select id="statusFilter">
+            <option value="all">All</option>
+            <option value="available">Available</option>
+            <option value="booked">Booked</option>
+          </select>
+          <select id="roomTypeFilter">
+            <option value="all">All</option>
+            <option value="Deluxe">Deluxe</option>
+            <option value="Suite">Suite</option>
+            <option value="Standard">Standard</option>
+          </select>
+          <button onclick="applyFilters()">Filter</button>
+        </div>
+        <div class="room-grid" id="roomGrid"></div>
+      </div>
+    </div>
+  </body>
+</html>
