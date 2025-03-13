@@ -1,0 +1,153 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta
+      name="viewport"
+      content="width=device-width, initial-scale=1.0"
+    />
+    <link rel="icon" href="data:," />
+    <title>Chasing Horizons | No Tours</title>
+    <link href="/css/tours/filter.css" rel="stylesheet" />
+    <link href="/css/tours/noTours.css" rel="stylesheet" />
+    <link href="/css/header.css" rel="stylesheet" />
+    <link href="/css/footer.css" rel="stylesheet" />
+
+    <link
+      rel="stylesheet"
+      href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.2/css/all.min.css"
+    />
+    <script defer src="/js/header.js"></script>
+  </head>
+  <body>
+    <header
+      class="headerContainer"
+      style="width: 90%; margin: 0 auto"
+    >
+      <%- include('../partials/header.ejs') %>
+    </header>
+
+    <div class="noToursContainer">
+      <div class="filter">
+        <!-- <div class="dropdown">
+          <div class="dropdown-header dropdown-header-location">
+            Locations <span id="arrowLocation">&#9650;</span>
+          </div>
+          <div
+            class="dropdown-content"
+            id="dropdownContentLocation"
+          >
+            <label><input type="checkbox" /> Andaman</label>
+            <label
+              ><input type="checkbox" /> Andhra Pradesh</label
+            >
+            <label><input type="checkbox" /> Assam</label>
+            <label><input type="checkbox" /> Dubai</label>
+            <label><input type="checkbox" /> Gujarat</label>
+            <label
+              ><input type="checkbox" /> Himachal Pradesh</label
+            >
+            <label><input type="checkbox" /> Indonesia</label>
+            <label
+              ><input type="checkbox" /> Jammu & Kashmir</label
+            >
+          </div>
+        </div> -->
+        <div class="dropdown">
+          <div class="dropdown-header dropdown-header-rating">
+            Rating <span id="arrowRating">&#9650;</span>
+          </div>
+          <div
+            class="dropdown-content"
+            id="dropdownContentRating"
+          >
+            <label>
+              <input type="checkbox" value="5" />
+              <i class="fa-solid fa-star"></i
+              ><i class="fa-solid fa-star"></i
+              ><i class="fa-solid fa-star"></i
+              ><i class="fa-solid fa-star"></i
+              ><i class="fa-solid fa-star"></i>
+            </label>
+            <label>
+              <input type="checkbox" value="4" />
+              <i class="fa-solid fa-star"></i
+              ><i class="fa-solid fa-star"></i
+              ><i class="fa-solid fa-star"></i
+              ><i class="fa-solid fa-star"></i>
+            </label>
+            <label>
+              <input type="checkbox" value="3" />
+              <i class="fa-solid fa-star"></i
+              ><i class="fa-solid fa-star"></i
+              ><i class="fa-solid fa-star"></i>
+            </label>
+            <label>
+              <input type="checkbox" value="2" />
+              <i class="fa-solid fa-star"></i
+              ><i class="fa-solid fa-star"></i>
+            </label>
+            <label>
+              <input type="checkbox" value="1" />
+              <i class="fa-solid fa-star"></i>
+            </label>
+          </div>
+        </div>
+      </div>
+      <div class="noToursBox">
+        <h2>No Tours Found!</h2>
+        <p>Pleas try a different search...</p>
+      </div>
+    </div>
+
+    <footer class="footer">
+      <div class="footer-container">
+        <div class="footer-about">
+          <h3>Chasing Horizons</h3>
+          <p>
+            Explore the beauty of India with us. Your journey to
+            breathtaking destinations starts here!
+          </p>
+        </div>
+
+        <div class="footer-links">
+          <h4>Quick Links</h4>
+          <ul>
+            <li><a href="/">Home</a></li>
+            <li><a href="/tours">Tours</a></li>
+            <li><a href="/hotels">Hotels</a></li>
+            <li><a href="/contact">Contact</a></li>
+          </ul>
+        </div>
+
+        <div class="footer-social">
+          <h4>Follow Us</h4>
+          <div class="social-icons">
+            <a href="https://www.youtube.com" target="_blank">
+              <i
+                class="fa-brands fa-youtube"
+                style="font-size: 40px"
+              ></i>
+            </a>
+            <a href="https://www.instagram.com" target="_blank">
+              <i
+                class="fa-brands fa-square-instagram"
+                style="font-size: 40px"
+              ></i>
+            </a>
+            <a href="https://x.com/" target="_blank">
+              <i
+                class="fa-brands fa-square-x-twitter"
+                style="font-size: 40px"
+              ></i>
+            </a>
+          </div>
+        </div>
+      </div>
+
+      <div class="footer-bottom">
+        <p>© 2025 Chasing Horizons. All Rights Reserved.</p>
+      </div>
+    </footer>
+  </body>
+</html>

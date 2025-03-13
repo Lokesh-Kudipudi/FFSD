@@ -1,0 +1,561 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <link rel="icon" href="data:," />
+    <link href="/css/tours/tours.css" rel="stylesheet" />
+    <!-- <link href="/css/tours/filter.css" rel="stylesheet" /> -->
+    <link href="/css/hotels/filters.css" rel="stylesheet" />
+    <link href="/css/header.css" rel="stylesheet" />
+    <link href="/css/footer.css" rel="stylesheet" />
+
+    <link
+      rel="stylesheet"
+      href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.2/css/all.min.css"
+    />
+    <title>Chasing Horizons | Tours</title>
+    <script defer src="/js/tours/tours.js"></script>
+    <script defer src="/js/header.js"></script>
+  </head>
+
+  <body>
+    <header class="headerContainer" style="width: 90%; margin: 0 auto">
+      <%- include('../partials/header.ejs') %>
+    </header>
+
+    <div class="search-container">
+      <div class="search-box">
+        <span class="icon">📍</span>
+        <div class="input-wrapper">
+          <label for="location">Location</label>
+          <input type="text" id="location" placeholder="Where are you going?" />
+        </div>
+        <button class="search-button" onclick="handleSearch()">Search</button>
+      </div>
+    </div>
+
+    <div class="toursContainer">
+      <!-- Filter Sidebar -->
+      <aside class="filter-sidebar">
+        <h3 style="border-bottom: 1px solid #ccc; padding-bottom: 10px">
+          Filter by
+        </h3>
+
+        <!-- Start Location Filter -->
+        <div class="filter-section">
+          <div class="filter-header">
+            <span>Start Location</span>
+            <span class="arrow" id="arrowStartLocation">&#9662;</span>
+          </div>
+          <div class="filter-options" id="dropdownContentStartLocation">
+            <label
+              ><input
+                type="checkbox"
+                data-filter="startLocation"
+                value="Delhi"
+              />Delhi</label
+            >
+            <label
+              ><input
+                type="checkbox"
+                data-filter="startLocation"
+                value="Mumbai"
+              />Goa</label
+            >
+            <label
+              ><input
+                type="checkbox"
+                data-filter="startLocation"
+                value="Bangalore"
+              />Kochi</label
+            >
+            <label
+              ><input
+                type="checkbox"
+                data-filter="startLocation"
+                value="Chennai"
+              />Chennai</label
+            >
+            <label
+              ><input
+                type="checkbox"
+                data-filter="startLocation"
+                value="Kolkata"
+              />Varanasi</label
+            >
+            <label
+              ><input
+                type="checkbox"
+                data-filter="startLocation"
+                value="Hyderabad"
+              />Jaipur</label
+            >
+          </div>
+        </div>
+
+        <!-- Duration Filter -->
+        <div class="filter-section">
+          <div class="filter-header">
+            <span>Duration</span>
+            <span class="arrow" id="arrowDuration">&#9662;</span>
+          </div>
+          <div class="filter-options" id="dropdownContentDuration">
+            <label
+              ><input
+                type="checkbox"
+                data-filter="duration"
+                value="1-3 days"
+              />1-3 days</label
+            >
+            <label
+              ><input
+                type="checkbox"
+                data-filter="duration"
+                value="4-7 days"
+              />4-7 days</label
+            >
+            <label
+              ><input
+                type="checkbox"
+                data-filter="duration"
+                value="8+ days"
+              />8+ days</label
+            >
+          </div>
+        </div>
+
+        <!-- Language Filter -->
+        <div class="filter-section">
+          <div class="filter-header">
+            <span>Language</span>
+            <span class="arrow" id="arrowLanguage">&#9662;</span>
+          </div>
+          <div class="filter-options" id="dropdownContentLanguage">
+            <label
+              ><input
+                type="checkbox"
+                data-filter="language"
+                value="English"
+              />English</label
+            >
+            <label
+              ><input
+                type="checkbox"
+                data-filter="language"
+                value="Hindi"
+              />Hindi</label
+            >
+            <label
+              ><input
+                type="checkbox"
+                data-filter="language"
+                value="Tamil"
+              />Tamil</label
+            >
+            <label
+              ><input
+                type="checkbox"
+                data-filter="language"
+                value="Telugu"
+              />Telugu</label
+            >
+            <label
+              ><input
+                type="checkbox"
+                data-filter="language"
+                value="Bengali"
+              />Bengali</label
+            >
+          </div>
+        </div>
+
+        <!-- Tour Type/Tags Filter -->
+        <div class="filter-section">
+          <div class="filter-header">
+            <span>Tour Type</span>
+            <span class="arrow" id="arrowTags">&#9662;</span>
+          </div>
+          <div class="filter-options" id="dropdownContentTags">
+            <label
+              ><input
+                type="checkbox"
+                data-filter="tags"
+                value="Adventure"
+              />Adventure</label
+            >
+            <label
+              ><input
+                type="checkbox"
+                data-filter="tags"
+                value="Cultural"
+              />Cultural</label
+            >
+            <label
+              ><input
+                type="checkbox"
+                data-filter="tags"
+                value="Wildlife"
+              />Wildlife</label
+            >
+            <label
+              ><input
+                type="checkbox"
+                data-filter="tags"
+                value="Beach"
+              />Beach</label
+            >
+            <label
+              ><input
+                type="checkbox"
+                data-filter="tags"
+                value="Spiritual"
+              />Spiritual</label
+            >
+            <label
+              ><input
+                type="checkbox"
+                data-filter="tags"
+                value="Monuments"
+              />Monuments</label
+            >
+          </div>
+        </div>
+
+        <!-- Price Range Filter -->
+        <div class="filter-section">
+          <div class="filter-header">
+            <span>Price Range</span>
+            <span class="arrow" id="arrowPriceRange">&#9662;</span>
+          </div>
+          <div class="filter-options" id="dropdownContentPriceRange">
+            <label
+              ><input
+                type="checkbox"
+                data-filter="priceRange"
+                value="Budget (Under ₹20,000)"
+              />Budget (Under ₹20,000)</label
+            >
+            <label
+              ><input
+                type="checkbox"
+                data-filter="priceRange"
+                value="Mid-range (₹20,000 - ₹50,000)"
+              />Mid-range (₹20,000 - ₹50,000)</label
+            >
+            <label
+              ><input
+                type="checkbox"
+                data-filter="priceRange"
+                value="Luxury (Above ₹50,000)"
+              />Luxury (Above ₹50,000)</label
+            >
+          </div>
+        </div>
+
+        <!-- Available Months Filter -->
+        <div class="filter-section">
+          <div class="filter-header">
+            <span>Available Months</span>
+            <span class="arrow" id="arrowAvailableMonths">&#9662;</span>
+          </div>
+          <div class="filter-options" id="dropdownContentAvailableMonths">
+            <label
+              ><input
+                type="checkbox"
+                data-filter="availableMonths"
+                value="January"
+              />January</label
+            >
+            <label
+              ><input
+                type="checkbox"
+                data-filter="availableMonths"
+                value="February"
+              />February</label
+            >
+            <label
+              ><input
+                type="checkbox"
+                data-filter="availableMonths"
+                value="March"
+              />March</label
+            >
+            <label
+              ><input
+                type="checkbox"
+                data-filter="availableMonths"
+                value="April"
+              />April</label
+            >
+            <label
+              ><input
+                type="checkbox"
+                data-filter="availableMonths"
+                value="May"
+              />May</label
+            >
+            <label
+              ><input
+                type="checkbox"
+                data-filter="availableMonths"
+                value="June"
+              />June</label
+            >
+            <label
+              ><input
+                type="checkbox"
+                data-filter="availableMonths"
+                value="July"
+              />July</label
+            >
+            <label
+              ><input
+                type="checkbox"
+                data-filter="availableMonths"
+                value="August"
+              />August</label
+            >
+            <label
+              ><input
+                type="checkbox"
+                data-filter="availableMonths"
+                value="September"
+              />September</label
+            >
+            <label
+              ><input
+                type="checkbox"
+                data-filter="availableMonths"
+                value="October"
+              />October</label
+            >
+            <label
+              ><input
+                type="checkbox"
+                data-filter="availableMonths"
+                value="November"
+              />November</label
+            >
+            <label
+              ><input
+                type="checkbox"
+                data-filter="availableMonths"
+                value="December"
+              />December</label
+            >
+          </div>
+        </div>
+
+        <!-- Rating Filter (keep existing one) -->
+        <div class="filter-section">
+          <div class="filter-header">
+            <span>Rating</span>
+            <span class="arrow" id="arrowRating">&#9662;</span>
+          </div>
+          <div class="filter-options" id="dropdownContentRating">
+            <label>
+              <input
+                class="rating-input"
+                type="checkbox"
+                data-filter="rating"
+                value="5"
+              />
+              <i class="fa-solid fa-star"></i><i class="fa-solid fa-star"></i
+              ><i class="fa-solid fa-star"></i><i class="fa-solid fa-star"></i
+              ><i class="fa-solid fa-star"></i>
+            </label>
+            <label>
+              <input
+                class="rating-input"
+                type="checkbox"
+                data-filter="rating"
+                value="4"
+              />
+              <i class="fa-solid fa-star"></i><i class="fa-solid fa-star"></i
+              ><i class="fa-solid fa-star"></i><i class="fa-solid fa-star"></i>
+            </label>
+            <label>
+              <input
+                class="rating-input"
+                type="checkbox"
+                data-filter="rating"
+                value="3"
+              />
+              <i class="fa-solid fa-star"></i><i class="fa-solid fa-star"></i
+              ><i class="fa-solid fa-star"></i>
+            </label>
+            <label>
+              <input
+                class="rating-input"
+                type="checkbox"
+                data-filter="rating"
+                value="2"
+              />
+              <i class="fa-solid fa-star"></i><i class="fa-solid fa-star"></i>
+            </label>
+            <label>
+              <input
+                class="rating-input"
+                type="checkbox"
+                data-filter="rating"
+                value="1"
+              />
+              <i class="fa-solid fa-star"></i>
+            </label>
+          </div>
+        </div>
+
+        <button
+          class="availability"
+          style="margin-top: 16px"
+          onclick="applyTourFilters()"
+        >
+          Apply Filters
+        </button>
+        <button
+          class="availability"
+          style="
+            margin-top: 8px;
+            background-color: #6c757d;
+            border-color: #6c757d;
+          "
+          onclick="clearAllFilters()"
+        >
+          Clear Filters
+        </button>
+      </aside>
+      <!-- Tours Container -->
+      <div class="tours-container">
+        <div class="allToursContainer">
+          <!-- <div class="card">
+          <div style="position: relative">
+            <img
+              src="../../assets/tours/heroBg1.jpg"
+              alt="Tour Image"
+            />
+            <span class="featured">Featured</span>
+          </div>
+          <div class="card-content">
+            <h3>Cochin, Alleppey, Varkala, & Kovalam Tour</h3>
+            <div class="rating">
+              <i class="fas fa-star"></i> 0 (No Review)
+            </div>
+            <div class="price">From ₹24,000.00</div>
+            <div class="duration">7 days 6 nights</div>
+          </div>
+        </div> -->
+
+          <% tours.forEach(tour => { %>
+          <div class="card">
+            <div style="position: relative">
+              <img src="<%= tour.mainImage %>" alt="Tour Image" />
+              <% if(tour.tag) { %>
+              <div class="featured"><%= tour.tag %></div>
+              <% }; %>
+            </div>
+
+            <div class="card-content">
+              <h3 onclick="handleTourClick(`<%=tour._id%>`)">
+                <%= tour.title %>
+              </h3>
+              <div class="rating">
+                <% for(let i = 0; i < tour.rating; i++) { %>
+                <i class="fas fa-star"></i>
+                <% } %>
+              </div>
+              <div class="price">
+                <%= tour.price.amount %> <%= tour.price.currency %>
+              </div>
+              <div class="duration"><%= tour.duration %></div>
+            </div>
+          </div>
+          <% });%>
+        </div>
+        <div class="paginationButtonsContainer">
+          <div class="buttonLeft">
+            <% if(displayButton.displayLeftButton) { %>
+            <svg
+              xmlns="http://www.w3.org/2000/svg"
+              viewBox="0 0 24 24"
+              fill="currentColor"
+              class="size-6 button"
+              width="50"
+            >
+              <path
+                fill-rule="evenodd"
+                d="M12 2.25c-5.385 0-9.75 4.365-9.75 9.75s4.365 9.75 9.75 9.75 9.75-4.365 9.75-9.75S17.385 2.25 12 2.25Zm-4.28 9.22a.75.75 0 0 0 0 1.06l3 3a.75.75 0 1 0 1.06-1.06l-1.72-1.72h5.69a.75.75 0 0 0 0-1.5h-5.69l1.72-1.72a.75.75 0 0 0-1.06-1.06l-3 3Z"
+                clip-rule="evenodd"
+              />
+            </svg>
+            <% }; %>
+          </div>
+          <div class="buttonRight">
+            <% if(displayButton.displayRightButton) { %>
+            <svg
+              xmlns="http://www.w3.org/2000/svg"
+              viewBox="0 0 24 24"
+              fill="currentColor"
+              class="size-6 button"
+              width="50"
+            >
+              <path
+                fill-rule="evenodd"
+                d="M12 2.25c-5.385 0-9.75 4.365-9.75 9.75s4.365 9.75 9.75 9.75 9.75-4.365 9.75-9.75S17.385 2.25 12 2.25Zm4.28 10.28a.75.75 0 0 0 0-1.06l-3-3a.75.75 0 1 0-1.06 1.06l1.72 1.72H8.25a.75.75 0 0 0 0 1.5h5.69l-1.72 1.72a.75.75 0 1 0 1.06 1.06l3-3Z"
+                clip-rule="evenodd"
+              />
+            </svg>
+            <% }; %>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <footer class="footer">
+      <div class="footer-container">
+        <div class="footer-about">
+          <h3>Chasing Horizons</h3>
+          <p>
+            Explore the beauty of India with us. Your journey to breathtaking
+            destinations starts here!
+          </p>
+        </div>
+
+        <div class="footer-links">
+          <h4>Quick Links</h4>
+          <ul>
+            <li><a href="/">Home</a></li>
+            <li><a href="/tours">Tours</a></li>
+            <li><a href="/hotels">Hotels</a></li>
+            <li><a href="/contact">Contact</a></li>
+          </ul>
+        </div>
+
+        <div class="footer-social">
+          <h4>Follow Us</h4>
+          <div class="social-icons">
+            <a href="https://www.youtube.com" target="_blank">
+              <i class="fa-brands fa-youtube" style="font-size: 40px"></i>
+            </a>
+            <a href="https://www.instagram.com" target="_blank">
+              <i
+                class="fa-brands fa-square-instagram"
+                style="font-size: 40px"
+              ></i>
+            </a>
+            <a href="https://x.com/" target="_blank">
+              <i
+                class="fa-brands fa-square-x-twitter"
+                style="font-size: 40px"
+              ></i>
+            </a>
+          </div>
+        </div>
+      </div>
+
+      <div class="footer-bottom">
+        <p>© 2025 Chasing Horizons. All Rights Reserved.</p>
+      </div>
+    </footer>
+  </body>
+</html>

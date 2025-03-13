@@ -1,0 +1,333 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta
+      name="viewport"
+      content="width=device-width, initial-scale=1.0"
+    />
+    <link rel="icon" href="data:," />
+    <title>Chasing Horizons | <%=tour.title%></title>
+    <link href="/css/tours/tour.css" rel="stylesheet" />
+    <link href="/css/header.css" rel="stylesheet" />
+    <link href="/css/footer.css" rel="stylesheet" />
+
+    <link
+      rel="stylesheet"
+      href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.2/css/all.min.css"
+    />
+    <script defer src="/js/tours/tour.js"></script>
+    <script defer src="/js/header.js"></script>
+  </head>
+  <body>
+    <header
+      class="headerContainer"
+      style="width: 90%; margin: 0 auto"
+    >
+      <%- include('../partials/header.ejs') %>
+    </header>
+    <div class="tour-container">
+      <h2 class="hero-heading"><%=tour.title %></h2>
+      <p class="hero-duration">
+        <%= tour.duration %> • From
+        <strong> <%= tour.startLocation %> </strong>
+      </p>
+      <p class="hero-description"><%= tour.description %></p>
+
+      <div class="hero-section">
+        <div class="hero-section-left">
+          <img
+            class="hero-image"
+            src="<%=tour.mainImage%>"
+            alt="tour-hero-section-image"
+          />
+          <div class="hero-tags">
+            <% if (tour.tags.length > 0) { %> <%
+            tour.tags.forEach(item => { %>
+            <span><%= item %></span>
+            <% }); %> <% } %>
+          </div>
+        </div>
+        <div class="hero-section-right">
+          <div class="hero-price-card">
+            <span class="hero-original-price"
+              >From <%= tour.price.amount %> <%=
+              tour.price.currency %>
+            </span>
+            <span class="hero-discount"
+              >-<%= tour.price.discount * 100 %>%</span
+            >
+            <div class="hero-price">
+              <%= tour.price.currency %> <%= tour.price.amount -
+              tour.price.discount*tour.price.amount %>
+            </div>
+            <a href="#choice-section" class="hero-button"
+              >Check Availability</a
+            >
+            <div class="hero-info">
+              Price based on per person in Standard for
+              <a href="#"
+                >departure on <%=
+                tour.bookingDetails[0].startDate %></a
+              >
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <div class="places-to-visit">
+        <h1>Places to Visit</h1>
+        <div class="places-to-visit-image-container">
+          <!-- <div class="places-to-visit-image-card">
+            <img
+              class="places-to-visit-image-card-img"
+              src="https://live.staticflickr.com/7289/10991694376_40a1f41791_b.jpg"
+              alt="NOTHING"
+            />
+            <h3 class="places-to-visit-image-card-heading">
+              Paris, London
+            </h3>
+          </div> -->
+
+          <% tour.destinations.forEach(destination => { %>
+          <div class="places-to-visit-image-card">
+            <img
+              class="places-to-visit-image-card-img"
+              src="<%= destination.image %>"
+              alt="<%= destination.name %>"
+            />
+            <h3 class="places-to-visit-image-card-heading">
+              <%= destination.name %>
+            </h3>
+          </div>
+          <% }); %>
+        </div>
+      </div>
+
+      <div class="itinerary">
+        <h1 class="itinerary-heading">Itinerary</h1>
+        <div class="itinerary-accordion">
+          <!-- <div class="itinerary-item">
+            <p class="itinerary-number">Day - ${item.day}</p>
+            <p class="itinerary-text">${item.location}</p>
+            <svg
+              xmlns="http://www.w3.org/2000/svg"
+              class="itinerary-icon"
+              fill="none"
+              viewBox="0 0 24 24"
+              stroke="currentColor"
+            >
+              <path
+                stroke-linecap="round"
+                stroke-linejoin="round"
+                stroke-width="2"
+                d="M19 9l-7 7-7-7"
+              />
+            </svg>
+            <div class="itinerary-hidden-box">
+              <ul>
+                <li><li/>
+              </ul>
+            </div>
+          </div> -->
+
+          <% tour.itinerary.forEach(item => { %>
+          <div class="itinerary-item">
+            <p class="itinerary-number"><%= item.day %></p>
+            <p class="itinerary-text"><%= item.location %></p>
+            <svg
+              xmlns="http://www.w3.org/2000/svg"
+              class="itinerary-icon"
+              fill="none"
+              viewBox="0 0 24 24"
+              stroke="currentColor"
+            >
+              <path
+                stroke-linecap="round"
+                stroke-linejoin="round"
+                stroke-width="2"
+                d="M19 9l-7 7-7-7"
+              />
+            </svg>
+            <div class="itinerary-hidden-box">
+              <ul>
+                <% item.activities.forEach(activity => { %>
+                <li><%= activity %></li>
+                <% }); %>
+              </ul>
+            </div>
+          </div>
+          <% }); %>
+        </div>
+
+        <div class="included-section">
+          <h1 class="included-section-heading">
+            What is Included?
+          </h1>
+          <div class="included-section-list">
+            <!-- <div>✔ Travel Packages</div> -->
+            <% tour.includes.forEach(include => { %>
+            <div>✔ <%= include %></div>
+            <% }); %>
+          </div>
+        </div>
+      </div>
+
+      <div id="choice-section" class="choice-section">
+        <h2>Select a departure month</h2>
+        <div class="choice-selection-container">
+          <button class="choice-month choice-selected">
+            Upcoming departures
+          </button>
+          <!-- <button class="choice-month">December 2025</button> -->
+          <% tour.availableMonths.forEach(month => { %>
+          <button class="choice-month"><%= month %></button>
+          <% }); %>
+        </div>
+
+        <div class="booking-card-container">
+          <!-- <div class="booking-card">
+            <div class="booking-card-date-section">
+              <div class="booking-card-date">
+                <span class="booking-card-day">Sunday</span>
+                <span class="booking-card-full-date"
+                  >16 Mar, 2025</span
+                >
+              </div>
+              <div class="booking-card-arrow">➡</div>
+              <div class="booking-card-date">
+                <span class="booking-card-day">Saturday</span>
+                <span class="booking-card-full-date"
+                  >29 Mar, 2025</span
+                >
+              </div>
+              <div class="booking-card-details-section">
+                <div class="booking-card-price">
+                  <span class="booking-card-old-price"
+                    >$2,999</span
+                  >
+                  <span class="booking-card-new-price"
+                    >$2,399</span
+                  >
+                </div>
+              </div>
+              <button class="booking-card-confirm-btn">
+                Confirm Dates
+              </button>
+            </div>
+            <div class="booking-card-language">🌐 English</div>
+
+            <div class="booking-card-status">
+              <span class="booking-card-status-icon">🪑</span>
+              <span class="booking-card-status-text"
+                >Filling Fast</span
+              >
+            </div>
+          </div> -->
+
+          <% tour.bookingDetails.forEach(bookingDetail => { %>
+          <div class="booking-card">
+            <div class="booking-card-date-section">
+              <div class="booking-card-date">
+                <span class="booking-card-day">
+                  <%= bookingDetail.startDay %>
+                </span>
+                <span class="booking-card-full-date">
+                  <%= bookingDetail.startDate %>
+                </span>
+              </div>
+              <div class="booking-card-arrow">➡</div>
+              <div class="booking-card-date">
+                <span class="booking-card-day">
+                  <%= bookingDetail.endDay %>
+                </span>
+                <span class="booking-card-full-date">
+                  <%= bookingDetail.endDate %>
+                </span>
+              </div>
+              <div class="booking-card-details-section">
+                <div class="booking-card-price">
+                  <span class="booking-card-old-price">
+                    <%= tour.price.amount %> <%=
+                    tour.price.currency %>
+                  </span>
+                  <span class="booking-card-new-price">
+                    <%= tour.price.amount -
+                    bookingDetail.discount*tour.price.amount %>
+                    <%= tour.price.currency %>
+                  </span>
+                </div>
+              </div>
+              <button
+                data-booking-string="<%=bookingDetail.startDate%>_<%=bookingDetail.endDate%>_<%=bookingDetail.discount%>_<%=tour._id%>"
+                class="booking-card-confirm-btn"
+              >
+                Confirm Dates
+              </button>
+            </div>
+            <div class="booking-card-language">
+              🌐 <%= tour.language %>
+            </div>
+
+            <div class="booking-card-status">
+              <span class="booking-card-status-icon">🪑</span>
+              <span class="booking-card-status-text">
+                <%= bookingDetail.status %>
+              </span>
+            </div>
+          </div>
+          <% }); %>
+        </div>
+      </div>
+    </div>
+    <footer class="footer">
+      <div class="footer-container">
+        <div class="footer-about">
+          <h3>Chasing Horizons</h3>
+          <p>
+            Explore the beauty of India with us. Your journey to
+            breathtaking destinations starts here!
+          </p>
+        </div>
+
+        <div class="footer-links">
+          <h4>Quick Links</h4>
+          <ul>
+            <li><a href="/">Home</a></li>
+            <li><a href="/tours">Tours</a></li>
+            <li><a href="/hotels">Hotels</a></li>
+            <li><a href="/contact">Contact</a></li>
+          </ul>
+        </div>
+
+        <div class="footer-social">
+          <h4>Follow Us</h4>
+          <div class="social-icons">
+            <a href="https://www.youtube.com" target="_blank">
+              <i
+                class="fa-brands fa-youtube"
+                style="font-size: 40px"
+              ></i>
+            </a>
+            <a href="https://www.instagram.com" target="_blank">
+              <i
+                class="fa-brands fa-square-instagram"
+                style="font-size: 40px"
+              ></i>
+            </a>
+            <a href="https://x.com/" target="_blank">
+              <i
+                class="fa-brands fa-square-x-twitter"
+                style="font-size: 40px"
+              ></i>
+            </a>
+          </div>
+        </div>
+      </div>
+
+      <div class="footer-bottom">
+        <p>© 2025 Chasing Horizons. All Rights Reserved.</p>
+      </div>
+    </footer>
+  </body>
+</html>
