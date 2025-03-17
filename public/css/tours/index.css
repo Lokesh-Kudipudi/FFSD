@@ -1,0 +1,323 @@
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+  font-family: sans-serif;
+}
+
+.heroSection {
+  position: relative;
+  width: 100vw;
+  height: 100vh;
+  overflow: hidden;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+.heroBackground {
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+}
+
+.heroBackgroundVideo {
+  width: 100vw;
+  height: 100vh;
+  object-fit: cover;
+  filter: brightness(0.3);
+}
+
+/* .heroBackgroundImage {
+  filter: blur(2px);
+  width: 100%;
+  height: 100%;
+  object-fit: cover; 
+} */
+
+.heroMain {
+  position: relative;
+  z-index: 1;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  flex-direction: column;
+}
+
+.heroText {
+  color: white;
+  font-size: 3rem;
+  font-weight: bold;
+  text-shadow: 2px 2px 10px rgba(0, 0, 0, 0.7);
+}
+
+.heroSubText {
+  color: grey;
+  width: 100%;
+  text-align: right;
+}
+
+.search-container {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  width: 100%;
+  margin-top: 20px;
+}
+
+.search-box {
+  display: flex;
+  align-items: center;
+  background: white;
+  padding: 12px;
+  border-radius: 50px;
+  box-shadow: 0px 4px 10px rgba(0, 0, 0, 0.1);
+  width: 500px;
+  max-width: 90%;
+}
+
+.icon {
+  font-size: 20px;
+  margin-right: 10px;
+}
+
+.input-wrapper {
+  display: flex;
+  flex-direction: column;
+  flex: 1;
+}
+
+.input-wrapper label {
+  font-size: 14px;
+  font-weight: bold;
+}
+
+.input-wrapper input {
+  border: none;
+  outline: none;
+  font-size: 16px;
+  padding: 5px 0;
+  background: transparent;
+}
+
+.search-button {
+  background: #0066ff;
+  color: white;
+  border: none;
+  padding: 10px 20px;
+  border-radius: 25px;
+  font-size: 16px;
+  cursor: pointer;
+  transition: 0.3s;
+}
+
+.search-button:hover {
+  background: #0052cc;
+}
+
+.aboutUsSection {
+  margin: 64px auto;
+  display: flex;
+  max-width: 85vw;
+  background: white;
+  border-radius: 12px;
+  overflow: hidden;
+  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
+}
+
+.image-section {
+  position: relative;
+  width: 40%;
+}
+
+.image-section img {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+}
+
+.experience-badge {
+  position: absolute;
+  bottom: 20px;
+  left: 15px;
+  background: #ffbb33;
+  color: white;
+  padding: 15px;
+  border-radius: 10px;
+  text-align: center;
+}
+
+.experience-badge .years {
+  font-size: 28px;
+  font-weight: 700;
+}
+
+.experience-badge .text {
+  font-size: 14px;
+}
+
+.content-section {
+  width: 60%;
+  padding: 30px;
+}
+
+.about-us {
+  color: #ffbb33;
+  font-size: 14px;
+  font-weight: 600;
+}
+
+.title {
+  font-size: 22px;
+  color: #111;
+  font-weight: 700;
+  margin: 10px 0;
+}
+
+.description {
+  font-size: 14px;
+  color: #555;
+  line-height: 1.6;
+}
+
+.services {
+  list-style: none;
+  margin-top: 10px;
+}
+
+.services li {
+  font-size: 14px;
+  color: #333;
+  margin: 5px 0;
+}
+
+.discover-btn {
+  display: inline-block;
+  margin-top: 15px;
+  padding: 10px 15px;
+  background: #007bff;
+  color: white;
+  text-decoration: none;
+  border-radius: 5px;
+  font-size: 14px;
+  font-weight: 600;
+  transition: 0.3s ease-in-out;
+}
+
+.discover-btn:hover {
+  background: #0056b3;
+}
+
+/* DESTINATION SECTION */
+
+.destinations {
+  padding: 40px 20px;
+  text-align: center;
+}
+
+.section-title {
+  color: #f4a623;
+  font-weight: 600;
+  font-size: 14px;
+}
+
+.main-title {
+  color: #111;
+  font-size: 24px;
+  font-weight: 700;
+  margin: 10px 0;
+}
+
+.description {
+  font-size: 14px;
+  color: #555;
+  max-width: 600px;
+  margin: 0 auto 20px;
+}
+
+/* Grid Layout */
+.grid-container {
+  display: grid;
+  grid-template-columns: repeat(4, 1fr);
+  gap: 15px;
+  max-width: 900px;
+  margin: 0 auto;
+}
+
+.grid-item {
+  position: relative;
+  border-radius: 10px;
+  overflow: hidden;
+  background-size: cover;
+  background-position: center;
+  height: 200px;
+  display: flex;
+  align-items: flex-end;
+  transition: transform 0.3s ease-in-out;
+}
+
+.grid-item:hover {
+  transform: scale(1.05);
+}
+
+.overlay {
+  background: rgba(0, 0, 0, 0.5);
+  color: white;
+  padding: 10px;
+  width: 100%;
+  text-align: left;
+  cursor: pointer;
+}
+
+.overlay h2 {
+  font-size: 16px;
+  margin-bottom: 5px;
+}
+
+.overlay h2:hover {
+  color: blue;
+}
+
+.overlay p {
+  font-size: 12px;
+}
+
+/* Special Explore India Section */
+.explore-india {
+  background: #ff2d2d;
+  color: white;
+  display: flex;
+  padding: 6px;
+  align-items: center;
+  justify-content: center;
+}
+
+.explore-content {
+  padding: 20px;
+  text-align: left;
+}
+
+.explore-content h2 {
+  font-size: 18px;
+  margin-bottom: 5px;
+}
+
+.explore-content p {
+  font-size: 12px;
+  margin-bottom: 10px;
+}
+
+.explore-btn {
+  background: white;
+  color: #ff2d2d;
+  font-size: 18px;
+  width: 30px;
+  height: 30px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  border-radius: 50%;
+  cursor: pointer;
+}

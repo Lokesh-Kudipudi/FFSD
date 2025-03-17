@@ -1,0 +1,25 @@
+.allToursHeader {
+  margin-top: 32px;
+}
+
+.noToursContainer {
+  display: flex;
+  gap: 32px;
+  justify-content: center;
+  height: 80vh;
+}
+
+.noToursBox {
+  width: 798px;
+  height: 300px;
+
+  text-align: center;
+}
+
+.noToursBox h2 {
+  font-size: 32px;
+}
+
+.noToursBox p {
+  color: #424242;
+}
