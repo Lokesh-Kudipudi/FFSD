@@ -1,0 +1,111 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta
+      name="viewport"
+      content="width=device-width, initial-scale=1.0"
+    />
+    <title>Contact Us</title>
+    <link href="/css/contact.css" rel="stylesheet" />
+    <script src="/js/contact.js"></script>
+  </head>
+  <body>
+    <div class="container">
+      <div class="contact-form">
+        <h2>Chat to our team</h2>
+        <p>
+          Need help with something? Want a demo? Get in touch
+          with our friendly team and we'll get in touch within 2
+          hours.
+        </p>
+        <form class="form">
+          <div class="form-group">
+            <label for="name">Name</label>
+            <input type="text" id="name" name="name" required />
+          </div>
+
+          <div class="form-group">
+            <label for="email">Work email</label>
+            <input
+              type="email"
+              id="email"
+              name="email"
+              required
+            />
+          </div>
+          <div class="form-group">
+            <label for="phone">Mobile number (+91)</label>
+            <input type="tel" id="phone" name="phone" required />
+          </div>
+
+          <div class="form-group">
+            <label for="reason">Reason for contact</label>
+            <select id="reason" name="reason" required>
+              <option value="demo">Booking Inquiries</option>
+              <option value="technical">
+                Special Requests or Accommodations
+              </option>
+              <option value="pricing">
+                Information on Local Attractions and Activities
+              </option>
+              <option value="support">
+                Group or Event Planning
+              </option>
+              <option value="other">
+                Other (please specify)
+              </option>
+            </select>
+          </div>
+          <div class="form-group">
+            <label for="query">Query</label>
+            <textarea
+              type="text"
+              id="query"
+              style="width: 100%; height: 60px"
+              name="query"
+              required
+            ></textarea>
+          </div>
+          <div
+            style="
+              display: flex;
+              justify-content: space-between;
+              width: 100%;
+            "
+          >
+            <button type="submit">Get in touch</button>
+            <button
+              style="
+                color: gray;
+                background-color: white;
+                text-decoration: underline;
+              "
+              onclick="window.location.href = '/'"
+            >
+              Home
+            </button>
+          </div>
+        </form>
+      </div>
+      <div class="image-section">
+        <img
+          src="https://plus.unsplash.com/premium_photo-1673623135721-a0ea3caff642?w=900&auto=format&fit=crop&q=60&ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxzZWFyY2h8NXx8aG9yaXpvbnxlbnwwfHwwfHx8MA%3D%3D"
+          alt="Company Image"
+        />
+        <div class="overlay">
+          <div class="header-content">
+            <div class="logo">
+              <img
+                src="/images/logo.png"
+                alt="Logo"
+                style="width: 75px; height: auto"
+              />
+            </div>
+            <div class="title">Chasing Horizons</div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </body>
+</html>
