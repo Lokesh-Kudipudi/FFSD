@@ -1,0 +1,31 @@
+:root {
+  --primary-color: #2c3e50;
+  --primary-light: #34495e;
+  --secondary-color: #3498db;
+  --text-color: #ecf0f1;
+  --danger-color: #e74c3c;
+  --success-color: #2ecc71;
+  --warning-color: #f39c12;
+  --light-bg: #f5f7fa;
+  --card-bg: #ffffff;
+  --border-color: #dcdde1;
+  --shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+}
+
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+  font-family: "Segoe UI", Tahoma, Geneva, Verdana, sans-serif;
+}
+
+.container {
+  display: flex;
+  overflow-x: hidden;
+}
+
+.main {
+  flex: 1;
+  padding: 20px;
+  transition: all 0.3s ease;
+}
