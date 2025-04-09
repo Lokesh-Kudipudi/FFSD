@@ -8,7 +8,6 @@ async function getUserBookings(userId) {
       .populate("userId")
       .populate({
         path: "itemId",
-        // This will use the refPath to determine which model to populate
       })
       .lean();
 
@@ -20,7 +19,6 @@ async function getUserBookings(userId) {
       };
     }
 
-    // Filter out bookings where itemId failed to populate (null)
     const validBookings = bookings.filter(
       (booking) => booking.itemId !== null
     );
@@ -70,19 +68,17 @@ async function getHotelBookings(hotelId) {
 
 async function makeTourBooking(userId, tourId, bookingDetails) {
   try {
-    // Validate the tour exists
     const tour = await Tour.findById(tourId);
     if (!tour) {
       throw new Error("Tour not found.");
     }
-    // Create a new booking object
     const booking = new Booking({
       userId,
       type: "Tour",
       itemId: tourId,
       bookingDetails: {
         ...bookingDetails,
-        status: bookingDetails.status || "pending", // Default to pending if no status provided
+        status: bookingDetails.status || "pending",
         bookingDate: new Date(),
         price:
           tour.price.amount -
@@ -112,19 +108,17 @@ async function makeHotelBooking(
   bookingDetails
 ) {
   try {
-    // Validate the hotel exists
     const hotel = await Hotel.findById(hotelId);
     if (!hotel) {
       throw new Error("Hotel not found.");
     }
-    // Create a new booking object
     const booking = new Booking({
       userId,
       type: "Hotel",
       itemId: hotelId,
       bookingDetails: {
         ...bookingDetails,
-        status: bookingDetails.status || "pending", // Default to pending if no status provided
+        status: bookingDetails.status || "pending",
         bookingDate: new Date(),
       },
     });
