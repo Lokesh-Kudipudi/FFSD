@@ -1,0 +1,480 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta
+      name="viewport"
+      content="width=device-width, initial-scale=1.0"
+    />
+    <title>Customers - Chasing Horizons Admin</title>
+    <link
+      rel="stylesheet"
+      href="/css/dashboard/admin/styles.css"
+    />
+    <link
+      rel="stylesheet"
+      href="/css/dashboard/admin/sidebar.css"
+    />
+    <link
+      rel="stylesheet"
+      href="/css/dashboard/admin/topbar.css"
+    />
+    <link
+      rel="stylesheet"
+      href="/css/dashboard/admin/customers.css"
+    />
+    <link
+      rel="stylesheet"
+      href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css"
+    />
+
+    <script defer src="/js/dashboard/admin/app.js"></script>
+    <script
+      defer
+      src="/js/dashboard/admin/customers.js"
+    ></script>
+  </head>
+  <body>
+    <div class="container">
+      <div class="sidebar" id="sidebar">
+        <div
+          class="logo-title"
+          onclick="{window.location.href = '/'}"
+        >
+          <span>Chasing Horizons</span>
+        </div>
+        <div class="sidebar-links">
+          <a href="/dashboard/admin" class="active"
+            ><i class="fas fa-tachometer-alt"></i>
+            <span class="link-text">Overview</span></a
+          >
+          <!-- <a href="/dashboard/admin/customers"
+            ><i class="fas fa-users"></i>
+            <span class="link-text">Customers</span></a
+          > -->
+          <a href="/dashboard/admin/packages"
+            ><i class="fas fa-chart-bar"></i>
+            <span class="link-text active">Packages</span></a
+          >
+          <a href="/dashboard/admin/hotelManagement"
+            ><i class="fas fa-hotel"></i>
+            <span class="link-text">Hotel Management</span></a
+          >
+          <!-- <a href="/dashboard/admin/analytics" class="active"
+            ><i class="fas fa-plane"></i>
+            <span class="link-text">Analytics</span></a
+          > -->
+          <a href="/dashboard/admin/queries">
+            <i class="fas fa-question-circle"></i>
+            <span class="link-text">Queries</span>
+          </a>
+        </div>
+      </div>
+
+      <main class="main">
+        <div class="topbar">
+          <button class="toggle-btn" id="toggle-sidebar">
+            <i style="color: black" class="fas fa-bars"></i>
+          </button>
+          <div class="search-bar">
+            <i class="fas fa-search"></i>
+            <input
+              type="text"
+              placeholder="Search customers..."
+            />
+          </div>
+          <div class="user-info">
+            <div class="notification-icon">
+              <i class="fas fa-bell"></i>
+              <span class="notification-badge">3</span>
+            </div>
+            <div class="user-avatar">
+              <span>AD</span>
+            </div>
+            <div class="user-name">Admin</div>
+          </div>
+        </div>
+
+        <div class="page-header">
+          <h1 class="page-title">Customers</h1>
+          <div class="action-buttons">
+            <button class="btn btn-primary">
+              <i class="fas fa-plus"></i> Add New Customer
+            </button>
+            <button class="btn btn-outline">
+              <i class="fas fa-download"></i> Export
+            </button>
+          </div>
+        </div>
+
+        <div class="filters-container">
+          <h2 class="filters-title">
+            <i class="fas fa-filter"></i> Filter Customers
+          </h2>
+          <div class="filters-grid">
+            <div class="filter-group">
+              <label class="filter-label">Status</label>
+              <select class="filter-input">
+                <option value="">All Status</option>
+                <option value="active">Active</option>
+                <option value="inactive">Inactive</option>
+              </select>
+            </div>
+            <div class="filter-group">
+              <label class="filter-label">Membership</label>
+              <select class="filter-input">
+                <option value="">All Memberships</option>
+                <option value="platinum">Platinum</option>
+                <option value="gold">Gold</option>
+                <option value="silver">Silver</option>
+                <option value="bronze">Bronze</option>
+              </select>
+            </div>
+            <div class="filter-group">
+              <label class="filter-label"
+                >Registration Date</label
+              >
+              <input type="date" class="filter-input" />
+            </div>
+            <div class="filter-group">
+              <label class="filter-label">Country</label>
+              <select class="filter-input">
+                <option value="">All Countries</option>
+                <option value="usa">United States</option>
+                <option value="uk">United Kingdom</option>
+                <option value="canada">Canada</option>
+                <option value="australia">Australia</option>
+                <option value="germany">Germany</option>
+              </select>
+            </div>
+          </div>
+          <div class="filter-actions">
+            <button class="btn btn-outline">Reset</button>
+            <button class="btn btn-primary">
+              Apply Filters
+            </button>
+          </div>
+        </div>
+
+        <div class="customers-card">
+          <div class="customers-table-container">
+            <table class="customers-table">
+              <thead>
+                <tr>
+                  <th class="sorted-asc">Customer</th>
+                  <th>Email</th>
+                  <th>Phone</th>
+                  <th>Membership</th>
+                  <th>Status</th>
+                  <th>Last Travel</th>
+                  <th>Total Bookings</th>
+                  <th>Amount Spent</th>
+                  <th>Actions</th>
+                </tr>
+              </thead>
+              <tbody>
+                <tr>
+                  <td>
+                    <div class="avatar-cell">
+                      <div class="customer-avatar">JD</div>
+                      <div class="customer-details">
+                        <span class="customer-name"
+                          >John Doe</span
+                        >
+                      </div>
+                    </div>
+                  </td>
+                  <td>john.doe@example.com</td>
+                  <td>+1 (555) 123-4567</td>
+                  <td>
+                    <span class="tier-badge tier-platinum"
+                      >Platinum</span
+                    >
+                  </td>
+                  <td>
+                    <span class="status-badge status-active"
+                      >Active</span
+                    >
+                  </td>
+                  <td>Mar 1, 2025</td>
+                  <td>15</td>
+                  <td>$12,450</td>
+                  <td class="action-cell">
+                    <button
+                      class="action-btn view-customer"
+                      data-id="1"
+                    >
+                      <i class="fas fa-eye"></i>
+                    </button>
+                    <button class="action-btn">
+                      <i class="fas fa-edit"></i>
+                    </button>
+                    <button class="action-btn delete">
+                      <i class="fas fa-trash"></i>
+                    </button>
+                  </td>
+                </tr>
+                <tr>
+                  <td>
+                    <div class="avatar-cell">
+                      <div class="customer-avatar">SS</div>
+                      <div class="customer-details">
+                        <span class="customer-name"
+                          >Sarah Smith</span
+                        >
+                      </div>
+                    </div>
+                  </td>
+                  <td>sarah.smith@example.com</td>
+                  <td>+1 (555) 987-6543</td>
+                  <td>
+                    <span class="tier-badge tier-gold"
+                      >Gold</span
+                    >
+                  </td>
+                  <td>
+                    <span class="status-badge status-active"
+                      >Active</span
+                    >
+                  </td>
+                  <td>Feb 15, 2025</td>
+                  <td>12</td>
+                  <td>$8,790</td>
+                  <td class="action-cell">
+                    <button
+                      class="action-btn view-customer"
+                      data-id="2"
+                    >
+                      <i class="fas fa-eye"></i>
+                    </button>
+                    <button class="action-btn">
+                      <i class="fas fa-edit"></i>
+                    </button>
+                    <button class="action-btn delete">
+                      <i class="fas fa-trash"></i>
+                    </button>
+                  </td>
+                </tr>
+                <tr>
+                  <td>
+                    <div class="avatar-cell">
+                      <div class="customer-avatar">MJ</div>
+                      <div class="customer-details">
+                        <span class="customer-name"
+                          >Mike Johnson</span
+                        >
+                      </div>
+                    </div>
+                  </td>
+                  <td>mike.johnson@example.com</td>
+                  <td>+1 (555) 234-5678</td>
+                  <td>
+                    <span class="tier-badge tier-silver"
+                      >Silver</span
+                    >
+                  </td>
+                  <td>
+                    <span class="status-badge status-active"
+                      >Active</span
+                    >
+                  </td>
+                  <td>Feb 28, 2025</td>
+                  <td>8</td>
+                  <td>$5,620</td>
+                  <td class="action-cell">
+                    <button
+                      class="action-btn view-customer"
+                      data-id="3"
+                    >
+                      <i class="fas fa-eye"></i>
+                    </button>
+                    <button class="action-btn">
+                      <i class="fas fa-edit"></i>
+                    </button>
+                    <button class="action-btn delete">
+                      <i class="fas fa-trash"></i>
+                    </button>
+                  </td>
+                </tr>
+                <tr>
+                  <td>
+                    <div class="avatar-cell">
+                      <div class="customer-avatar">EW</div>
+                      <div class="customer-details">
+                        <span class="customer-name"
+                          >Emily Wilson</span
+                        >
+                      </div>
+                    </div>
+                  </td>
+                  <td>emily.wilson@example.com</td>
+                  <td>+1 (555) 876-5432</td>
+                  <td>
+                    <span class="tier-badge tier-platinum"
+                      >Platinum</span
+                    >
+                  </td>
+                  <td>
+                    <span class="status-badge status-active"
+                      >Active</span
+                    >
+                  </td>
+                  <td>Mar 5, 2025</td>
+                  <td>18</td>
+                  <td>$14,380</td>
+                  <td class="action-cell">
+                    <button
+                      class="action-btn view-customer"
+                      data-id="4"
+                    >
+                      <i class="fas fa-eye"></i>
+                    </button>
+                    <button class="action-btn">
+                      <i class="fas fa-edit"></i>
+                    </button>
+                    <button class="action-btn delete">
+                      <i class="fas fa-trash"></i>
+                    </button>
+                  </td>
+                </tr>
+              </tbody>
+            </table>
+          </div>
+        </div>
+
+        <div class="pagination">
+          <div class="page-info">
+            Showing 1 to 4 of 100 entries
+          </div>
+          <div class="page-controls">
+            <button class="page-btn disabled">
+              <i class="fas fa-chevron-left"></i>
+            </button>
+            <button class="page-btn active">1</button>
+            <button class="page-btn">2</button>
+            <button class="page-btn">3</button>
+            <button class="page-btn">
+              <i class="fas fa-chevron-right"></i>
+            </button>
+          </div>
+        </div>
+      </main>
+
+      <div class="modal" id="customerModal">
+        <div class="modal-content">
+          <div class="modal-header">
+            <h2 class="modal-title">Customer Details</h2>
+            <button class="modal-close" id="closeModalBtn">
+              <i class="fas fa-times"></i>
+            </button>
+          </div>
+          <div class="modal-body">
+            <div class="customer-profile">
+              <div class="customer-profile-avatar">JD</div>
+              <div class="customer-profile-info">
+                <div class="customer-profile-name">John Doe</div>
+                <div class="customer-profile-email">
+                  john.doe@example.com
+                </div>
+                <div class="customer-profile-stats">
+                  <div class="customer-stat">
+                    <div class="customer-stat-value">15</div>
+                    <div class="customer-stat-label">
+                      Bookings
+                    </div>
+                  </div>
+                  <div class="customer-stat">
+                    <div class="customer-stat-value">
+                      $12,450
+                    </div>
+                    <div class="customer-stat-label">Spent</div>
+                  </div>
+                  <div class="customer-stat">
+                    <div class="customer-stat-value">
+                      Platinum
+                    </div>
+                    <div class="customer-stat-label">
+                      Membership
+                    </div>
+                  </div>
+                </div>
+              </div>
+            </div>
+            <div class="tabs">
+              <div class="tab active" data-tab="profile">
+                Profile
+              </div>
+              <div class="tab" data-tab="travel">
+                Travel History
+              </div>
+            </div>
+            <div class="tab-content">
+              <div class="tab-pane active" id="profile">
+                <div class="details-row">
+                  <div class="details-label">Full Name</div>
+                  <div class="details-value">John Doe</div>
+                </div>
+                <div class="details-row">
+                  <div class="details-label">Email</div>
+                  <div class="details-value">
+                    john.doe@example.com
+                  </div>
+                </div>
+                <div class="details-row">
+                  <div class="details-label">Phone</div>
+                  <div class="details-value">
+                    +1 (555) 123-4567
+                  </div>
+                </div>
+                <div class="details-row">
+                  <div class="details-label">Address</div>
+                  <div class="details-value">
+                    123 Main St, Anytown, USA
+                  </div>
+                </div>
+              </div>
+              <div class="tab-pane" id="travel">
+                <div class="travel-history-item">
+                  <div class="travel-destination">
+                    Paris, France
+                  </div>
+                  <div class="travel-details">
+                    <div class="travel-detail">
+                      <i class="fas fa-calendar-alt"></i> Mar 1,
+                      2025
+                    </div>
+                    <div class="travel-detail">
+                      <i class="fas fa-plane"></i> Flight: AA123
+                    </div>
+                    <div class="travel-detail">
+                      <i class="fas fa-hotel"></i> Hotel: Luxury
+                      Inn
+                    </div>
+                  </div>
+                </div>
+                <div class="travel-history-item">
+                  <div class="travel-destination">
+                    Tokyo, Japan
+                  </div>
+                  <div class="travel-details">
+                    <div class="travel-detail">
+                      <i class="fas fa-calendar-alt"></i> Feb 15,
+                      2025
+                    </div>
+                    <div class="travel-detail">
+                      <i class="fas fa-plane"></i> Flight: JL456
+                    </div>
+                    <div class="travel-detail">
+                      <i class="fas fa-hotel"></i> Hotel:
+                      Imperial Palace
+                    </div>
+                  </div>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </body>
+</html>
