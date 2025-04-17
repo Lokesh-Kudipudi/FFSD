@@ -1,0 +1,122 @@
+.sidebar {
+  width: 250px;
+  height: 100vh;
+  background-color: var(--primary-color);
+  color: white;
+  padding-top: 60px;
+  transition: all 0.3s ease-in-out;
+  overflow-y: auto;
+  flex-shrink: 0;
+}
+
+.sidebar.collapsed {
+  margin-left: -250px;
+}
+
+.sidebar .logo-title {
+  color: rgb(209, 38, 209);
+  font-size: 24px;
+  margin-top: 5px;
+  padding-left: 1rem;
+}
+
+.admin-photo img {
+  text-align: center;
+  width: 3rem;
+  height: 3rem;
+  border-radius: 50%;
+  margin: 1rem 1rem;
+}
+
+.admin {
+  display: grid;
+  place-items: center;
+}
+
+.admin h5 {
+  color: palevioletred;
+  font-size: 15px;
+  margin-bottom: 0.25rem;
+  padding-bottom: 0.25rem;
+}
+
+.admin-icons {
+  padding: 0.25rem 0.5rem;
+}
+
+.dashboard-heading {
+  color: rgb(193, 14, 193);
+  font-size: 18px;
+  margin-bottom: 1rem;
+  text-align: center;
+}
+
+.link {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  padding: 10px;
+  cursor: pointer;
+  background: #2c3e50;
+  color: white;
+  border-radius: 5px;
+  margin-bottom: 5px;
+  background-color: rgba(80, 81, 86, 0.452);
+}
+
+.link.active {
+  background-color: #1e2d3b;
+}
+
+.link:hover {
+  background-color: #1e2d3b;
+}
+
+.sidenav {
+  padding: 10px;
+}
+
+.dropdown-container {
+  display: none;
+  background: #34495e;
+  padding: 10px;
+  background-color: rgba(80, 81, 86, 0.452);
+  border-radius: 5px;
+  margin: 3px 0;
+}
+
+.dropdown-container.active {
+  display: block;
+}
+
+.dropdown-container a {
+  display: block;
+  padding: 8px;
+  text-decoration: none;
+  color: white;
+}
+
+.dropdown-container:active {
+  background-color: rgb(104, 103, 103);
+}
+
+.dropdown-container a:hover {
+  background-color: rgb(178, 171, 171);
+  color: black;
+}
+
+.link a {
+  display: flex;
+  align-items: center;
+  gap: 12px;
+  text-decoration: none;
+  color: white;
+  flex-grow: 1;
+}
+
+.link .dropdown-btn {
+  background: none;
+  border: none;
+  color: white;
+  cursor: pointer;
+}

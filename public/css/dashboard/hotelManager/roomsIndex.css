@@ -1,0 +1,77 @@
+.occupancy-heading {
+  color: white;
+  text-align: center;
+  margin-bottom: 32px;
+}
+
+.filter-container {
+  background-color: #1c2432;
+  padding: 15px;
+  border-radius: 10px;
+  max-width: 900px;
+  margin: 0 auto;
+  margin-bottom: 20px;
+  text-align: center;
+  display: flex;
+  gap: 24px;
+  justify-content: center;
+}
+
+.filter-container select,
+.filter-container button {
+  padding: 10px;
+  border-radius: 5px;
+  border: none;
+  background-color: #333;
+  color: white;
+}
+.room-grid {
+  display: grid;
+  grid-template-columns: 1fr 1fr 1fr 1fr;
+  max-width: 1400px;
+  gap: 35px;
+  color: white;
+  margin: 0 auto;
+}
+.room-card {
+  background-color: #1c2432;
+  padding: 15px;
+  border-radius: 10px;
+  position: relative;
+}
+.status {
+  position: absolute;
+  top: 10px;
+  right: 10px;
+  padding: 5px 10px;
+  border-radius: 5px;
+  font-size: 12px;
+}
+.booked {
+  background-color: #b35f1b;
+}
+.available {
+  background-color: #1b8b35;
+}
+.room-card h2 {
+  margin: 0;
+}
+.room-card p {
+  margin: 5px 0;
+}
+.room-card button {
+  width: 100%;
+  padding: 10px;
+  border: none;
+  border-radius: 5px;
+  cursor: pointer;
+  margin-top: 10px;
+}
+.guest-details {
+  background-color: #555;
+  color: white;
+}
+.add-guest {
+  background-color: #121826;
+  color: whitesmoke;
+}
