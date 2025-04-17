@@ -1,0 +1,262 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta
+      name="viewport"
+      content="width=device-width, initial-scale=1.0"
+    />
+    <title>JW Marriott Mumbai Juhu</title>
+    <link rel="stylesheet" href="/css/hotels/hotel.css" />
+    <link rel="stylesheet" href="/css/footer.css" />
+    <link rel="stylesheet" href="/css/header.css" />
+    <link
+      rel="stylesheet"
+      href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.2/css/all.min.css"
+    />
+    <script defer src="/js/hotels/hotel.js"></script>
+    <script defer src="/js/header.js"></script>
+  </head>
+  <body>
+    <!-- Navbar -->
+    <header
+      class="headerContainer"
+      id="overview"
+      style="width: 90%; margin: 0 auto"
+    >
+      <%- include('../partials/header.ejs') %>
+    </header>
+
+    <!-- Image Grid -->
+    <div class="image-grid">
+      <!-- Large Main Image -->
+      <div class="main-image">
+        <img
+          src="<%= hotel.mainImage%>"
+          alt="Main hotel exterior view"
+        />
+      </div>
+
+      <% hotel.images.forEach(img => { %>
+      <div class="small-image">
+        <img src="<%= img %>" alt="Room view with sea" />
+      </div>
+      <% }); %>
+    </div>
+
+    <!-- Section Navbar -->
+    <div class="section-navbar">
+      <a href="#overview" class="active section-navbar-link"
+        >Overview</a
+      >
+      <a href="#hotel-details" class="section-navbar-link"
+        >About</a
+      >
+      <a href="#filters" class="section-navbar-link">Rooms</a>
+      <a
+        href="#accessibility-section"
+        class="section-navbar-link"
+        >Accessibility</a
+      >
+      <a
+        href="#fees-policies-section"
+        class="section-navbar-link"
+        >Policies</a
+      >
+      <div class="underline"></div>
+    </div>
+
+    <!-- Hotel Details Section -->
+    <div class="container">
+      <div class="hotel-details" id="hotel-details">
+        <h1><%=hotel.title%></h1>
+        <div class="rating">
+          <% for(let i = 1 ; i <= hotel.rating ; i++ ) { %> ⭐ <%
+          }%>
+        </div>
+        <p class="reserve-now">
+          ✔️ <span>Reserve now, pay later</span>
+        </p>
+
+        <!-- <div class="review-box">
+            <span class="rating-score">8.8</span>
+            <div>
+                <h2>Excellent</h2>
+                <p><strong>Guests liked:</strong> Friendly staff</p>
+                <a href="#">See all 884 reviews ></a>
+            </div>
+        </div> -->
+
+        <h2>About this property</h2>
+        <p>
+          <strong>DESCRIPTION : </strong> <%=hotel.description%>
+        </p>
+        <p><strong>ADDRESS : </strong> <%=hotel.address%></p>
+
+        <h2>Ameneties</h2>
+        <div class="amenities">
+          <% hotel.amenities.forEach(amenity => { %>
+          <div class="amenity"><%= amenity %></div>
+          <% }); %>
+        </div>
+      </div>
+
+      <hr class="section-divider" />
+
+      <header>
+        <h1>Choose your room</h1>
+        <div class="filters" id="filters">
+          <input
+            type="date"
+            id="check-in"
+            placeholder="Check-in"
+          />
+          <input
+            type="date"
+            id="check-out"
+            placeholder="Check-out"
+          />
+          <!-- <select id="travellers">
+            <option>1 room, 2 travellers</option>
+          </select> -->
+        </div>
+      </header>
+
+      <div class="room-container">
+        <% hotel.roomType.forEach(room => { %>
+        <div class="room-card" data-hotelId="<%=hotel._id%>">
+          <img src="<%= room['image'] %>" alt="Room 3" />
+          <h2><%= room['title'] %></h2>
+          <p class="rating">
+            <% for(let i = 1 ; i <= room['rating'] ; i++ ) { %>
+            ⭐ <% }%>
+          </p>
+          <ul>
+            <% room['features'].forEach( feature => { %>
+            <li><%= feature %></li>
+            <% });%>
+          </ul>
+          <div class="price">
+            <p><%= room['price'] %> INR</p>
+          </div>
+          <button class="reserve-btn">Reserve</button>
+        </div>
+        <% }); %>
+      </div>
+
+      <hr class="section-divider" />
+
+      <!-- Accessibility Section -->
+      <div
+        class="accessibility-section"
+        id="accessibility-section"
+      >
+        <h2>Accessibility</h2>
+        <p>
+          If you have specific accessibility needs, please
+          contact the property using your booking confirmation.
+        </p>
+        <div class="accessibility-columns">
+          <% for (let section in hotel.features) { %>
+          <div class="accessibility-category">
+            <h3><%= section %></h3>
+            <ul>
+              <% if (typeof hotel.features[section][0] ===
+              'string') { %> <%
+              hotel.features[section].forEach(item => {%>
+              <li><%= item %></li>
+              <% }) %> <% } %>
+            </ul>
+          </div>
+          <% } %>
+        </div>
+      </div>
+
+      <hr class="section-divider" />
+
+      <!-- Fees & Policies -->
+      <div
+        class="fees-policies-section"
+        id="fees-policies-section"
+      >
+        <h2>Fees & Policies</h2>
+
+        <!-- Policies -->
+        <div class="policy-category">
+          <h3>Policies</h3>
+          <% hotel.policies.forEach(x =>{ %>
+          <p><%=x%></p>
+          <% }); %>
+        </div>
+      </div>
+
+      <hr class="section-divider" />
+
+      <div class="faq-section">
+        <h2>Frequently asked questions</h2>
+        <div class="faq">
+          <%hotel.faq.forEach(x=> {%>
+          <div class="faq-item">
+            <button class="faq-question">
+              <%= x["question"] %>
+            </button>
+            <div class="faq-answer">
+              <p><%= x["answer"] %></p>
+            </div>
+          </div>
+          <% } ); %>
+        </div>
+      </div>
+    </div>
+
+    <footer class="footer">
+      <div class="footer-container">
+        <div class="footer-about">
+          <h3>Chasing Horizons</h3>
+          <p>
+            Explore the beauty of India with us. Your journey to
+            breathtaking destinations starts here!
+          </p>
+        </div>
+
+        <div class="footer-links">
+          <h4>Quick Links</h4>
+          <ul>
+            <li><a href="/">Home</a></li>
+            <li><a href="/tours">Tours</a></li>
+            <li><a href="/hotels">Hotels</a></li>
+            <li><a href="/contact">Contact</a></li>
+          </ul>
+        </div>
+
+        <div class="footer-social">
+          <h4>Follow Us</h4>
+          <div class="social-icons">
+            <a href="https://www.youtube.com" target="_blank">
+              <i
+                class="fa-brands fa-youtube"
+                style="font-size: 40px"
+              ></i>
+            </a>
+            <a href="https://www.instagram.com" target="_blank">
+              <i
+                class="fa-brands fa-square-instagram"
+                style="font-size: 40px"
+              ></i>
+            </a>
+            <a href="https://x.com/" target="_blank">
+              <i
+                class="fa-brands fa-square-x-twitter"
+                style="font-size: 40px"
+              ></i>
+            </a>
+          </div>
+        </div>
+      </div>
+
+      <div class="footer-bottom">
+        <p>© 2025 Chasing Horizons. All Rights Reserved.</p>
+      </div>
+    </footer>
+  </body>
+</html>
