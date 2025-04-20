@@ -1,0 +1,279 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Chasing Horizons Admin Dashboard</title>
+    <link
+      rel="stylesheet"
+      href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css"
+    />
+    <link rel="stylesheet" href="/css/dashboard/admin/styles.css" />
+    <link rel="stylesheet" href="/css/dashboard/admin/index.css" />
+    <link rel="stylesheet" href="/css/dashboard/admin/topbar.css" />
+    <link rel="stylesheet" href="/css/dashboard/admin/sidebar.css" />
+
+    <script defer src="/js/dashboard/admin/app.js"></script>
+  </head>
+
+  <body>
+    <div class="container">
+      <div class="sidebar" id="sidebar">
+        <div class="logo-title" onclick="{window.location.href = '/'}">
+          <span>Chasing Horizons</span>
+        </div>
+        <div class="sidebar-links">
+          <a href="/dashboard/admin" class="active"
+            ><i class="fas fa-tachometer-alt"></i>
+            <span class="link-text">Overview</span></a
+          >
+          <!-- <a href="/dashboard/admin/customers"
+            ><i class="fas fa-users"></i>
+            <span class="link-text">Customers</span></a
+          > -->
+          <a href="/dashboard/admin/packages"
+            ><i class="fas fa-chart-bar"></i>
+            <span class="link-text active">Packages</span></a
+          >
+          <a href="/dashboard/admin/hotelManagement"
+            ><i class="fas fa-hotel"></i>
+            <span class="link-text">Hotel Management</span></a
+          >
+          <!-- <a href="/dashboard/admin/analytics" class="active"
+            ><i class="fas fa-plane"></i>
+            <span class="link-text">Analytics</span></a
+          > -->
+
+          <a href="/dashboard/admin/queries">
+            <i class="fas fa-question-circle"></i>
+            <span class="link-text">Queries</span>
+          </a>
+        </div>
+      </div>
+      <main class="main">
+        <div class="topbar">
+          <button class="toggle-btn" id="toggle-sidebar">
+            <i style="color: black" class="fas fa-bars"></i>
+          </button>
+          <!-- <div class="search-bar">
+            <i class="fas fa-search"></i>
+            <input type="text" placeholder="Search..." />
+          </div> -->
+          <div class="user-info">
+            <!-- <div class="notification-icon">
+              <i class="fas fa-bell"></i>
+              <span class="notification-badge">3</span>
+            </div> -->
+            <div class="user-avatar">AD</div>
+            <div class="user-name">Admin</div>
+          </div>
+        </div>
+
+        <h1 class="dashboard-title">Dashboard Overview</h1>
+
+        <div class="stats-container">
+          <div class="stat-card bookings">
+            <div class="stat-icon">
+              <i class="fas fa-calendar-check"></i>
+            </div>
+            <div class="stat-info">
+              <h3><%= adminAnalytics.totalBookings %></h3>
+              <p>Total Bookings</p>
+            </div>
+            <!-- <div class="stat-percentage increase">
+              <i class="fas fa-arrow-up"></i> 12.5%
+            </div> -->
+          </div>
+
+          <div class="stat-card revenue">
+            <div class="stat-icon">
+              <i class="fas fa-dollar-sign"></i>
+            </div>
+            <div class="stat-info">
+              <h3><%= adminAnalytics.totalRevenue %></h3>
+              <p>Total Revenue</p>
+            </div>
+            <!-- <div class="stat-percentage increase">
+              <i class="fas fa-arrow-up"></i> 8.2%
+            </div> -->
+          </div>
+
+          <div class="stat-card customers">
+            <div class="stat-icon">
+              <i class="fas fa-users"></i>
+            </div>
+            <div class="stat-info">
+              <h3><%= adminAnalytics.totalCustomers %></h3>
+              <p>Total Customers</p>
+            </div>
+            <!-- <div class="stat-percentage increase">
+              <i class="fas fa-arrow-up"></i> 5.3%
+            </div> -->
+          </div>
+
+          <div class="stat-card customers">
+            <div class="stat-icon">
+              <i class="fas fa-users"></i>
+            </div>
+            <div class="stat-info">
+              <h3><%= adminAnalytics.totalHotels %></h3>
+              <p>Total Hotels</p>
+            </div>
+            <!-- <div class="stat-percentage increase">
+              <i class="fas fa-arrow-up"></i> 5.3%
+            </div> -->
+          </div>
+
+          <!-- <div class="stat-card reviews">
+            <div class="stat-icon">
+              <i class="fas fa-star"></i>
+            </div>
+            <div class="stat-info">
+              <h3>4.8/5</h3>
+              <p>Average Rating</p>
+            </div>
+            <div class="stat-percentage increase">
+              <i class="fas fa-arrow-up"></i> 2.1%
+            </div>
+          </div> -->
+        </div>
+
+        <!-- <div class="dashboard-content">
+          <div class="chart-container">
+            <div class="section-title">
+              <h2>Booking Analytics</h2>
+              <a href="#" class="view-all">View Details</a>
+            </div>
+            <div class="chart">
+              <div class="chart-bar" style="height: 40%">
+                <span class="chart-bar-value">124</span>
+                <span class="chart-bar-label">Jan</span>
+              </div>
+              <div class="chart-bar" style="height: 60%">
+                <span class="chart-bar-value">186</span>
+                <span class="chart-bar-label">Feb</span>
+              </div>
+              <div class="chart-bar" style="height: 75%">
+                <span class="chart-bar-value">232</span>
+                <span class="chart-bar-label">Mar</span>
+              </div>
+              <div class="chart-bar" style="height: 55%">
+                <span class="chart-bar-value">170</span>
+                <span class="chart-bar-label">Apr</span>
+              </div>
+              <div class="chart-bar" style="height: 80%">
+                <span class="chart-bar-value">247</span>
+                <span class="chart-bar-label">May</span>
+              </div>
+              <div class="chart-bar" style="height: 95%">
+                <span class="chart-bar-value">293</span>
+                <span class="chart-bar-label">Jun</span>
+              </div>
+            </div>
+          </div>
+
+          <div class="recent-bookings">
+            <div class="section-title">
+              <h2>Recent Bookings</h2>
+              <a href="#" class="view-all">View All</a>
+            </div>
+            <table class="bookings-table">
+              <thead>
+                <tr>
+                  <th>Customer</th>
+                  <th>Destination</th>
+                  <th>Date</th>
+                  <th>Status</th>
+                </tr>
+              </thead>
+              <tbody>
+                <tr>
+                  <td>John Doe</td>
+                  <td>Bali, Indonesia</td>
+                  <td>03/08/2025</td>
+                  <td>
+                    <span class="status confirmed"
+                      >Confirmed</span
+                    >
+                  </td>
+                </tr>
+                <tr>
+                  <td>Sarah Smith</td>
+                  <td>Paris, France</td>
+                  <td>03/07/2025</td>
+                  <td>
+                    <span class="status pending">Pending</span>
+                  </td>
+                </tr>
+                <tr>
+                  <td>Mike Johnson</td>
+                  <td>Tokyo, Japan</td>
+                  <td>03/05/2025</td>
+                  <td>
+                    <span class="status confirmed"
+                      >Confirmed</span
+                    >
+                  </td>
+                </tr>
+                <tr>
+                  <td>Emily Wilson</td>
+                  <td>Rome, Italy</td>
+                  <td>03/04/2025</td>
+                  <td>
+                    <span class="status cancelled"
+                      >Cancelled</span
+                    >
+                  </td>
+                </tr>
+                <tr>
+                  <td>David Brown</td>
+                  <td>New York, USA</td>
+                  <td>03/03/2025</td>
+                  <td>
+                    <span class="status confirmed"
+                      >Confirmed</span
+                    >
+                  </td>
+                </tr>
+                <tr>
+                  <td>Lisa Chen</td>
+                  <td>Sydney, Australia</td>
+                  <td>03/01/2025</td>
+                  <td>
+                    <span class="status confirmed"
+                      >Confirmed</span
+                    >
+                  </td>
+                </tr>
+              </tbody>
+            </table>
+          </div>
+        </div> -->
+
+        <div class="popular-destinations">
+          <div class="section-title">
+            <h2>Popular Destinations</h2>
+            <a href="#" class="view-all">View All</a>
+          </div>
+          <div class="destination-list">
+            <% adminAnalytics.populatedResults.forEach(result => { %>
+            <div class="destination-card">
+              <div class="destination-img">
+                <img
+                  src="<%=result.item.mainImage%>"
+                  alt="popular destination"
+                  style="width: 100%"
+                />
+              </div>
+              <div class="destination-info">
+                <h4><%= result.item.title %></h4>
+                <p><%= result.totalBookings %> bookings this month</p>
+              </div>
+            </div>
+            <% }); %>
+          </div>
+        </div>
+      </main>
+    </div>
+  </body>
+</html>

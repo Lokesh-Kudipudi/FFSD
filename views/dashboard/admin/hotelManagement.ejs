@@ -1,0 +1,333 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta
+      name="viewport"
+      content="width=device-width, initial-scale=1.0"
+    />
+    <title>Chasing Horizons Admin Dashboard</title>
+    <link
+      rel="stylesheet"
+      href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css"
+    />
+    <link
+      rel="stylesheet"
+      href="/css/dashboard/admin/styles.css"
+    />
+    <link
+      rel="stylesheet"
+      href="/css/dashboard/admin/topbar.css"
+    />
+    <link
+      rel="stylesheet"
+      href="/css/dashboard/admin/sidebar.css"
+    />
+    <link
+      rel="stylesheet"
+      href="/css/dashboard/admin/hotelManagement.css"
+    />
+
+    <script defer src="/js/dashboard/admin/app.js"></script>
+    <script
+      defer
+      src="/js/dashboard/admin/hotelManagement.js"
+    ></script>
+  </head>
+  <body>
+    <div class="container">
+      <div class="sidebar" id="sidebar">
+        <div
+          class="logo-title"
+          onclick="{window.location.href = '/'}"
+        >
+          <span>Chasing Horizons</span>
+        </div>
+        <div class="sidebar-links">
+          <a href="/dashboard/admin" class="active"
+            ><i class="fas fa-tachometer-alt"></i>
+            <span class="link-text">Overview</span></a
+          >
+          <!-- <a href="/dashboard/admin/customers"
+            ><i class="fas fa-users"></i>
+            <span class="link-text">Customers</span></a
+          > -->
+          <a href="/dashboard/admin/packages"
+            ><i class="fas fa-chart-bar"></i>
+            <span class="link-text active">Packages</span></a
+          >
+          <a href="/dashboard/admin/hotelManagement"
+            ><i class="fas fa-hotel"></i>
+            <span class="link-text">Hotel Management</span></a
+          >
+          <!-- <a href="/dashboard/admin/analytics" class="active"
+            ><i class="fas fa-plane"></i>
+            <span class="link-text">Analytics</span></a
+          > -->
+          <a href="/dashboard/admin/queries">
+            <i class="fas fa-question-circle"></i>
+            <span class="link-text">Queries</span>
+          </a>
+        </div>
+      </div>
+
+      <main class="main">
+        <div class="topbar">
+          <button class="toggle-btn" id="toggle-sidebar">
+            <i style="color: black" class="fas fa-bars"></i>
+          </button>
+          <!-- <div class="search-bar">
+            <i class="fas fa-search"></i>
+            <input
+              type="text"
+              placeholder="Search customers..."
+            />
+          </div> -->
+          <div class="user-info">
+            <!-- <div class="notification-icon">
+              <i class="fas fa-bell"></i>
+              <span class="notification-badge">3</span>
+            </div> -->
+            <div class="user-avatar">
+              <span>AD</span>
+            </div>
+            <div class="user-name">Admin</div>
+          </div>
+        </div>
+        <div class="hotel-main-content">
+          <div class="hotel-page-header">
+            <!-- <h1 class="hotel-page-title">Hotel Management</h1> -->
+            <!-- <div class="hotel-header-actions">
+              <button
+                class="hotel-btn hotel-btn-outline"
+                id="import-btn"
+              >
+                <i class="fas fa-file-import"></i> Import
+              </button>
+              <button
+                class="hotel-btn hotel-btn-outline"
+                id="export-btn"
+              >
+                <i class="fas fa-file-export"></i> Export
+              </button>
+              <button
+                class="hotel-btn hotel-btn-primary"
+                id="add-hotel-btn"
+              >
+                <i class="fas fa-plus"></i> Add New Hotel
+              </button>
+            </div> -->
+          </div>
+
+          <!-- Filters Section -->
+          <!-- <div class="hotel-filters-section">
+            <div class="hotel-filters-container">
+              <div class="hotel-filter-group">
+                <label class="hotel-filter-label">Search</label>
+                <input
+                  type="text"
+                  class="hotel-filter-input"
+                  placeholder="Hotel name or location..."
+                />
+              </div>
+
+              <div class="hotel-filter-group">
+                <label class="hotel-filter-label"
+                  >Location</label
+                >
+                <select class="hotel-filter-input">
+                  <option value="">All Locations</option>
+                  <option value="bali">Bali, Indonesia</option>
+                  <option value="bangkok">
+                    Bangkok, Thailand
+                  </option>
+                  <option value="dubai">Dubai, UAE</option>
+                  <option value="paris">Paris, France</option>
+                  <option value="tokyo">Tokyo, Japan</option>
+                </select>
+              </div>
+
+              <div class="hotel-filter-group">
+                <label class="hotel-filter-label">Status</label>
+                <select class="hotel-filter-input">
+                  <option value="">All Status</option>
+                  <option value="active">Active</option>
+                  <option value="inactive">Inactive</option>
+                  <option value="pending">Pending</option>
+                </select>
+              </div>
+
+              <div class="hotel-filter-group">
+                <label class="hotel-filter-label"
+                  >Star Rating</label
+                >
+                <select class="hotel-filter-input">
+                  <option value="">All Ratings</option>
+                  <option value="5">5 Stars</option>
+                  <option value="4">4 Stars</option>
+                  <option value="3">3 Stars</option>
+                  <option value="2">2 Stars and Below</option>
+                </select>
+              </div>
+            </div>
+
+            <div class="hotel-filter-actions">
+              <button class="hotel-btn hotel-btn-outline">
+                Reset
+              </button>
+              <button class="hotel-btn hotel-btn-primary">
+                Apply Filters
+              </button>
+            </div>
+          </div> -->
+
+          <!-- Stats Cards -->
+          <!-- <div class="hotel-stats-cards">
+            <div class="hotel-card">
+              <div class="hotel-card-header">
+                <div>
+                  <div class="hotel-card-title">
+                    Total Hotels
+                  </div>
+                  <div class="hotel-card-value">127</div>
+                  <div class="hotel-card-change positive">
+                    <i class="fas fa-arrow-up"></i>+5 this month
+                  </div>
+                </div>
+                <div class="hotel-card-icon hotel-bg-primary">
+                  <i class="fas fa-hotel"></i>
+                </div>
+              </div>
+            </div>
+
+            <div class="hotel-card">
+              <div class="hotel-card-header">
+                <div>
+                  <div class="hotel-card-title">
+                    Active Hotels
+                  </div>
+                  <div class="hotel-card-value">98</div>
+                  <div class="hotel-card-change positive">
+                    <i class="fas fa-arrow-up"></i>77.2% of total
+                  </div>
+                </div>
+                <div class="hotel-card-icon hotel-bg-success">
+                  <i class="fas fa-check-circle"></i>
+                </div>
+              </div>
+            </div>
+
+            <div class="hotel-card">
+              <div class="hotel-card-header">
+                <div>
+                  <div class="hotel-card-title">
+                    Pending Approval
+                  </div>
+                  <div class="hotel-card-value">12</div>
+                  <div class="hotel-card-change negative">
+                    <i class="fas fa-arrow-up"></i>+3 this week
+                  </div>
+                </div>
+                <div class="hotel-card-icon hotel-bg-warning">
+                  <i class="fas fa-clock"></i>
+                </div>
+              </div>
+            </div>
+
+            <div class="hotel-card">
+              <div class="hotel-card-header">
+                <div>
+                  <div class="hotel-card-title">
+                    Inactive Hotels
+                  </div>
+                  <div class="hotel-card-value">17</div>
+                  <div class="hotel-card-change positive">
+                    <i class="fas fa-arrow-down"></i>-2 this
+                    month
+                  </div>
+                </div>
+                <div class="hotel-card-icon hotel-bg-danger">
+                  <i class="fas fa-times-circle"></i>
+                </div>
+              </div>
+            </div>
+          </div> -->
+
+          <!-- Hotel List Section -->
+          <div class="hotel-list-section">
+            <!-- <div class="hotel-section-header">
+              <h3 class="hotel-section-title">Hotel List</h3>
+              <div class="hotel-header-actions">
+                <button class="hotel-btn hotel-btn-outline">
+                  <i class="fas fa-filter"></i> Show Filters
+                </button>
+              </div>
+            </div> -->
+
+            <table class="hotel-table">
+              <thead>
+                <tr>
+                  <th>Hotel Info</th>
+                  <th>Status</th>
+                  <th>Room Types</th>
+                  <th>Base Price</th>
+                </tr>
+              </thead>
+              <tbody>
+                <% hotels.forEach(hotel => { %>
+                <tr>
+                  <td>
+                    <div class="hotel-name">
+                      <img
+                        src="<%=hotel.mainImage%>"
+                        alt="Hotel"
+                        class="hotel-image"
+                      />
+                      <div class="hotel-details">
+                        <span><%=hotel.title%></span>
+                        <div class="hotel-location">
+                          <i class="fas fa-map-marker-alt"></i>
+                          <%=hotel.location%>
+                        </div>
+                      </div>
+                    </div>
+                  </td>
+                  <td>
+                    <span
+                      class="hotel-status-badge hotel-status-<%=hotel.status%>"
+                      ><%=hotel.status%></span
+                    >
+                  </td>
+                  <td><%=hotel.roomType.length%></td>
+
+                  <td><%=hotel.price%></td>
+
+                  <!-- <td>
+                    <div class="hotel-action-buttons">
+                      <div
+                        class="hotel-action-btn hotel-view-btn"
+                      >
+                        <i class="fas fa-eye"></i>
+                      </div>
+                      <div
+                        class="hotel-action-btn hotel-edit-btn"
+                      >
+                        <i class="fas fa-edit"></i>
+                      </div>
+                      <div
+                        class="hotel-action-btn hotel-delete-btn"
+                      >
+                        <i class="fas fa-trash"></i>
+                      </div>
+                    </div>
+                  </td> -->
+                </tr>
+                <% }); %>
+              </tbody>
+            </table>
+          </div>
+        </div>
+      </main>
+    </div>
+  </body>
+</html>
