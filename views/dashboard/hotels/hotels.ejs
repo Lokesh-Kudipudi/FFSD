@@ -1,0 +1,383 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta
+      name="viewport"
+      content="width=device-width, initial-scale=1.0"
+    />
+    <title>Hotels Navbar</title>
+    <link rel="stylesheet" href="/css/hotels/hotels.css" />
+    <link rel="stylesheet" href="/css/hotels/filters.css" />
+    <link rel="stylesheet" href="/css/header.css" />
+    <link rel="stylesheet" href="/css/footer.css" />
+    <link
+      rel="stylesheet"
+      href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.2/css/all.min.css"
+    />
+    <script defer src="/js/header.js"></script>
+    <script defer src="/js/hotels/hotels.js"></script>
+  </head>
+
+  <body>
+    <header
+      class="headerContainer"
+      style="width: 90%; margin: 0 auto"
+    >
+      <%- include('../partials/header.ejs') %>
+    </header>
+    <div class="search-container-header">
+      <div class="search-box-header">
+        <span class="icon-header">📍</span>
+        <div class="input-wrapper-header">
+          <label for="location-header">Location</label>
+          <input
+            type="text"
+            id="location-header"
+            placeholder="Where are you going?"
+          />
+        </div>
+        <button
+          class="search-button-header"
+          onclick="handleSearch()"
+        >
+          Search
+        </button>
+      </div>
+    </div>
+
+    <!-- Hotel Listings Section -->
+    <div class="hotel-listings">
+      <!-- Search and Filter Sidebar -->
+      <aside class="filter-sidebar">
+        <h3
+          style="
+            border-bottom: 1px solid #ccc;
+            padding-bottom: 10px;
+          "
+        >
+          Filter by
+        </h3>
+        <div class="filter-section">
+          <div class="filter-header" onclick="toggleDropdown()">
+            <span>Location</span>
+            <span class="arrow">&#9662;</span>
+          </div>
+          <div class="filter-options">
+            <label
+              ><input
+                type="checkbox"
+                data-filter="location"
+                value="Colorado"
+              />Colorado</label
+            >
+            <label
+              ><input
+                type="checkbox"
+                data-filter="location"
+                value="South Carolina"
+              />South Carolina</label
+            >
+            <label
+              ><input
+                type="checkbox"
+                data-filter="location"
+                value="Arizona"
+              />Arizona</label
+            >
+            <label
+              ><input
+                type="checkbox"
+                data-filter="location"
+                value="Florida"
+              />Florida</label
+            >
+            <label
+              ><input
+                type="checkbox"
+                data-filter="location"
+                value="New York"
+              />New York</label
+            >
+          </div>
+        </div>
+
+        <div class="filter-section">
+          <div class="filter-header" onclick="toggleDropdown()">
+            <span>Bed Type</span>
+            <span class="arrow">&#9662;</span>
+          </div>
+          <div class="filter-options">
+            <label
+              ><input
+                type="checkbox"
+                data-filter="beds"
+                value="Twin beds"
+              />
+              Twin beds</label
+            >
+            <label
+              ><input
+                type="checkbox"
+                data-filter="beds"
+                value="King-sized bed"
+              />
+              King-sized bed</label
+            >
+            <label
+              ><input
+                type="checkbox"
+                data-filter="beds"
+                value="Queen-sized bed"
+              />
+              Queen-sized bed</label
+            >
+            <label
+              ><input
+                type="checkbox"
+                data-filter="beds"
+                value="Four-poster bed"
+              />
+              Four-poster bed</label
+            >
+          </div>
+        </div>
+
+        <!-- <div class="filter-section">
+          <div class="filter-header" onclick="toggleDropdown()">
+            <span>Property type</span>
+            <span class="arrow">&#9662;</span>
+          </div>
+          <div class="filter-options">
+            <label
+              ><input
+                type="checkbox"
+                data-filter="propertyType"
+                value="Apartment"
+              />
+              Apartment</label
+            >
+            <label
+              ><input
+                type="checkbox"
+                data-filter="propertyType"
+                value="Villa"
+              />
+              Villa</label
+            >
+            <label
+              ><input
+                type="checkbox"
+                data-filter="propertyType"
+                value="Camping"
+              />
+              Camping</label
+            >
+            <label
+              ><input
+                type="checkbox"
+                data-filter="propertyType"
+                value="Cottage"
+              />
+              Cottage</label
+            >
+            <label
+              ><input
+                type="checkbox"
+                data-filter="propertyType"
+                value="Garden-Suite"
+              />
+              Garden-Suite</label
+            >
+            <label
+              ><input
+                type="checkbox"
+                data-filter="propertyType"
+                value="Ocean-view"
+              />
+              Ocean-view</label
+            >
+            <label
+              ><input
+                type="checkbox"
+                data-filter="propertyType"
+                value="Business-Suite"
+              />
+              Business-Suite</label
+            >
+          </div>
+        </div> -->
+
+        <div class="filter-section">
+          <div class="filter-header" onclick="toggleDropdown()">
+            <span>Accessibility</span>
+            <span class="arrow">&#9662;</span>
+          </div>
+          <div class="filter-options">
+            <label
+              ><input
+                type="checkbox"
+                data-filter="accessibility"
+                value="Private-Kitchen"
+              />
+              Private-Kitchen</label
+            >
+            <label
+              ><input
+                type="checkbox"
+                data-filter="accessibility"
+                value="Private-garden"
+              />
+              Private-garden</label
+            >
+            <label
+              ><input
+                type="checkbox"
+                data-filter="accessibility"
+                value="Fire pit"
+              />
+              Fire pit</label
+            >
+            <label
+              ><input
+                type="checkbox"
+                data-filter="accessibility"
+                value="Spa"
+              />Spa</label
+            >
+            <label
+              ><input
+                type="checkbox"
+                data-filter="accessibility"
+                value="Private Mini-bar"
+              />
+              Private Mini-bar</label
+            >
+            <label
+              ><input
+                type="checkbox"
+                data-filter="accessibility"
+                value="Work Station"
+              />
+              Work Station</label
+            >
+          </div>
+        </div>
+
+        <button
+          class="availability"
+          style="margin-top: 16px"
+          onclick="applyHotelFilters()"
+        >
+          Apply Filters
+        </button>
+        <button
+          class="availability"
+          style="
+            margin-top: 8px;
+            background-color: #6c757d;
+            border-color: #6c757d;
+          "
+          onclick="clearAllFilters()"
+        >
+          Clear Filters
+        </button>
+      </aside>
+
+      <!-- Hotel Cards -->
+      <div class="hotels-container">
+        <% hotels.forEach(hotel => { %>
+        <div class="hotel-card">
+          <div class="hotel-image">
+            <img src="<%= hotel.mainImage  %>" alt="Hotel 1" />
+          </div>
+          <div class="hotel-info">
+            <h2 onclick="handleHotelClick(`<%=hotel._id%>`)">
+              <%= hotel.title %>
+            </h2>
+            <p><%= hotel.location %></p>
+            <p class="features">
+              <%= hotel.amenities.join(" | ") %>
+            </p>
+            <p><%= hotel.description %></p>
+            <p class="deal">Reserve now, pay later</p>
+            <p class="rating">
+              <% for(let i = 1; i <= hotel.rating; i++){ %> ⭐ <%
+              }; %>
+            </p>
+            <div
+              style="
+                display: flex;
+                justify-content: space-between;
+              "
+            >
+              <p class="price">
+                <%= hotel.roomType[0].price %> <%= hotel.currency
+                %>
+                <span>Includes taxes & fees</span>
+              </p>
+              <button
+                style="align-self: center"
+                class="availability"
+                onclick="handleHotelClick(`<%=hotel._id%>`)"
+              >
+                Book Now!
+              </button>
+            </div>
+          </div>
+        </div>
+        <% }); %>
+      </div>
+    </div>
+
+    <footer class="footer">
+      <div class="footer-container">
+        <div class="footer-about">
+          <h3>Chasing Horizons</h3>
+          <p>
+            Explore the beauty of India with us. Your journey to
+            breathtaking destinations starts here!
+          </p>
+        </div>
+
+        <div class="footer-links">
+          <h4>Quick Links</h4>
+          <ul>
+            <li><a href="/">Home</a></li>
+            <li><a href="/tours">Tours</a></li>
+            <li><a href="/hotels">Hotels</a></li>
+            <li><a href="/contact">Contact</a></li>
+          </ul>
+        </div>
+
+        <div class="footer-social">
+          <h4>Follow Us</h4>
+          <div class="social-icons">
+            <a href="https://www.youtube.com" target="_blank">
+              <i
+                class="fa-brands fa-youtube"
+                style="font-size: 40px"
+              ></i>
+            </a>
+            <a href="https://www.instagram.com" target="_blank">
+              <i
+                class="fa-brands fa-square-instagram"
+                style="font-size: 40px"
+              ></i>
+            </a>
+            <a href="https://x.com/" target="_blank">
+              <i
+                class="fa-brands fa-square-x-twitter"
+                style="font-size: 40px"
+              ></i>
+            </a>
+          </div>
+        </div>
+      </div>
+
+      <div class="footer-bottom">
+        <p>© 2025 Chasing Horizons. All Rights Reserved.</p>
+      </div>
+    </footer>
+  </body>
+</html>
