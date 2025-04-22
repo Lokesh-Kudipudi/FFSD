@@ -1,0 +1,795 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Hotels Navbar</title>
+    <link rel="stylesheet" href="/css/hotels/index.css" />
+    <link rel="stylesheet" href="/css/hotels/filters.css" />
+    <link rel="stylesheet" href="/css/header.css" />
+    <link rel="stylesheet" href="/css/footer.css" />
+    <link
+      rel="stylesheet"
+      href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.2/css/all.min.css"
+    />
+    <script defer src="/js/header.js"></script>
+    <script defer src="/js/hotels/index.js"></script>
+  </head>
+  <body>
+    <!-- Navigation Bar -->
+
+    <!-- Navigation Bar -->
+    <div class="hero-container">
+      <header
+        class="headerContainer"
+        style="position: absolute; top: 10px; width: 90%; z-index: 2"
+      >
+        <%- include('../partials/header.ejs') %>
+      </header>
+
+      <div class="hero-background">
+        <video class="heroBackgroundVideo" autoplay muted>
+          <source src="/videos/hotels/hotelsBg.mp4" type="video/mp4" />
+          Your browser does not support video tag
+        </video>
+      </div>
+
+      <div class="heroMain">
+        <h1 class="heroText">Let's plan your stay among the Horizons.</h1>
+        <h3 class="heroSubText">Experience Luxury, Comfort and Adventure.</h3>
+        <div class="search-container">
+          <div class="search-box">
+            <span class="icon">📍</span>
+            <div class="input-wrapper">
+              <label for="location">Location</label>
+              <input
+                type="text"
+                id="location"
+                placeholder="Where are you going?"
+              />
+            </div>
+            <button class="search-button" onclick="handleSearch()">
+              Search
+            </button>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <!-- Title -->
+
+    <h1
+      class="title"
+      style="color: darkblue; font-size: 40px; margin: 30px; padding: 40px"
+    >
+      Discover your new favourite stay
+    </h1>
+
+    <!-- Carousel Container -->
+    <div class="carousel-container">
+      <button id="prevBtn" class="nav-button">&larr;</button>
+      <div class="carousel">
+        <div id="card-container" class="card-wrapper">
+          <div
+            class="card1"
+            onclick="window.location.href='/hotels/search?amenities=Villa'"
+          >
+            <img src="/images/hotels/villa.jpg" alt="Villa" />
+            <div class="card-title">Villa</div>
+          </div>
+          <!-- <div
+            class="card1"
+            onclick="() => {window.location.href='/hotels/search?amenities=Spa'}"
+          >
+            <img
+              src="/images/hotels/all inclusive.jpg"
+              alt="All Inclusive"
+            />
+            <div class="card-title">All Inclusive</div>
+          </div> -->
+          <!-- <div
+            class="card1"
+            onclick="alert('Houseboat clicked')"
+          >
+            <img
+              src="/images/hotels/house-boat.jpg"
+              alt="Houseboat"
+            />
+            <div class="card-title">Houseboat</div>
+          </div> -->
+          <div
+            class="card1"
+            onclick="window.location.href='/hotels/search?amenities=Apartment'"
+          >
+            <img src="/images/hotels/apartment.webp" alt="Apartment" />
+            <div class="card-title">Apartment</div>
+          </div>
+          <div
+            class="card1"
+            onclick="window.location.href='/hotels/search?amenities=Spa'"
+          >
+            <img src="/images/hotels/spa.webp" alt="Spa" />
+            <div class="card-title">Spa</div>
+          </div>
+          <!-- <div
+            class="card1"
+            onclick="alert('Luxury Stay clicked')"
+          >
+            <img
+              src="https://imgs.search.brave.com/JhMdP0yEUjL_iLLpSX1-MToLnUhKSBd2Cyh9T5B-s0g/rs:fit:860:0:0:0/g:ce/aHR0cHM6Ly9tZWRp/YS5nZXR0eWltYWdl/cy5jb20vaWQvMTIw/MTM5NzQ4OC9waG90/by9ob3RlbC1yb29t/LXdpdGgtcGFub3Jh/bWljLXZpZXctb2Yt/dGhlLW1vdW50YWlu/cy5qcGc_cz02MTJ4/NjEyJnc9MCZrPTIw/JmM9SDlLdDlWSzIw/aXZmcmtzZFpydnhQ/bVlnS3hSd1c3bEFr/TldKLWcxZ1pZOD0"
+              alt="Luxury Stay"
+            />
+            <div class="card-title">Luxury Stay</div>
+          </div> -->
+          <div
+            class="card1"
+            onclick="window.location.href='/hotels/search?amenities=BeachFront'"
+          >
+            <img
+              src="https://imgs.search.brave.com/w7nhl1JrKwLy9x8TO5mTEcII-Ch6RraLyFpUMaGOJMg/rs:fit:500:0:0:0/g:ce/aHR0cHM6Ly9tZWRp/YS5nZXR0eWltYWdl/cy5jb20vaWQvMTE5/ODM1NzY0MS9waG90/by9iZWFjaGZyb250/LWJ1bmdhbG93LXdp/dGgtc2VhLXZpZXcu/anBnP3M9NjEyeDYx/MiZ3PTAmaz0yMCZj/PUl6YnhHRExCWF9C/ay1nQXRoLWJvMkI2/RG9lY1RoTURjT2tT/ZGlHaVhXMHc9"
+              alt="Beachfront"
+            />
+            <div class="card-title">Beachfront</div>
+          </div>
+          <div
+            class="card1"
+            onclick="window.location.href='/hotels/search?amenities=Cabin'"
+          >
+            <img
+              src="https://imgs.search.brave.com/wDYZzPxMAly1qnw6eQ3qdOKysa1yFNRFRvlO1OgXjvs/rs:fit:500:0:0:0/g:ce/aHR0cHM6Ly93d3cu/eWVsbG93c3RvbmVu/YXRpb25hbHBhcmts/b2RnZXMuY29tL2Nv/bnRlbnQvdXBsb2Fk/cy8yMDE3LzA0L0xh/a2UtWWVsbG93c3Rv/bmUtSG90ZWwtU3Vu/cm9vbS00LmpwZw"
+              alt="Cabin"
+            />
+            <div class="card-title">Cabin</div>
+          </div>
+          <div
+            class="card1"
+            onclick="window.location.href='/hotels/search?amenities=Mansion'"
+          >
+            <img
+              src="https://imgs.search.brave.com/Ug5FyN69ly5xpa1OJXmpWEEYun7f8AhZq7rzIF_Mx1s/rs:fit:500:0:0:0/g:ce/aHR0cHM6Ly9tZWRp/YS5nZXR0eWltYWdl/cy5jb20vaWQvMTU3/MzM3Mzk0L3Bob3Rv/L2VuZ2xpc2gtY291/bnRyeS1tYW5zaW9u/LmpwZz9zPTYxMng2/MTImdz0wJms9MjAm/Yz1WcUpOVElOc0NZ/bGl1VkpuQnFhWnJm/VDV5Z2VlVXFmLXo0/X3poTDFoSncwPQ"
+              alt="Mansion"
+            />
+            <div class="card-title">Mansion</div>
+          </div>
+        </div>
+      </div>
+      <button id="nextBtn" class="nav-button">&rarr;</button>
+    </div>
+
+    <div class="zebra-container">
+      <h2 class="fancy-title">Top deals for a last minute getaway</h2>
+      <p class="date-info">Showing deals for: 12 Mar - 14 Mar</p>
+
+      <div style="display: flex; align-items: center; gap: 20px">
+        <button class="left-nav-btn">&lt;</button>
+        <div class="swipe-wrapper">
+          <div class="swipe-cards">
+            <!-- Card 1 -->
+            <div class="zebra-card">
+              <div class="card-img-wrapper">
+                <div class="image-carousel">
+                  <img
+                    src="https://cdn.kiwicollection.com/media/property/PR003110/xl/003110-01-hotel-exterior-night.jpg"
+                    alt="Ebony Boutique Hotel"
+                  />
+                  <img
+                    src="https://indiatravelite.com/uploads/leelabangaloreroyal-premiere-room1.jpg"
+                    alt="Ebony Boutique Hotel"
+                  />
+                  <img
+                    src="https://th.bing.com/th/id/OIP.K3NYA3ZLbPD1N4AIfIrIfQHaE8?rs=1&pid=ImgDetMain"
+                    alt="Ebony Boutique Hotel"
+                  />
+                  <img
+                    src="https://c8.alamy.com/comp/BB0GAW/hotel-leela-palace-kempinski-bangalore-india-BB0GAW.jpg"
+                    alt="Ebony Boutique Hotel"
+                  />
+                </div>
+                <button class="left-img-nav">&lt;</button>
+                <button class="right-img-nav">&gt;</button>
+              </div>
+              <div class="card-info">
+                <h3 onclick="window.location.href='/hotels/search'">
+                  The Leela palace
+                </h3>
+                <p>Bengaluru</p>
+                <span class="rating"
+                  ><span>5.0</span> Very good (1 review)</span
+                >
+                <p class="price">₹25,000 <span>₹48,000</span> per night</p>
+                <p class="total">₹29,570 total includes taxes & fees</p>
+                <span class="discount-badge">40% off</span>
+                <span class="member-price">Member Price available</span>
+              </div>
+            </div>
+            <div class="zebra-card">
+              <div class="card-img-wrapper">
+                <div class="image-carousel">
+                  <img
+                    src="https://www.thelalit.com/wp-content/uploads/2017/02/Kolkata-Fascade-1-e1486538560549-820x399.jpg"
+                    alt="Ebony Boutique Hotel"
+                  />
+                  <img
+                    src="https://static.toiimg.com/thumb/msid-29958192,width-1070,height-580,resizemode-75,imgsize-1278268,pt-32,y_pad-40/29958192.jpg"
+                    alt="Ebony Boutique Hotel"
+                  />
+                  <img
+                    src="https://www.indianholiday.com/pictures/hotel/hotelgalleryn/the-lalit-great-eastern-hotel-5462-26.jpg"
+                    alt="Ebony Boutique Hotel"
+                  />
+                  <img
+                    src="https://r1imghtlak.mmtcdn.com/df5535e053b611eaab4d0242ac110002.jpg?&output-quality=75&downsize=910:612&crop=910:612;0,35&output-format=jpg"
+                    alt="Ebony Boutique Hotel"
+                  />
+                </div>
+                <button class="left-img-nav">&lt;</button>
+                <button class="right-img-nav">&gt;</button>
+              </div>
+              <div class="card-info">
+                <h3 onclick="window.location.href='/hotels/search'">
+                  The Lalit
+                </h3>
+                <p>Kolkata</p>
+                <span class="rating">⭐ 5.0 Very good (8 reviews)</span>
+                <p class="price">₹18,000 <span>₹26,000</span> per night</p>
+                <p class="total">₹56,000 total includes taxes & fees</p>
+                <span class="member-price">Member Price available</span>
+              </div>
+            </div>
+            <div class="zebra-card">
+              <div class="card-img-wrapper">
+                <div class="image-carousel">
+                  <img
+                    src="https://dynamic-media-cdn.tripadvisor.com/media/photo-o/19/75/8d/c3/exterior.jpg?w=900&h=-1&s=1"
+                    alt="Ebony Boutique Hotel"
+                  />
+                  <img
+                    src="https://media.radissonhotels.net/image/radisson-blu-hotel-jaipur/poolview/16256-116522-f64874143_3xl.jpg?impolicy=SecondGalleryImg"
+                    alt="Ebony Boutique Hotel"
+                  />
+                  <img
+                    src="https://pix10.agoda.net/hotelImages/9456910/0/c12e3a1bd713f658ce6cb8808ec33c3c.jpg?ca=9&ce=1&s=1024x768"
+                    alt="Ebony Boutique Hotel"
+                  />
+                  <img
+                    src="https://media.radissonhotels.net/image/radisson-blu-jaipur/guestroom/16256-116522-f68189764_3xl.jpg?impolicy=CustomCrop&cwidth=670&cheight=384"
+                    alt="Ebony Boutique Hotel"
+                  />
+                </div>
+                <button class="left-img-nav">&lt;</button>
+                <button class="right-img-nav">&gt;</button>
+              </div>
+              <div class="card-info">
+                <h3 onclick="window.location.href='/hotels/search'">
+                  Radisson Blu
+                </h3>
+                <p>Jaipur</p>
+                <span class="rating">⭐ 4.0 Very good (12 reviews)</span>
+                <p class="price">₹15,000 <span>₹28,000</span> per night</p>
+                <p class="total">₹50,275 total includes taxes & fees</p>
+                <span class="member-price">Member Price available</span>
+              </div>
+            </div>
+            <div class="zebra-card">
+              <div class="card-img-wrapper">
+                <div class="image-carousel">
+                  <img
+                    src="https://th.bing.com/th/id/OIP.pE9U-WlLmb9FjUdD0FEShAHaDc?rs=1&pid=ImgDetMain"
+                    alt="Ebony Boutique Hotel"
+                  />
+                  <img
+                    src="https://th.bing.com/th/id/OIP.Q1AQDzRNCHU4NtY6Ib8GswHaFj?rs=1&pid=ImgDetMain"
+                    alt="Ebony Boutique Hotel"
+                  />
+                  <img
+                    src="https://itc.imgix.net/websiteimages/luxurytravel/33477260_h1_palace_zenana.jpg?crop=fit&auto=compress&w=1600"
+                    alt="Ebony Boutique Hotel"
+                  />
+                  <img
+                    src="https://www.le-voyage.com/products/medias/originalmark/X1FQUFNB.jpg"
+                    alt="Ebony Boutique Hotel"
+                  />
+                </div>
+                <button class="left-img-nav">&lt;</button>
+                <button class="right-img-nav">&gt;</button>
+              </div>
+              <div class="card-info">
+                <h3 onclick="window.location.href='/hotels/search'">
+                  Taj Falaknuma Palace
+                </h3>
+                <p>Hyderabad</p>
+                <span class="rating">⭐ 4.8 Very good (86 reviews)</span>
+                <p class="price">₹35,000 <span>₹55,000</span> per night</p>
+                <p class="total">₹112,625 total includes taxes & fees</p>
+                <span class="member-price">Member Price available</span>
+              </div>
+            </div>
+            <div class="zebra-card">
+              <div class="card-img-wrapper">
+                <div class="image-carousel">
+                  <img
+                    src="https://media.cntraveler.com/photos/5c06e5a801ffc86b13da2529/16:9/w_2560%2Cc_limit/The-Oberoi-Udaivilas%2C-Udaipur__2018_Chandni----the-al-fresco-dining---The-Oberoi-Udaivilas%2C-Udaipur.jpg"
+                    alt="Ebony Boutique Hotel"
+                  />
+                  <img
+                    src="https://th.bing.com/th/id/OIP.JQfRshmCHwC4p7qIV9p2JwHaDt?rs=1&pid=ImgDetMain"
+                    alt="Ebony Boutique Hotel"
+                  />
+                  <img
+                    src="https://th.bing.com/th/id/OIP.uzbVEnmfPiSG3yPeTTmDhAHaE6?rs=1&pid=ImgDetMain"
+                    alt="Ebony Boutique Hotel"
+                  />
+                  <img
+                    src="https://www.oberoihotels.com/-/media/oberoi-hotels/website-images/the-oberoi-udaivilas-udaipur/gallery/featured/udaivilas-gallery-featured-9-spa-pool-724x407.jpg"
+                    alt="Ebony Boutique Hotel"
+                  />
+                </div>
+                <button class="left-img-nav">&lt;</button>
+                <button class="right-img-nav">&gt;</button>
+              </div>
+              <div class="card-info">
+                <h3 onclick="window.location.href='/hotels/search'">
+                  Oberoi Udaivilas
+                </h3>
+                <p>Udaipur</p>
+                <span class="rating">⭐ 5.0 Very good (4 reviews)</span>
+                <p class="price">₹45,000 <span>₹78,000</span> per night</p>
+                <p class="total">₹142,970 total includes taxes & fees</p>
+                <span class="member-price">Member Price available</span>
+              </div>
+            </div>
+            <div class="zebra-card">
+              <div class="card-img-wrapper">
+                <div class="image-carousel">
+                  <img
+                    src="https://th.bing.com/th/id/OIP.x6Rwx1sxk9nmexCxkf8OIQAAAA?w=293&h=350&rs=1&pid=ImgDetMain"
+                    alt="Ebony Boutique Hotel"
+                  />
+                  <img
+                    src="https://th.bing.com/th/id/OIP.8J6har2GlfrERi3GT6QvoQHaC9?rs=1&pid=ImgDetMain"
+                    alt="Ebony Boutique Hotel"
+                  />
+                  <img
+                    src="https://th.bing.com/th/id/OIP.dMx_uoepu-ytRpXYWUhOUAHaE7?w=800&h=533&rs=1&pid=ImgDetMain"
+                    alt="Ebony Boutique Hotel"
+                  />
+                  <img
+                    src="https://r1imghtlak.mmtcdn.com/df5bc9b83b2611e9a92e0242ac110002.jpg?&output-quality=75&downsize=910:612&crop=910:612;4,0&output-format=jpg"
+                    alt="Ebony Boutique Hotel"
+                  />
+                </div>
+                <button class="left-img-nav">&lt;</button>
+                <button class="right-img-nav">&gt;</button>
+              </div>
+              <div class="card-info">
+                <h3>The Westin</h3>
+                <p>Mumbai</p>
+                <span class="rating">⭐ 4.2 Very good (8 reviews)</span>
+                <p class="price">₹22,000 <span>₹28,000</span> per night</p>
+                <p class="total">₹69,690 total includes taxes & fees</p>
+                <span class="member-price">Member Price available</span>
+              </div>
+            </div>
+            <div class="zebra-card">
+              <div class="card-img-wrapper">
+                <div class="image-carousel">
+                  <img
+                    src="https://cache.marriott.com/marriottassets/marriott/MAALC/maalc-exterior-9797-hor-feat.jpg"
+                    alt="Ebony Boutique Hotel"
+                  />
+                  <img
+                    src="https://images.trvl-media.com/hotels/5000000/4950000/4942800/4942760/116d9887_z.jpg"
+                    alt="Ebony Boutique Hotel"
+                  />
+                  <img
+                    src="https://dynamic-media-cdn.tripadvisor.com/media/photo-o/03/3e/1e/56/itc-one-room.jpg?w=1200&h=-1&s=1"
+                    alt="Ebony Boutique Hotel"
+                  />
+                  <img
+                    src="https://dynamic-media-cdn.tripadvisor.com/media/photo-o/0f/a3/53/ee/pool--v16387682.jpg?w=900&h=-1&s=1"
+                    alt="Ebony Boutique Hotel"
+                  />
+                </div>
+                <button class="left-img-nav">&lt;</button>
+                <button class="right-img-nav">&gt;</button>
+              </div>
+              <div class="card-info">
+                <h3 onclick="window.location.href='/hotels/search'">
+                  ITC Grand Chola
+                </h3>
+                <p>Chennai</p>
+                <span class="rating">⭐ 5.0 Very good (1 review)</span>
+                <p class="price">₹30,000 <span>₹60,000</span> per night</p>
+                <p class="total">₹102,500 total includes taxes & fees</p>
+                <span class="member-price">Member Price available</span>
+              </div>
+            </div>
+            <div class="zebra-card">
+              <div class="card-img-wrapper">
+                <div class="image-carousel">
+                  <img
+                    src="https://th.bing.com/th/id/OIP.-FIWNEyvqnIjSOE607bpDAHaDe?rs=1&pid=ImgDetMain"
+                    alt="Ebony Boutique Hotel"
+                  />
+                  <img
+                    src="https://i.ytimg.com/vi/cr2Rrl3vz9I/maxresdefault.jpg"
+                    alt="Ebony Boutique Hotel"
+                  />
+                  <img
+                    src="https://i0.wp.com/theluxurytravelexpert.com/wp-content/uploads/2020/08/IMG_3061.jpg?ssl=1"
+                    alt="Ebony Boutique Hotel"
+                  />
+                  <img
+                    src="https://th.bing.com/th/id/OIP.bAbpwYFjJRJitJDQLKsirgAAAA?rs=1&pid=ImgDetMain"
+                    alt="Ebony Boutique Hotel"
+                  />
+                </div>
+                <button class="left-img-nav">&lt;</button>
+                <button class="right-img-nav">&gt;</button>
+              </div>
+              <div class="card-info">
+                <h3 onclick="window.location.href='/hotels/search'">
+                  The Leela Palace
+                </h3>
+                <p>New Delhi</p>
+                <span class="rating">⭐ 4.0 Very good (5 reviews)</span>
+                <p class="price">₹38,000 <span>₹62,000</span> per night</p>
+                <p class="total">₹116,400 total includes taxes & fees</p>
+                <span class="member-price">Member Price available</span>
+              </div>
+            </div>
+            <!-- Repeat similar structure for other cards -->
+          </div>
+        </div>
+        <button class="right-nav-btn">&gt;</button>
+      </div>
+    </div>
+
+    <div class="kcn-wrapper">
+      <h1 class="zcx-heading">Explore these unique stays</h1>
+      <p class="lkm-dates">Showing deals for: 4 Apr - 6 Apr</p>
+
+      <div class="qwf-carousel-container">
+        <div class="hjk-outer-nav zpq-left" onclick="scrollCards('left')">
+          &lt;
+        </div>
+
+        <div class="uvb-cards-container" id="cardsContainer">
+          <!-- Card 1 -->
+          <div class="mns-card">
+            <div class="rty-image-carousel">
+              <div class="bnm-images-wrapper" id="imageWrapper0">
+                <img
+                  src="https://www.holidify.com/images/cmsuploads/compressed/269273643_20210525121056.jpg"
+                  alt="Villa Image"
+                />
+                <img
+                  src="https://cf.bstatic.com/xdata/images/xphoto/2560x1280/99522494.jpg?k=2d99bf193075453768018107841ce9b1b94b2c42f379e34b9ae238be2a402712&o="
+                  alt="Villa Image"
+                />
+                <img
+                  src="https://th.bing.com/th/id/OIP.Do6gjyabsrTpBLphknZwkwHaE7?w=1230&h=819&rs=1&pid=ImgDetMain"
+                  alt="Villa Image"
+                />
+                <img
+                  src="https://th.bing.com/th/id/OIP.4XgGTinszR6PkSjN5SHGMwAAAA?rs=1&pid=ImgDetMain"
+                  alt="Villa Image"
+                />
+              </div>
+              <div
+                class="fgh-image-nav xcv-left"
+                onclick="navigateImage(0, 'prev')"
+              >
+                &lt;
+              </div>
+              <div
+                class="fgh-image-nav xcv-right"
+                onclick="navigateImage(0, 'next')"
+              >
+                &gt;
+              </div>
+            </div>
+            <div class="poj-content">
+              <div class="iuy-rating-container">
+                <span class="ghj-rating-badge">9.6</span>
+                <span class="xsw-rating-text">Exceptional</span>
+                <span class="qaz-reviews">(4 reviews)</span>
+              </div>
+              <h3
+                class="wsx-title"
+                onclick="window.location.href='/hotels/search'"
+              >
+                Novotel Goa Resort & Spa
+              </h3>
+              <p class="edc-location">Goa</p>
+              <p class="rfv-host">India</p>
+              <div class="tgb-price-container">
+                <span class="yhn-price">₹28,000</span>
+                <span class="ujm-per-night">per night</span>
+              </div>
+              <p class="ikl-total">₹66,127 total</p>
+              <p class="olp-includes">includes taxes & fees</p>
+            </div>
+          </div>
+
+          <!-- Card 2 -->
+          <div class="mns-card">
+            <div class="rty-image-carousel">
+              <div class="bnm-images-wrapper" id="imageWrapper1">
+                <img
+                  src="https://q-xx.bstatic.com/xdata/images/hotel/max1200/38776574.jpg?k=fb8abb6c80c029aebbca73fd483f4cc492c0b6dac75938b83020ad504fcdba4c&o="
+                  alt="Palace Image"
+                />
+                <img
+                  src="https://cdn.archilovers.com/projects/b_730_7ff803ac-9a4e-45f7-b8ac-691adcc6b2e9.jpg"
+                  alt="Palace Image"
+                />
+                <img
+                  src="https://assets.hyatt.com/content/dam/hyatt/hyattdam/images/2020/02/12/0056/Hyatt-Regency-Dharamshala-Resort-P025-Club-Room.jpg/Hyatt-Regency-Dharamshala-Resort-P025-Club-Room.16x9.jpg?imwidth=1920"
+                  alt="Palace Image"
+                />
+                <img
+                  src="https://i.ytimg.com/vi/qdL4mT2iI-Q/maxresdefault.jpg"
+                  alt="Palace Image"
+                />
+              </div>
+              <div
+                class="fgh-image-nav xcv-left"
+                onclick="navigateImage(1, 'prev')"
+              >
+                &lt;
+              </div>
+              <div
+                class="fgh-image-nav xcv-right"
+                onclick="navigateImage(1, 'next')"
+              >
+                &gt;
+              </div>
+            </div>
+            <div class="poj-content">
+              <div class="iuy-rating-container">
+                <span class="ghj-rating-badge">9.2</span>
+                <span class="xsw-rating-text">Wonderful</span>
+                <span class="qaz-reviews">(21 reviews)</span>
+              </div>
+              <h3
+                class="wsx-title"
+                onclick="window.location.href='/hotels/search'"
+              >
+                Fortune Park Moksha
+              </h3>
+              <p class="edc-location">Dharmasala</p>
+              <div class="tgb-price-container">
+                <span class="yhn-price">₹18,000</span>
+                <span class="ujm-per-night">per night</span>
+              </div>
+              <p class="ikl-total">₹58,900 total</p>
+              <p class="olp-includes">includes taxes & fees</p>
+              <div class="tyu-badge">Member Price available</div>
+            </div>
+          </div>
+
+          <!-- Card 3 -->
+          <div class="mns-card">
+            <div class="rty-image-carousel">
+              <div class="bnm-images-wrapper" id="imageWrapper2">
+                <img
+                  src="https://th.bing.com/th/id/OIP.7AOpk8_d1M-qwIegxzrpZAHaCU?rs=1&pid=ImgDetMain"
+                  alt="Beach Hut Image"
+                />
+                <img
+                  src="https://mir-s3-cdn-cf.behance.net/project_modules/max_1200/a7c82410203999.566ab3b1a6cd8.jpg"
+                  alt="Beach Hut Image"
+                />
+                <img
+                  src="https://th.bing.com/th/id/OIP.NAq2i3u07J_xF5V-DrzwdwHaF7?w=950&h=760&rs=1&pid=ImgDetMain"
+                  alt="Beach Hut Image"
+                />
+                <img
+                  src="https://th.bing.com/th/id/OIP.6gy4KPNINkroB1LvFExurQHaE9?rs=1&pid=ImgDetMain"
+                  alt="Beach Hut Image"
+                />
+              </div>
+              <div
+                class="fgh-image-nav xcv-left"
+                onclick="navigateImage(2, 'prev')"
+              >
+                &lt;
+              </div>
+              <div
+                class="fgh-image-nav xcv-right"
+                onclick="navigateImage(2, 'next')"
+              >
+                &gt;
+              </div>
+            </div>
+            <div class="poj-content">
+              <div class="iuy-rating-container">
+                <span class="ghj-rating-badge">10</span>
+                <span class="xsw-rating-text">Exceptional</span>
+                <span class="qaz-reviews">(1 review)</span>
+              </div>
+              <h3
+                class="wsx-title"
+                onclick="window.location.href='/hotels/search'"
+              >
+                The Lalit
+              </h3>
+              <p class="edc-location">Bengaluru</p>
+              <div class="tgb-price-container">
+                <span class="yhn-price">₹24,000</span>
+                <span class="ujm-per-night">per night</span>
+              </div>
+              <p class="ikl-total">₹76,760 total</p>
+              <p class="olp-includes">includes taxes & fees</p>
+              <div class="tyu-badge pli-off">10% off</div>
+            </div>
+          </div>
+
+          <!-- Card 4 -->
+          <div class="mns-card">
+            <div class="rty-image-carousel">
+              <div class="bnm-images-wrapper" id="imageWrapper3">
+                <img
+                  src="https://th.bing.com/th/id/OIP.-FIWNEyvqnIjSOE607bpDAHaDe?rs=1&pid=ImgDetMain"
+                  alt="Cottage Image"
+                />
+                <img
+                  src="https://th.bing.com/th/id/OIP.wRlKI0VUK6fg2w-OvYtTXQHaEK?rs=1&pid=ImgDetMain"
+                  alt="Cottage Image"
+                />
+                <img
+                  src="https://i0.wp.com/theluxurytravelexpert.com/wp-content/uploads/2020/08/IMG_3061.jpg?ssl=1"
+                  alt="Cottage Image"
+                />
+                <img
+                  src="https://th.bing.com/th/id/OIP.bAbpwYFjJRJitJDQLKsirgAAAA?rs=1&pid=ImgDetMain"
+                  alt="Cottage Image"
+                />
+              </div>
+              <div
+                class="fgh-image-nav xcv-left"
+                onclick="navigateImage(3, 'prev')"
+              >
+                &lt;
+              </div>
+              <div
+                class="fgh-image-nav xcv-right"
+                onclick="navigateImage(3, 'next')"
+              >
+                &gt;
+              </div>
+            </div>
+            <div class="poj-content">
+              <div class="iuy-rating-container">
+                <span class="ghj-rating-badge">10</span>
+                <span class="xsw-rating-text">Exceptional</span>
+                <span class="qaz-reviews">(1 review)</span>
+              </div>
+              <h3
+                class="wsx-title"
+                onclick="window.location.href='/hotels/search'"
+              >
+                The Leela Palace
+              </h3>
+              <p class="edc-location">New Delhi</p>
+              <div class="tgb-price-container">
+                <span class="yhn-price">₹38,000</span>
+                <span class="ujm-per-night">per night</span>
+              </div>
+              <p class="ikl-total">₹1,14,000total</p>
+              <p class="olp-includes">includes taxes & fees</p>
+            </div>
+          </div>
+
+          <!-- Card 5 (Additional card to demonstrate scrolling) -->
+          <div class="mns-card">
+            <div class="rty-image-carousel">
+              <div class="bnm-images-wrapper" id="imageWrapper4">
+                <img
+                  src="https://th.bing.com/th/id/OIP.x6Rwx1sxk9nmexCxkf8OIQAAAA?w=293&h=350&rs=1&pid=ImgDetMain"
+                  alt="Villa Image"
+                />
+                <img
+                  src="https://th.bing.com/th/id/OIP.8J6har2GlfrERi3GT6QvoQHaC9?rs=1&pid=ImgDetMain"
+                  alt="Villa Image"
+                />
+                <img
+                  src="https://th.bing.com/th/id/OIP.dMx_uoepu-ytRpXYWUhOUAHaE7?w=800&h=533&rs=1&pid=ImgDetMain"
+                  alt="Villa Image"
+                />
+                <img
+                  src="https://r1imghtlak.mmtcdn.com/df5bc9b83b2611e9a92e0242ac110002.jpg?&output-quality=75&downsize=910:612&crop=910:612;4,0&output-format=jpg"
+                  alt="Villa Image"
+                />
+              </div>
+              <div
+                class="fgh-image-nav xcv-left"
+                onclick="navigateImage(4, 'prev')"
+              >
+                &lt;
+              </div>
+              <div
+                class="fgh-image-nav xcv-right"
+                onclick="navigateImage(4, 'next')"
+              >
+                &gt;
+              </div>
+            </div>
+            <div class="poj-content">
+              <div class="iuy-rating-container">
+                <span class="ghj-rating-badge">10</span>
+                <span class="xsw-rating-text">Exceptional</span>
+                <span class="qaz-reviews">(3 reviews)</span>
+              </div>
+              <h3
+                class="wsx-title"
+                onclick="window.location.href='/hotels/search'"
+              >
+                The Westin
+              </h3>
+              <p class="edc-location">Mumbai</p>
+              <div class="tgb-price-container">
+                <span class="yhn-price">₹22,000</span>
+                <span class="ujm-per-night">per night</span>
+              </div>
+              <p class="ikl-total">₹68,450 total</p>
+              <p class="olp-includes">includes taxes & fees</p>
+            </div>
+          </div>
+        </div>
+
+        <div class="hjk-outer-nav zpq-right" onclick="scrollCards('right')">
+          &gt;
+        </div>
+      </div>
+    </div>
+
+    <footer class="footer">
+      <div class="footer-container">
+        <div class="footer-about">
+          <h3>Chasing Horizons</h3>
+          <p>
+            Explore the beauty of India with us. Your journey to breathtaking
+            destinations starts here!
+          </p>
+        </div>
+
+        <div class="footer-links">
+          <h4>Quick Links</h4>
+          <ul>
+            <li><a href="/">Home</a></li>
+            <li><a href="/tours">Tours</a></li>
+            <li><a href="/hotels">Hotels</a></li>
+            <li><a href="/contact">Contact</a></li>
+          </ul>
+        </div>
+
+        <div class="footer-social">
+          <h4>Follow Us</h4>
+          <div class="social-icons">
+            <a href="https://www.youtube.com" target="_blank">
+              <i class="fa-brands fa-youtube" style="font-size: 40px"></i>
+            </a>
+            <a href="https://www.instagram.com" target="_blank">
+              <i
+                class="fa-brands fa-square-instagram"
+                style="font-size: 40px"
+              ></i>
+            </a>
+            <a href="https://x.com/" target="_blank">
+              <i
+                class="fa-brands fa-square-x-twitter"
+                style="font-size: 40px"
+              ></i>
+            </a>
+          </div>
+        </div>
+      </div>
+
+      <div class="footer-bottom">
+        <p>© 2025 Chasing Horizons. All Rights Reserved.</p>
+      </div>
+    </footer>
+  </body>
+</html>
