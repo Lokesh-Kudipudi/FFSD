@@ -1,0 +1,356 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta
+      name="viewport"
+      content="width=device-width, initial-scale=1.0"
+    />
+    <title>Chasing Horizons Admin Dashboard</title>
+    <link
+      rel="stylesheet"
+      href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css"
+    />
+    <link
+      rel="stylesheet"
+      href="/css/dashboard/admin/sidebar.css"
+    />
+    <link
+      rel="stylesheet"
+      href="/css/dashboard/admin/topbar.css"
+    />
+    <link
+      rel="stylesheet"
+      href="/css/dashboard/admin/styles.css"
+    />
+    <link
+      rel="stylesheet"
+      href="/css/dashboard/admin/packages.css"
+    />
+
+    <script defer src="/js/dashboard/admin/app.js"></script>
+    <script defer src="/js/dashboard/admin/package.js"></script>
+  </head>
+
+  <body>
+    <div class="container">
+      <div class="sidebar" id="sidebar">
+        <div
+          class="logo-title"
+          onclick="{window.location.href = '/'}"
+        >
+          <span>Chasing Horizons</span>
+        </div>
+        <div class="sidebar-links">
+          <a href="/dashboard/admin" class="active"
+            ><i class="fas fa-tachometer-alt"></i>
+            <span class="link-text">Overview</span></a
+          >
+          <!-- <a href="/dashboard/admin/customers"
+            ><i class="fas fa-users"></i>
+            <span class="link-text">Customers</span></a
+          > -->
+          <a href="/dashboard/admin/packages"
+            ><i class="fas fa-chart-bar"></i>
+            <span class="link-text active">Packages</span></a
+          >
+          <a href="/dashboard/admin/hotelManagement"
+            ><i class="fas fa-hotel"></i>
+            <span class="link-text">Hotel Management</span></a
+          >
+          <!-- <a href="/dashboard/admin/analytics" class="active"
+            ><i class="fas fa-plane"></i>
+            <span class="link-text">Analytics</span></a
+          > -->
+          <a href="/dashboard/admin/queries">
+            <i class="fas fa-question-circle"></i>
+            <span class="link-text">Queries</span>
+          </a>
+        </div>
+      </div>
+
+      <main class="main">
+        <!-- Header -->
+        <div class="topbar">
+          <button class="toggle-btn" id="toggle-sidebar">
+            <i style="color: black" class="fas fa-bars"></i>
+          </button>
+          <!-- <div class="search-bar">
+            <i class="fas fa-search"></i>
+            <input type="text" placeholder="Search..." />
+          </div> -->
+          <div class="user-info">
+            <!-- <div class="notification-icon">
+              <i class="fas fa-bell"></i>
+              <span class="notification-badge">3</span>
+            </div> -->
+            <div class="user-avatar">AD</div>
+            <div class="user-name">Admin</div>
+          </div>
+        </div>
+        <!-- Tabs -->
+
+        <!-- Metrics Cards -->
+        <div class="cards">
+          <div class="card">
+            <div class="card-header">
+              <span class="card-title">Total Packages</span>
+              <svg
+                xmlns="http://www.w3.org/2000/svg"
+                width="20"
+                height="20"
+                viewBox="0 0 24 24"
+                fill="none"
+                stroke="currentColor"
+                stroke-width="2"
+                stroke-linecap="round"
+                stroke-linejoin="round"
+              >
+                <path
+                  d="M20.59 13.41l-7.17 7.17a2 2 0 0 1-2.83 0L2 12V2h10l8.59 8.59a2 2 0 0 1 0 2.82z"
+                ></path>
+                <line x1="7" y1="7" x2="7.01" y2="7"></line>
+              </svg>
+            </div>
+            <div class="card-value">
+              <%= packageAnalytics.totalPackages %>
+            </div>
+            <!-- <div class="card-trend trend-up">
+              <svg
+                xmlns="http://www.w3.org/2000/svg"
+                width="16"
+                height="16"
+                viewBox="0 0 24 24"
+                fill="none"
+                stroke="currentColor"
+                stroke-width="2"
+                stroke-linecap="round"
+                stroke-linejoin="round"
+              >
+                <polyline points="18 15 12 9 6 15"></polyline>
+              </svg>
+              14% from last month
+            </div> -->
+          </div>
+
+          <div class="card">
+            <div class="card-header">
+              <span class="card-title">Active Packages</span>
+              <svg
+                xmlns="http://www.w3.org/2000/svg"
+                width="20"
+                height="20"
+                viewBox="0 0 24 24"
+                fill="none"
+                stroke="currentColor"
+                stroke-width="2"
+                stroke-linecap="round"
+                stroke-linejoin="round"
+              >
+                <polyline
+                  points="22 12 18 12 15 21 9 3 6 12 2 12"
+                ></polyline>
+              </svg>
+            </div>
+            <div class="card-value">
+              <%= packageAnalytics.activePackages %>
+            </div>
+            <!-- <div class="card-trend trend-up">
+              <svg
+                xmlns="http://www.w3.org/2000/svg"
+                width="16"
+                height="16"
+                viewBox="0 0 24 24"
+                fill="none"
+                stroke="currentColor"
+                stroke-width="2"
+                stroke-linecap="round"
+                stroke-linejoin="round"
+              >
+                <polyline points="18 15 12 9 6 15"></polyline>
+              </svg>
+              8% from last month
+            </div> -->
+          </div>
+
+          <!-- <div class="card">
+            <div class="card-header">
+              <span class="card-title"
+                >Avg. Bookings/Package</span
+              >
+              <svg
+                xmlns="http://www.w3.org/2000/svg"
+                width="20"
+                height="20"
+                viewBox="0 0 24 24"
+                fill="none"
+                stroke="currentColor"
+                stroke-width="2"
+                stroke-linecap="round"
+                stroke-linejoin="round"
+              >
+                <path
+                  d="M17 21v-2a4 4 0 0 0-4-4H5a4 4 0 0 0-4 4v2"
+                ></path>
+                <circle cx="9" cy="7" r="4"></circle>
+                <path d="M23 21v-2a4 4 0 0 0-3-3.87"></path>
+                <path d="M16 3.13a4 4 0 0 1 0 7.75"></path>
+              </svg>
+            </div>
+            <div class="card-value">24.5</div>
+            <div class="card-trend trend-down">
+              <svg
+                xmlns="http://www.w3.org/2000/svg"
+                width="16"
+                height="16"
+                viewBox="0 0 24 24"
+                fill="none"
+                stroke="currentColor"
+                stroke-width="2"
+                stroke-linecap="round"
+                stroke-linejoin="round"
+              >
+                <polyline points="6 9 12 15 18 9"></polyline>
+              </svg>
+              3% from last month
+            </div>
+          </div> -->
+        </div>
+
+        <!-- Packages Table -->
+        <div class="table-container">
+          <div class="table-header">
+            <h2 class="table-title">All Packages</h2>
+          </div>
+
+          <table>
+            <thead>
+              <tr>
+                <th>Package</th>
+                <th>Destination</th>
+                <th>Duration</th>
+                <th>Price</th>
+                <th>Bookings</th>
+                <th>Rating</th>
+                <th>Status</th>
+                <th>Actions</th>
+              </tr>
+            </thead>
+            <tbody>
+              <% packageAnalytics.bookingAnalytics.forEach(bkg =>
+              { %>
+              <tr>
+                <td>
+                  <div
+                    style="
+                      display: flex;
+                      align-items: center;
+                      gap: 12px;
+                    "
+                  >
+                    <div><%= bkg.title %></div>
+                  </div>
+                </td>
+                <td><%= bkg.startLocation %></td>
+                <td><%= bkg.duration %></td>
+                <td><%= bkg.price.amount %></td>
+                <td><%= bkg.totalBookings %></td>
+                <td><%= bkg.rating %></td>
+                <td>
+                  <span
+                    class="status-badge status-<%=bkg.status%>"
+                    ><%= bkg.status %></span
+                  >
+                </td>
+                <td class="actions-cell">
+                  <button
+                    class="action-btn"
+                    onclick="{window.location.href = '/dashboard/admin/packages/<%=bkg._id%>'}"
+                  >
+                    <svg
+                      xmlns="http://www.w3.org/2000/svg"
+                      width="16"
+                      height="16"
+                      viewBox="0 0 24 24"
+                      fill="none"
+                      stroke="currentColor"
+                      stroke-width="2"
+                      stroke-linecap="round"
+                      stroke-linejoin="round"
+                    >
+                      <path d="M20 3l-4 4 4 4"></path>
+                      <path d="M4 3l4 4-4 4"></path>
+                    </svg>
+                  </button>
+                  <!-- <button class="action-btn">
+                    <svg
+                      xmlns="http://www.w3.org/2000/svg"
+                      width="16"
+                      height="16"
+                      viewBox="0 0 24 24"
+                      fill="none"
+                      stroke="currentColor"
+                      stroke-width="2"
+                      stroke-linecap="round"
+                      stroke-linejoin="round"
+                    >
+                      <polyline points="3 6 5 6 21 6"></polyline>
+                      <path
+                        d="M19 6v14a2 2 0 0 1-2 2H7a2 2 0 0 1-2-2V6m3 0V4a2 2 0 0 1 2-2h4a2 2 0 0 1 2 2v2"
+                      ></path>
+                    </svg>
+                  </button> -->
+                </td>
+              </tr>
+              <% }); %>
+
+              <!-- Additional rows can be added here -->
+            </tbody>
+          </table>
+        </div>
+
+        <!-- Pagination -->
+        <div class="pagination">
+          <div class="pagination-info">
+            Showing 1 to 10 of 126 entries
+          </div>
+          <div class="pagination-controls">
+            <button class="page-btn">
+              <svg
+                xmlns="http://www.w3.org/2000/svg"
+                width="16"
+                height="16"
+                viewBox="0 0 24 24"
+                fill="none"
+                stroke="currentColor"
+                stroke-width="2"
+                stroke-linecap="round"
+                stroke-linejoin="round"
+              >
+                <polyline points="15 18 9 12 15 6"></polyline>
+              </svg>
+            </button>
+            <button class="page-btn active">1</button>
+            <button class="page-btn">2</button>
+            <button class="page-btn">3</button>
+            <button class="page-btn">
+              <svg
+                xmlns="http://www.w3.org/2000/svg"
+                width="16"
+                height="16"
+                viewBox="0 0 24 24"
+                fill="none"
+                stroke="currentColor"
+                stroke-width="2"
+                stroke-linecap="round"
+                stroke-linejoin="round"
+              >
+                <polyline points="9 18 15 12 9 6"></polyline>
+              </svg>
+            </button>
+          </div>
+        </div>
+      </main>
+    </div>
+  </body>
+</html>
