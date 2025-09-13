@@ -1,0 +1,113 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta
+      name="viewport"
+      content="width=device-width, initial-scale=1.0"
+    />
+    <link rel="icon" href="data:," />
+    <title>Chasing Horizons - User Dashboard</title>
+    <link
+      href="/css/dashboard/user/index.css"
+      rel="stylesheet"
+    />
+    <link
+      href="/css/dashboard/user/styles.css"
+      rel="stylesheet"
+    />
+    <link
+      href="/css/dashboard/user/navBar.css"
+      rel="stylesheet"
+    />
+    <link
+      href="/css/dashboard/user/sidebar.css"
+      rel="stylesheet"
+    />
+    <link href="/css/header.css" rel="stylesheet" />
+    <script defer src="/js/header.js"></script>
+    <link
+      rel="stylesheet"
+      href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css"
+    />
+  </head>
+  <body>
+    <div class="app-container">
+      <header>
+        <%- include('../../partials/header.ejs') %>
+      </header>
+
+      <div class="main-content">
+        <nav class="sidebar">
+          <a
+            href="/dashboard"
+            class="nav-item active"
+            data-tab="overview"
+          >
+            <i class="fas fa-globe"></i>
+            <span>Overview</span>
+          </a>
+          <a
+            href="/dashboard/bookings/analytics"
+            class="nav-item"
+            data-tab="bookings"
+          >
+            <i class="fas fa-chart-bar"></i>
+            <span>Booking Analytics</span>
+          </a>
+          <a
+            href="/dashboard/bookings/hotels"
+            class="nav-item"
+            data-tab="hotel-bookings"
+          >
+            <i class="fas fa-bed"></i>
+            <span>Hotel Bookings</span>
+          </a>
+          <a
+            href="/dashboard/bookings/tours"
+            class="nav-item"
+            data-tab="tour-bookings"
+          >
+            <i class="fas fa-map-marked-alt"></i>
+            <span>Tour Bookings</span>
+          </a>
+          <a
+            href="/dashboard/settings"
+            class="nav-item"
+            data-tab="settings"
+          >
+            <i class="fas fa-cog"></i>
+            <span>Settings</span>
+          </a>
+        </nav>
+
+        <div class="dashboard">
+          <div class="card">
+            <div class="card-title">Total Trips Booked</div>
+            <div class="card-value">
+              <%=userAnalytics.totalTours%>
+            </div>
+          </div>
+          <div class="card">
+            <div class="card-title">Total Trips Cost</div>
+            <div class="card-value">
+              <%=userAnalytics.totalSpentOnTours%>
+            </div>
+          </div>
+          <div class="card">
+            <div class="card-title">Total Hotels Booked</div>
+            <div class="card-value">
+              <%=userAnalytics.totalHotels%>
+            </div>
+          </div>
+          <div class="card">
+            <div class="card-title">Total Hotels Cost</div>
+            <div class="card-value">
+              <%=userAnalytics.totalSpentOnHotels%>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </body>
+</html>

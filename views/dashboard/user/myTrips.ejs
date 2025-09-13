@@ -1,0 +1,492 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta
+      name="viewport"
+      content="width=device-width, initial-scale=1.0"
+    />
+    <link rel="icon" href="data:," />
+    <link
+      href="/css/dashboard/user/styles.css"
+      rel="stylesheet"
+    />
+    <link
+      href="/css/dashboard/user/navBar.css"
+      rel="stylesheet"
+    />
+    <link
+      href="/css/dashboard/user/sidebar.css"
+      rel="stylesheet"
+    />
+    <link
+      href="/css/dashboard/user/myTrips.css"
+      rel="stylesheet"
+    />
+    <link href="/css/header.css" rel="stylesheet" />
+    <script defer src="/js/header.js"></script>
+    <script defer src="/js/dashboard/user/myTrips.js"></script>
+    <link
+      rel="stylesheet"
+      href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css"
+    />
+    <title>Chasing Horizons - User Trips</title>
+  </head>
+  <body>
+    <div class="app-container">
+      <header>
+        <%- include('../../partials/header.ejs') %>
+      </header>
+
+      <div class="main-content">
+        <nav class="sidebar">
+          <a
+            href="/dashboard"
+            class="nav-item"
+            data-tab="overview"
+          >
+            <i class="fas fa-globe"></i>
+            <span>Overview</span>
+          </a>
+          <a
+            href="/dashboard/bookings/analytics"
+            class="nav-item"
+            data-tab="bookings"
+          >
+            <i class="fas fa-chart-bar"></i>
+            <span>Booking Analytics</span>
+          </a>
+          <a
+            href="/dashboard/bookings/hotels"
+            class="nav-item"
+            data-tab="hotel-bookings"
+          >
+            <i class="fas fa-bed"></i>
+            <span>Hotel Bookings</span>
+          </a>
+          <a
+            href="/dashboard/bookings/tours"
+            class="nav-item"
+            data-tab="tour-bookings"
+          >
+            <i class="fas fa-map-marked-alt"></i>
+            <span>Tour Bookings</span>
+          </a>
+          <a
+            href="/dashboard/settings"
+            class="nav-item"
+            data-tab="settings"
+          >
+            <i class="fas fa-cog"></i>
+            <span>Settings</span>
+          </a>
+        </nav>
+
+        <main class="dashboard-myTrips">
+          <div class="dashboard-header">
+            <h1 class="dashboard-title">My Bookings</h1>
+            <button
+              onclick="window.location.href = `/` "
+              class="btn btn-primary"
+            >
+              <span>+</span> Plan New
+            </button>
+          </div>
+
+          <!-- <div class="trip-filters">
+            <div class="filter-group">
+              <span class="filter-label">Filter by:</span>
+              <select class="filter-select">
+                <option>All Trips</option>
+                <option>Upcoming</option>
+                <option>Completed</option>
+                <option>Canceled</option>
+              </select>
+            </div>
+
+            <div class="filter-group">
+              <select class="filter-select">
+                <option>Sort: Date (Newest)</option>
+                <option>Sort: Date (Oldest)</option>
+                <option>Sort: Duration</option>
+                <option>Sort: Destination</option>
+              </select>
+            </div>
+
+            <div class="filter-spacer"></div>
+
+            <div class="filter-group">
+              <input
+                type="text"
+                placeholder="Search trips..."
+                class="filter-search"
+              />
+            </div>
+          </div> -->
+
+          <!-- Error/Message Display -->
+          <% if (typeof error !== 'undefined' && error) { %>
+          <div class="alert alert-error" style="background-color: #fee; border: 1px solid #fcc; color: #c33; padding: 15px; margin-bottom: 20px; border-radius: 6px;">
+            <strong>Error:</strong> <%= error %>
+          </div>
+          <% } %>
+          
+          <% if (typeof message !== 'undefined' && message) { %>
+          <div class="alert alert-info" style="background-color: #e7f3ff; border: 1px solid #b8daff; color: #004085; padding: 15px; margin-bottom: 20px; border-radius: 6px;">
+            <%= message %>
+          </div>
+          <% } %>
+
+          <div class="trips-section">
+            <div class="section-header">
+              <h2 class="section-title">Upcoming</h2>
+            </div>
+            <div class="trips-grid">
+              <!-- <div class="trip-card">
+                <div style="position: relative">
+                  <img
+                    src="/api/placeholder/400/320"
+                    alt="Bali"
+                    class="trip-image"
+                  />
+                  <div class="trip-status status-upcoming">
+                    Upcoming
+                  </div>
+                </div>
+                <div class="trip-content">
+                  <div class="trip-date">
+                    <span>📅</span> May 15 - May 28, 2025
+                  </div>
+                  <h3 class="trip-title">
+                    Bali Paradise Getaway
+                  </h3>
+                  <div class="trip-destination">
+                    <span>📍</span> Bali, Indonesia
+                  </div>
+
+                  <div class="trip-stats">
+                    <div class="stat">
+                      <div class="stat-value">14</div>
+                      <div class="stat-label">Days</div>
+                    </div>
+                    <div class="stat">
+                      <div class="stat-value">4</div>
+                      <div class="stat-label">Destinations</div>
+                    </div>
+                    <div class="stat">
+                      <div class="stat-value">3</div>
+                      <div class="stat-label">Activities</div>
+                    </div>
+                  </div>
+
+                  <div class="trip-actions">
+                    <button class="trip-action-btn btn-outline">
+                      View Details
+                    </button>
+                    <button class="trip-action-btn btn-primary">
+                      Manage
+                    </button>
+                  </div>
+                </div>
+              </div> -->
+              <% if (bookings && Array.isArray(bookings)) { %>
+                <% bookings.forEach(booking => { %> <% if
+                (booking && booking.bookingDetails?.status == "upcoming" ||
+                booking && booking.bookingDetails?.status == "pending") { %>
+              <% if (booking.type == "Tour") { %>
+              <div class="trip-card">
+                <div style="position: relative">
+                  <img
+                    src="<%= booking.itemId.mainImage %>"
+                    alt="<%= booking.itemId.title %>"
+                    class="trip-image"
+                  />
+                  <div class="trip-status status-upcoming">
+                    Upcoming
+                  </div>
+                </div>
+                <div class="trip-content">
+                  <div class="trip-date">
+                    <span>📅</span> <%=
+                    booking.bookingDetails?.startDate %>
+                  </div>
+                  <h3 class="trip-title">
+                    <%= booking.itemId.title %>
+                  </h3>
+                  <div class="trip-destination">
+                    <span>📍</span> <%=
+                    booking.itemId.startLocation %>
+                  </div>
+
+                  <div class="trip-stats">
+                    <div class="stat">
+                      <div class="stat-value">
+                        <%= booking.itemId.itinerary.length %>
+                      </div>
+                      <div class="stat-label">Days</div>
+                    </div>
+                    <div class="stat">
+                      <div class="stat-value">
+                        <%= booking.itemId.destinations.length %>
+                      </div>
+                      <div class="stat-label">Destinations</div>
+                    </div>
+                    <div class="stat">
+                      <div class="stat-value">
+                        <% let activityCount = 0; if
+                        (booking.itemId.itinerary) {
+                        booking.itemId.itinerary.forEach(day => {
+                        activityCount += day.activities?.length
+                        || 0; }); } %> <%= activityCount %>
+                      </div>
+                      <div class="stat-label">Activities</div>
+                    </div>
+                  </div>
+
+                  <div class="trip-actions">
+                    <button
+                      data-itemId="<%=booking.itemId._id%>"
+                      data-bookingId="<%=booking._id%>"
+                      class="trip-action-btn btn-outline cancel-trip"
+                    >
+                      Cancel
+                    </button>
+                    <button
+                      data-itemId="<%=booking.itemId._id%>"
+                      class="view-details-trip trip-action-btn btn-primary"
+                    >
+                      View Details
+                    </button>
+                  </div>
+                </div>
+              </div>
+              <% } else { %>
+              <div class="trip-card">
+                <div style="position: relative">
+                  <img
+                    src="<%= booking.itemId.mainImage %>"
+                    alt="<%= booking.itemId.title %>"
+                    class="trip-image"
+                  />
+                  <div class="trip-status status-upcoming">
+                    Upcoming
+                  </div>
+                </div>
+                <div class="trip-content">
+                  <div class="trip-date">
+                    <span>📅</span> <%=
+                    booking.bookingDetails?.checkInDate %>
+                  </div>
+                  <h3 class="trip-title">
+                    <%= booking.itemId.title %>
+                  </h3>
+                  <div class="trip-destination">
+                    <span>📍</span> <%= booking.itemId.location
+                    %>
+                  </div>
+
+                  <div class="trip-actions">
+                    <button
+                      data-itemId="<%=booking.itemId._id%>"
+                      data-bookingId="<%=booking._id%>"
+                      class="trip-action-btn btn-outline cancel-trip"
+                    >
+                      Cancel
+                    </button>
+                    <button
+                      onclick="{window.location.href = '/hotels/hotel/<%=booking.itemId._id%> '}"
+                      class="trip-action-btn btn-primary"
+                    >
+                      View Details
+                    </button>
+                  </div>
+                </div>
+              </div>
+              <% }; %> <% }; %> <% }); %>
+              <% } else { %>
+                <div class="empty-state" style="text-align: center; padding: 40px; color: #666;">
+                  <i class="fas fa-calendar-times" style="font-size: 48px; margin-bottom: 16px; color: #ddd;"></i>
+                  <p>No upcoming bookings found.</p>
+                </div>
+              <% } %>
+            </div>
+          </div>
+
+          <div class="past-trips-section">
+            <div class="section-header">
+              <h2 class="section-title">Past</h2>
+              <a href="#" class="section-link">View All</a>
+            </div>
+
+            <div class="trips-grid">
+              <!-- <div class="trip-card">
+                <div style="position: relative">
+                  <img
+                    src="/api/placeholder/400/320"
+                    alt="New York"
+                    class="trip-image"
+                  />
+                  <div class="trip-status status-completed">
+                    Completed
+                  </div>
+                </div>
+                <div class="trip-content">
+                  <div class="trip-date">
+                    <span>📅</span> Jan 5 - Jan 10, 2025
+                  </div>
+                  <h3 class="trip-title">New York City Tour</h3>
+                  <div class="trip-destination">
+                    <span>📍</span> New York, USA
+                  </div>
+
+                  <div class="trip-stats">
+                    <div class="stat">
+                      <div class="stat-value">5</div>
+                      <div class="stat-label">Days</div>
+                    </div>
+                    <div class="stat">
+                      <div class="stat-value">1</div>
+                      <div class="stat-label">Destinations</div>
+                    </div>
+                    <div class="stat">
+                      <div class="stat-value">8</div>
+                      <div class="stat-label">Activities</div>
+                    </div>
+                  </div>
+
+                  <div class="trip-actions">
+                    <button class="trip-action-btn btn-outline">
+                      View Photos
+                    </button>
+                    <button class="trip-action-btn btn-outline">
+                      Add Review
+                    </button>
+                  </div>
+                </div>
+              </div> -->
+              <% if (bookings && Array.isArray(bookings)) { %>
+                <% bookings.forEach(booking => { %> <% if
+                (booking && (booking.bookingDetails?.status == "completed" || booking.bookingDetails?.status == "cancel")) {
+                %> <% if (booking.type == "Tour") { %>
+              <div class="trip-card">
+                <div style="position: relative">
+                  <img
+                    src="<%= booking.itemId.mainImage %>"
+                    alt="<%= booking.itemId.title %>"
+                    class="trip-image"
+                  />
+                  <div class="trip-status <%= booking.bookingDetails?.status === 'cancel' ? 'status-cancelled' : 'status-completed' %>">
+                    <%= booking.bookingDetails?.status === 'cancel' ? 'Cancelled' : 'Completed' %>
+                  </div>
+                </div>
+                <div class="trip-content">
+                  <div class="trip-date">
+                    <span>📅</span> <%=
+                    booking.bookingDetails?.startDate %>
+                  </div>
+                  <h3 class="trip-title">
+                    <%= booking.itemId.title %>
+                  </h3>
+                  <div class="trip-destination">
+                    <span>📍</span> <%=
+                    booking.itemId.startLocation %>
+                  </div>
+
+                  <!-- <div class="trip-stats">
+                    <div class="stat">
+                      <div class="stat-value">
+                        <%= booking.itemId.itinerary.length %>
+                      </div>
+                      <div class="stat-label">Days</div>
+                    </div>
+                    <div class="stat">
+                      <div class="stat-value">
+                        <%= booking.itemId.destinations.length %>
+                      </div>
+                      <div class="stat-label">Destinations</div>
+                    </div>
+                    <div class="stat">
+                      <div class="stat-value">
+                        <% let activityCount = 0; if
+                        (booking.itemId.itinerary) {
+                        booking.itemId.itinerary.forEach(day => {
+                        activityCount += day.activities?.length
+                        || 0; }); } %> <%= activityCount %>
+                      </div>
+                      <div class="stat-label">Activities</div>
+                    </div>
+                  </div> -->
+
+                  <!-- <div class="trip-actions">
+                    <button
+                      data-itemId="<%=booking.itemId._id%>"
+                      data-bookingId="<%=booking._id%>"
+                      class="trip-action-btn btn-outline cancel-trip"
+                    >
+                      Cancel
+                    </button>
+                    <button
+                      data-itemId="<%=booking.itemId._id%>"
+                      class="view-details-trip trip-action-btn btn-primary"
+                    >
+                      View Details
+                    </button>
+                  </div> -->
+                </div>
+              </div>
+              <% } else { %>
+              <div class="trip-card">
+                <div style="position: relative">
+                  <img
+                    src="<%= booking.itemId.mainImage %>"
+                    alt="<%= booking.itemId.title %>"
+                    class="trip-image"
+                  />
+                  <div class="trip-status <%= booking.bookingDetails?.status === 'cancel' ? 'status-cancelled' : 'status-completed' %>">
+                    <%= booking.bookingDetails?.status === 'cancel' ? 'Cancelled' : 'Completed' %>
+                  </div>
+                </div>
+                <div class="trip-content">
+                  <div class="trip-date">
+                    <span>📅</span> <%=
+                    booking.bookingDetails?.checkInDate %>
+                  </div>
+                  <h3 class="trip-title">
+                    <%= booking.itemId.title %>
+                  </h3>
+                  <div class="trip-destination">
+                    <span>📍</span> <%= booking.itemId.location
+                    %>
+                  </div>
+
+                  <!-- <div class="trip-actions">
+                    <button
+                      data-itemId="<%=booking.itemId._id%>"
+                      data-bookingId="<%=booking._id%>"
+                      class="trip-action-btn btn-outline cancel-trip"
+                    >
+                      Cancel
+                    </button>
+                    <button
+                      onclick="{window.location.href = '/hotels/hotel/<%=booking.itemId._id%> '}"
+                      class="trip-action-btn btn-primary"
+                    >
+                      View Details
+                    </button>
+                  </div> -->
+                </div>
+              </div>
+              <% }; %> <% }; %> <% }); %>
+              <% } else { %>
+                <div class="empty-state" style="text-align: center; padding: 40px; color: #666;">
+                  <i class="fas fa-history" style="font-size: 48px; margin-bottom: 16px; color: #ddd;"></i>
+                  <p>No past bookings found.</p>
+                </div>
+              <% } %>
+            </div>
+          </div>
+        </main>
+      </div>
+    </div>
+  </body>
+</html>
