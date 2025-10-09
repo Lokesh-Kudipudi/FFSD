@@ -46,10 +46,29 @@ async function getUserBookings(userId) {
   }
 }
 
+async function getHotelBookings(hotelId) {
+  try {
+    const bookings = await Booking.find({ itemId: hotelId })
+      .populate("userId")
+      .lean();
+
+    if (!bookings) {
+      throw new Error("No bookings found for this hotel.");
+    }
+
+    return {
+      status: "success",
+      data: bookings,
+    };
+  } catch (error) {
+    return {
+      status: "error",
+      message: error.message,
+    };
+  }
+}
+
 module.exports = {
   getUserBookings,
   getHotelBookings,
-  makeTourBooking,
-  makeHotelBooking,
-  cancelBooking,
 };
