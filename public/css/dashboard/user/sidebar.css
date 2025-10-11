@@ -1,0 +1,32 @@
+.sidebar {
+  width: 220px;
+  background-color: white;
+  border-right: 1px solid #e5e7eb;
+  padding: 1rem;
+}
+
+.nav-item {
+  display: flex;
+  align-items: center;
+  gap: 0.5rem;
+  padding: 0.5rem;
+  border-radius: 0.5rem;
+  margin-bottom: 0.25rem;
+  color: #4b5563;
+  text-decoration: none;
+  transition: background-color 0.2s;
+}
+
+.nav-item:hover {
+  background-color: #f3f4f6;
+}
+
+.nav-item.active {
+  background-color: #dbeafe;
+  color: #1d4ed8;
+}
+
+.nav-item i {
+  width: 20px;
+  text-align: center;
+}

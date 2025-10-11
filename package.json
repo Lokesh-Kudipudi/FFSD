@@ -4,7 +4,7 @@
   "description": "",
   "main": "index.js",
   "scripts": {
-    "test": "echo \"Error: no test specified\" && exit 1"
+    "dev": "nodemon app.js"
   },
   "repository": {
     "type": "git",
@@ -15,5 +15,21 @@
   "bugs": {
     "url": "https://github.com/Lokesh-Kudipudi/FFSD/issues"
   },
-  "homepage": "https://github.com/Lokesh-Kudipudi/FFSD#readme"
+  "homepage": "https://github.com/Lokesh-Kudipudi/FFSD#readme",
+  "devDependencies": {
+    "ejs": "^3.1.10",
+    "nodemon": "^3.1.10"
+  },
+  "dependencies": {
+    "@google/genai": "^1.24.0",
+    "bcryptjs": "^3.0.2",
+    "cookie-parser": "^1.4.7",
+    "dotenv": "^17.2.3",
+    "express": "^5.1.0",
+    "express-session": "^1.18.2",
+    "jsonwebtoken": "^9.0.2",
+    "mongoose": "^8.19.1",
+    "morgan": "^1.10.1",
+    "serve-favicon": "^2.5.1"
+  }
 }

@@ -1,0 +1,77 @@
+.recommended-tours {
+  margin: 64px auto;
+  max-width: 900px;
+}
+
+.allToursContainer {
+  display: grid;
+  grid-template-columns: 1fr 1fr 1fr;
+  row-gap: 12px;
+}
+
+.card {
+  width: 250px;
+  align-self: stretch;
+  justify-self: center;
+  background: white;
+  border-radius: 10px;
+  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+}
+
+.card img {
+  width: 100%;
+  height: 150px;
+  object-fit: cover;
+  border-radius: 10px 10px 0px 0px;
+}
+
+.featured {
+  position: absolute;
+  background: red;
+  color: white;
+  padding: 5px 10px;
+  border-radius: 5px;
+  top: 10px;
+  left: 10px;
+  font-size: 14px;
+}
+
+.card-content {
+  padding: 16px;
+}
+
+.card-content h3 {
+  margin: 0;
+  font-size: 18px;
+}
+
+.card-content h3:hover {
+  color: blue;
+  cursor: pointer;
+}
+
+.rating {
+  display: flex;
+  gap: 4px;
+  align-items: center;
+  margin: 8px 0;
+  font-size: 14px;
+  color: #777;
+}
+
+.rating i {
+  color: gold;
+}
+
+.price {
+  font-size: 18px;
+  font-weight: bold;
+  color: #333;
+  padding: 4px;
+}
+
+.duration {
+  text-align: right;
+  font-size: 14px;
+  color: #555;
+}

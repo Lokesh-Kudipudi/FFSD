@@ -1,0 +1,41 @@
+<div class="headerDiv">
+  <img
+    class="headerLogo"
+    src="/images/tours/logo.png"
+    alt="logo"
+    onclick="window.location.href = '/' "
+  />
+  <div class="headerLinkContainer">
+    <a class="headerLink" href="/tours">Tours</a>
+    <a class="headerLink" href="/hotels">Hotels</a>
+    <a class="headerLink" href="/contact">Contact Us</a>
+  </div>
+  <div class="headerSignInContainer">
+    <% if (user) { %>
+    <div class="profileContainer">
+      <img
+        src="https://api.dicebear.com/9.x/initials/svg?seed=<%= user.fullName %>"
+        alt="avatar"
+        class="avatar"
+        onclick="toggleDropdownHeader()"
+      />
+      <div class="dropdownMenuHeader" id="dropdownMenuHeader">
+        <a href="/dashboard">Profile</a>
+        <% if(user?.role == "admin" ){ %>
+        <a href="/dashboard/admin">Dashboard</a>
+        <% };%> <% if(user?.role == "hotelManager" ){ %>
+        <a href="/dashboard/hotelManager">Dashboard</a>
+        <% };%>
+        <a href="/logout">Logout</a>
+      </div>
+    </div>
+    <% } else { %>
+    <button
+      onclick="window.location.href = '/signIn'"
+      class="headerSignInButton"
+    >
+      Sign In
+    </button>
+    <% } %>
+  </div>
+</div>
