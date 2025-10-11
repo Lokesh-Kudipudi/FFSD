@@ -1,4 +1,4 @@
-// Client-side validation for Edit Package form (mirrors addPackage.js)
+// Client-side validation for Create Package form (mirrors signUp.js style)
 
 function showToast(message, type = "info") {
   let toastContainer = document.getElementById(
@@ -80,14 +80,28 @@ function showToast(message, type = "info") {
   }, 2000);
 }
 
-const editForm = document.querySelector("form");
+// Form elements
+const createForm = document.getElementById(
+  "create-package-form"
+);
 const titleInput = document.getElementById("title");
+const tagsInput = document.getElementById("tags");
+const mainImageInput = document.getElementById("mainImage");
+const imagesInput = document.getElementById("images");
 const ratingInput = document.getElementById("rating");
+const durationInput = document.getElementById("duration");
+const startLocationInput =
+  document.getElementById("startLocation");
+const descriptionInput = document.getElementById("description");
+const languageInput = document.getElementById("language");
 const priceAmountInput = document.getElementById("priceAmount");
 const priceDiscountInput =
   document.getElementById("priceDiscount");
-const mainImageInput = document.getElementById("mainImage");
-const imagesInput = document.getElementById("images");
+const includesInput = document.getElementById("includes");
+const availableMonthsInput = document.getElementById(
+  "availableMonths"
+);
+const statusSelect = document.getElementById("status");
 
 function isValidUrl(str) {
   try {
@@ -98,15 +112,11 @@ function isValidUrl(str) {
   }
 }
 
-function validateEditForm() {
+function validatePackageForm() {
   // Title
-  if (
-    !titleInput ||
-    !titleInput.value ||
-    titleInput.value.trim() === ""
-  ) {
+  if (!titleInput.value || titleInput.value.trim() === "") {
     showToast("Title cannot be empty", "error");
-    titleInput && titleInput.focus();
+    titleInput.focus();
     return false;
   }
   if (titleInput.value.length < 3) {
@@ -117,8 +127,13 @@ function validateEditForm() {
     titleInput.focus();
     return false;
   }
+  if (titleInput.value.length > 150) {
+    showToast("Title cannot exceed 150 characters", "error");
+    titleInput.focus();
+    return false;
+  }
 
-  // Rating
+  // Rating (optional but if provided must be between 1 and 5)
   if (ratingInput && ratingInput.value) {
     const r = parseFloat(ratingInput.value);
     if (isNaN(r) || r < 1 || r > 5) {
@@ -131,10 +146,10 @@ function validateEditForm() {
     }
   }
 
-  // Price
+  // Price amount
   if (!priceAmountInput || !priceAmountInput.value) {
     showToast("Price amount is required", "error");
-    priceAmountInput && priceAmountInput.focus();
+    priceAmountInput.focus();
     return false;
   }
   const amount = parseFloat(priceAmountInput.value);
@@ -147,6 +162,7 @@ function validateEditForm() {
     return false;
   }
 
+  // Price discount
   if (priceDiscountInput && priceDiscountInput.value) {
     const d = parseFloat(priceDiscountInput.value);
     if (isNaN(d) || d < 0 || d >= 1) {
@@ -159,16 +175,16 @@ function validateEditForm() {
     }
   }
 
-  if (
-    mainImageInput &&
-    mainImageInput.value &&
-    !isValidUrl(mainImageInput.value.trim())
-  ) {
-    showToast("Main image must be a valid URL", "error");
-    mainImageInput.focus();
-    return false;
+  // Main image url (optional)
+  if (mainImageInput && mainImageInput.value) {
+    if (!isValidUrl(mainImageInput.value.trim())) {
+      showToast("Main image must be a valid URL", "error");
+      mainImageInput.focus();
+      return false;
+    }
   }
 
+  // Images list (if provided, each must be a valid url)
   if (imagesInput && imagesInput.value) {
     const imgs = imagesInput.value
       .split(",")
@@ -183,91 +199,109 @@ function validateEditForm() {
     }
   }
 
-  // Destinations/itinerary/bookings similar checks as addPackage
+  // Destinations: ensure at least one destination exists when present in DOM
   const destinations = document.querySelectorAll(
     ".destination-entry"
   );
-  for (const dest of destinations) {
-    const nameEl = dest.querySelector('input[name$="[name]"]');
-    const imageEl = dest.querySelector('input[name$="[image]"]');
-    if (!nameEl || !nameEl.value.trim()) {
-      showToast("Each destination must have a name", "error");
-      nameEl && nameEl.focus();
-      return false;
-    }
-    if (
-      imageEl &&
-      imageEl.value &&
-      !isValidUrl(imageEl.value.trim())
-    ) {
-      showToast(
-        "Destination images must be valid URLs",
-        "error"
+  if (destinations.length > 0) {
+    for (const dest of destinations) {
+      const nameEl = dest.querySelector('input[name$="[name]"]');
+      const imageEl = dest.querySelector(
+        'input[name$="[image]"]'
       );
-      imageEl.focus();
-      return false;
+      if (!nameEl || !nameEl.value.trim()) {
+        showToast("Each destination must have a name", "error");
+        nameEl && nameEl.focus();
+        return false;
+      }
+      if (
+        imageEl &&
+        imageEl.value &&
+        !isValidUrl(imageEl.value.trim())
+      ) {
+        showToast(
+          "Destination images must be valid URLs",
+          "error"
+        );
+        imageEl.focus();
+        return false;
+      }
     }
   }
 
+  // Itinerary: if present, basic checks
   const itineraries = document.querySelectorAll(
     ".itinerary-entry"
   );
-  for (const it of itineraries) {
-    const dayEl = it.querySelector('input[name$="[day]"]');
-    const locationEl = it.querySelector(
-      'input[name$="[location]"]'
-    );
-    if (!dayEl || !dayEl.value) {
-      showToast(
-        "Each itinerary day must have a day number",
-        "error"
+  if (itineraries.length > 0) {
+    for (const it of itineraries) {
+      const dayEl = it.querySelector('input[name$="[day]"]');
+      const locationEl = it.querySelector(
+        'input[name$="[location]"]'
       );
-      dayEl && dayEl.focus();
-      return false;
-    }
-    if (isNaN(parseInt(dayEl.value))) {
-      showToast("Itinerary day must be a valid number", "error");
-      dayEl.focus();
-      return false;
-    }
-    if (!locationEl || !locationEl.value.trim()) {
-      showToast(
-        "Each itinerary day must have a location",
-        "error"
-      );
-      locationEl && locationEl.focus();
-      return false;
+      if (!dayEl || !dayEl.value) {
+        showToast(
+          "Each itinerary day must have a day number",
+          "error"
+        );
+        dayEl && dayEl.focus();
+        return false;
+      }
+      if (isNaN(parseInt(dayEl.value))) {
+        showToast(
+          "Itinerary day must be a valid number",
+          "error"
+        );
+        dayEl.focus();
+        return false;
+      }
+      if (!locationEl || !locationEl.value.trim()) {
+        showToast(
+          "Each itinerary day must have a location",
+          "error"
+        );
+        locationEl && locationEl.focus();
+        return false;
+      }
     }
   }
 
+  // Booking details: if present, ensure start and end dates
   const bookings = document.querySelectorAll(".booking-entry");
-  for (const b of bookings) {
-    const startDateEl = b.querySelector(
-      'input[name$="[startDate]"]'
-    );
-    const endDateEl = b.querySelector(
-      'input[name$="[endDate]"]'
-    );
-    if (!startDateEl || !startDateEl.value.trim()) {
-      showToast("Each booking must have a start date", "error");
-      startDateEl && startDateEl.focus();
-      return false;
-    }
-    if (!endDateEl || !endDateEl.value.trim()) {
-      showToast("Each booking must have an end date", "error");
-      endDateEl && endDateEl.focus();
-      return false;
+  if (bookings.length > 0) {
+    for (const b of bookings) {
+      const startDateEl = b.querySelector(
+        'input[name$="[startDate]"]'
+      );
+      const endDateEl = b.querySelector(
+        'input[name$="[endDate]"]'
+      );
+      if (!startDateEl || !startDateEl.value.trim()) {
+        showToast(
+          "Each booking must have a start date",
+          "error"
+        );
+        startDateEl && startDateEl.focus();
+        return false;
+      }
+      if (!endDateEl || !endDateEl.value.trim()) {
+        showToast("Each booking must have an end date", "error");
+        endDateEl && endDateEl.focus();
+        return false;
+      }
     }
   }
 
+  // All checks passed
   return true;
 }
 
-if (editForm) {
-  editForm.addEventListener("submit", function (e) {
-    if (!validateEditForm()) {
-      e.preventDefault();
+if (createForm) {
+  createForm.addEventListener("submit", function (event) {
+    if (!validatePackageForm()) {
+      event.preventDefault();
       return false;
     }
+    // allow submission to continue
   });
 }
