@@ -1,0 +1,131 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta
+      name="viewport"
+      content="width=device-width, initial-scale=1.0"
+    />
+    <title>Chasing Horizons</title>
+    <link
+      rel="stylesheet"
+      href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.4/css/all.min.css"
+    />
+
+    <link href="/css/header.css" rel="stylesheet" />
+    <link href="/css/footer.css" rel="stylesheet" />
+    <link href="/css/recommended.css" rel="stylesheet" />
+
+    <link
+      rel="stylesheet"
+      href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.2/css/all.min.css"
+    />
+    <script defer src="/js/header.js"></script>
+    <script defer src="/js/recommendation.js"></script>
+  </head>
+  <body>
+    <!-- Hero Section -->
+    <div
+      class="hero"
+      style="
+        display: flex;
+        justify-content: center;
+        position: relative;
+      "
+    >
+      <header
+        class="headerContainer"
+        style="
+          position: absolute;
+          top: 0;
+          z-index: 2;
+          width: 90%;
+        "
+      >
+        <%- include('partials/header.ejs') %>
+      </header>
+    </div>
+
+    <section class="recommended-tours">
+      <h1>Recommended Tours</h1>
+      <div class="allToursContainer">
+        <% tours.forEach(tour => { %>
+        <div class="card">
+          <div style="position: relative">
+            <img src="<%= tour.mainImage %>" alt="Tour Image" />
+            <% if(tour.tag) { %>
+            <div class="featured"><%= tour.tag %></div>
+            <% }; %>
+          </div>
+
+          <div class="card-content">
+            <h3 onclick="handleTourClick(`<%=tour._id%>`)">
+              <%= tour.title %>
+            </h3>
+            <div class="rating">
+              <% for(let i = 0; i < tour.rating; i++) { %>
+              <i class="fas fa-star"></i>
+              <% } %>
+            </div>
+            <div class="price">
+              <%= tour.price.amount %> <%= tour.price.currency %>
+            </div>
+            <div class="duration"><%= tour.duration %></div>
+          </div>
+        </div>
+        <% });%>
+      </div>
+    </section>
+
+    <!-- Footer -->
+    <footer class="footer">
+      <div class="footer-container">
+        <div class="footer-about">
+          <h3>Chasing Horizons</h3>
+          <p>
+            Explore the beauty of India with us. Your journey to
+            breathtaking destinations starts here!
+          </p>
+        </div>
+
+        <div class="footer-links">
+          <h4>Quick Links</h4>
+          <ul>
+            <li><a href="/">Home</a></li>
+            <li><a href="/tours">Tours</a></li>
+            <li><a href="/hotels">Hotels</a></li>
+            <li><a href="/contact">Contact</a></li>
+          </ul>
+        </div>
+
+        <div class="footer-social">
+          <h4>Follow Us</h4>
+          <div class="social-icons">
+            <a href="https://www.youtube.com" target="_blank">
+              <i
+                class="fa-brands fa-youtube"
+                style="font-size: 40px"
+              ></i>
+            </a>
+            <a href="https://www.instagram.com" target="_blank">
+              <i
+                class="fa-brands fa-square-instagram"
+                style="font-size: 40px"
+              ></i>
+            </a>
+            <a href="https://x.com/" target="_blank">
+              <i
+                class="fa-brands fa-square-x-twitter"
+                style="font-size: 40px"
+              ></i>
+            </a>
+          </div>
+        </div>
+      </div>
+
+      <div class="footer-bottom">
+        <p>© 2025 Chasing Horizons. All Rights Reserved.</p>
+      </div>
+    </footer>
+  </body>
+</html>
