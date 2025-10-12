@@ -112,39 +112,109 @@ const passwordInput = document.querySelector("#password");
 async function handleSignUp(event) {
   event.preventDefault(); // To prevent reload
 
-  if (nameInput.value === "") {
-    showToast("Name is required", "error");
+  // Name Validation
+  if (nameInput.value.trim() === "") {
+    showToast("Name cannot be empty", "error");
     nameInput.focus();
     return;
   }
 
-  if (emailInput.value === "") {
-    showToast("Email is required", "error");
+  if (nameInput.value.length < 2) {
+    showToast(
+      "Name must be at least 2 characters long",
+      "error"
+    );
+    nameInput.focus();
+    return;
+  }
+
+  if (nameInput.value.length > 60) {
+    showToast("Name cannot exceed 60 characters", "error");
+    nameInput.focus();
+    return;
+  }
+
+  if (/^\d/.test(nameInput.value)) {
+    showToast("Name should not start with a number", "error");
+    nameInput.focus();
+    return;
+  }
+
+  if (/[^a-zA-Z\s]/.test(nameInput.value)) {
+    showToast(
+      "Name should contain only alphabets and spaces",
+      "error"
+    );
+    nameInput.focus();
+    return;
+  }
+
+  // Email Validation
+  if (emailInput.value.trim() === "") {
+    showToast("Email cannot be empty", "error");
     emailInput.focus();
     return;
   }
 
-  if (phoneInput.value === "") {
-    showToast("Phone is required", "error");
+  const emailRegex = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
+  if (!emailRegex.test(emailInput.value)) {
+    showToast("Invalid email format", "error");
+    emailInput.focus();
+    return;
+  }
+
+  // Mobile Number Validation
+  if (phoneInput.value.trim() === "") {
+    showToast("Phone cannot be empty", "error");
     phoneInput.focus();
     return;
   }
 
-  if (addressInput.value === "") {
-    showToast("Address is required", "error");
+  if (!/^\d{10}$/.test(phoneInput.value)) {
+    showToast("Phone number must be exactly 10 digits", "error");
+    phoneInput.focus();
+    return;
+  }
+
+  // Address Validation
+  if (addressInput.value.trim() === "") {
+    showToast("Address cannot be empty", "error");
     addressInput.focus();
     return;
   }
 
-  if (passwordInput.value === "") {
-    showToast("Password is required", "error");
+  if (addressInput.value.length < 5) {
+    showToast(
+      "Address must be at least 5 characters long",
+      "error"
+    );
+    addressInput.focus();
+    return;
+  }
+
+  // Password Validation
+  if (passwordInput.value.trim() === "") {
+    showToast("Password cannot be empty", "error");
     passwordInput.focus();
     return;
   }
 
-  if (passwordInput.value?.length < 8) {
-    showToast("Password Length is less than 8", "warning");
-    passwordInput.value = "";
+  if (passwordInput.value.length < 8) {
+    showToast(
+      "Password must be at least 8 characters long",
+      "error"
+    );
+    passwordInput.focus();
+    return;
+  }
+
+  const passwordRegex =
+    /^(?=.*[a-z])(?=.*[A-Z])(?=.*\d)(?=.*[@$!%*?&#^])[A-Za-z\d@$!%*?&#^]{8,}$/;
+  if (!passwordRegex.test(passwordInput.value)) {
+    showToast(
+      "Password must contain at least one uppercase letter, one lowercase letter, one number, and one special character",
+      "error"
+    );
     passwordInput.focus();
     return;
   }

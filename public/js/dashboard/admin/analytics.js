@@ -1,6 +1,8 @@
 // Revenue Chart
 
-const revenueCtx = document.getElementById("revenue-chart").getContext("2d");
+const revenueCtx = document
+  .getElementById("revenue-chart")
+  .getContext("2d");
 const revenueChart = new Chart(revenueCtx, {
   type: "line",
   data: {
@@ -54,7 +56,9 @@ const revenueChart = new Chart(revenueCtx, {
   },
 });
 
-const categoryCtx = document.getElementById("category-chart").getContext("2d");
+const categoryCtx = document
+  .getElementById("category-chart")
+  .getContext("2d");
 const categoryChart = new Chart(categoryCtx, {
   type: "doughnut",
   data: {

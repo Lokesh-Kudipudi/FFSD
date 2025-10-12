@@ -127,6 +127,13 @@ async function handleSignIn(e) {
     return showToast("Please enter password", "error");
   }
 
+  const emailRegex = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
+  if (!emailRegex.test(emailInput.value)) {
+    showToast("Invalid email format", "error");
+    emailInput.focus();
+    return;
+  }
+
   try {
     const response = await fetch("/signin", {
       method: "POST",
