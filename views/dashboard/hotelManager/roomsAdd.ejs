@@ -283,7 +283,14 @@
             roomForm.rating.value = rating;
             roomForm.image.value = image;
             roomForm.features.value = features;
-            roomForm.dataset.id = card.getAttribute("data-id"); // Store index for editing
+            // set a clear, dedicated attribute for the room id to avoid dataset/getAttribute ambiguity
+            const roomId =
+              card.getAttribute("data-id") || card.dataset.id;
+            if (roomId) {
+              roomForm.setAttribute("data-room-id", roomId);
+            } else {
+              roomForm.removeAttribute("data-room-id");
+            }
           });
       });
 
@@ -301,11 +308,21 @@
             .map((f) => f.trim()),
         };
 
-        const roomTypeId = this.getAttribute("data-id");
-        const method = roomTypeId ? "PUT" : "POST";
-        const endpoint = roomTypeId
-          ? `/dashboard/api/rooms/${roomTypeId}`
-          : "/dashboard/api/rooms";
+        // read the dedicated attribute we set when clicking Edit
+        const roomTypeId = this.getAttribute("data-room-id");
+        const method =
+          roomTypeId && roomTypeId !== "" ? "PUT" : "POST";
+        const endpoint =
+          roomTypeId && roomTypeId !== ""
+            ? `/dashboard/api/rooms/${roomTypeId}`
+            : "/dashboard/api/rooms";
+
+        // debug log to help verify which request will be sent
+        console.log("Submitting room form", {
+          method,
+          endpoint,
+          roomTypeId,
+        });
 
         try {
           const response = await fetch(endpoint, {
