@@ -5,10 +5,8 @@ const {
   updateTour,
   deleteTour,
 } = require("../Controller/tourController");
-const {
-  makeTourBooking,
-} = require("../Controller/bookingController");
-const Tour = require("../Model/tourModel"); // Assuming the model is named tourModel.js
+const { makeTourBooking } = require("../Controller/bookingController");
+const { Tour } = require("../Model/tourModel"); // Assuming the model is named tourModel.js
 
 // Create a new router object
 const toursRouter = express.Router();
@@ -57,9 +55,7 @@ toursRouter.route("/search").get(async (req, res) => {
     : [];
 
   if (selectedLocations.length > 0) {
-    const set = new Set(
-      selectedLocations.map((l) => String(l).toLowerCase())
-    );
+    const set = new Set(selectedLocations.map((l) => String(l).toLowerCase()));
     toursToDisplay = toursToDisplay.filter((tour) =>
       set.has(String(tour.startLocation || "").toLowerCase())
     );
@@ -77,9 +73,7 @@ toursRouter.route("/search").get(async (req, res) => {
     toursToDisplay = toursToDisplay.filter((tour) => {
       return selectedDurations.some((selectedDuration) => {
         const duration = String(selectedDuration).toLowerCase();
-        const tourDuration = String(
-          tour.duration || ""
-        ).toLowerCase();
+        const tourDuration = String(tour.duration || "").toLowerCase();
 
         // Enhanced duration matching
         if (duration.includes("1-3 days")) {
@@ -89,9 +83,7 @@ toursRouter.route("/search").get(async (req, res) => {
           return /\b([4-7])\s*(day|night)/i.test(tourDuration);
         }
         if (duration.includes("8+ days")) {
-          return /\b([8-9]|[1-9]\d+)\s*(day|night)/i.test(
-            tourDuration
-          );
+          return /\b([8-9]|[1-9]\d+)\s*(day|night)/i.test(tourDuration);
         }
 
         // Default exact match
@@ -109,9 +101,7 @@ toursRouter.route("/search").get(async (req, res) => {
     : [];
 
   if (selectedLanguages.length > 0) {
-    const set = new Set(
-      selectedLanguages.map((l) => String(l).toLowerCase())
-    );
+    const set = new Set(selectedLanguages.map((l) => String(l).toLowerCase()));
     toursToDisplay = toursToDisplay.filter((tour) =>
       set.has(String(tour.language || "").toLowerCase())
     );
@@ -135,9 +125,7 @@ toursRouter.route("/search").get(async (req, res) => {
         const searchableText = [
           ...tourTags,
           tour.description?.toLowerCase() || "",
-          ...(tour.includes || []).map((i) =>
-            String(i).toLowerCase()
-          ),
+          ...(tour.includes || []).map((i) => String(i).toLowerCase()),
         ].join(" ");
 
         // Enhanced tag matching with synonyms
@@ -202,22 +190,13 @@ toursRouter.route("/search").get(async (req, res) => {
       return selectedPriceRanges.some((priceRange) => {
         const range = String(priceRange).toLowerCase();
 
-        if (
-          range.includes("budget") ||
-          range.includes("under-20000")
-        ) {
+        if (range.includes("budget") || range.includes("under-20000")) {
           return tourPrice < 20000;
         }
-        if (
-          range.includes("mid-range") ||
-          range.includes("20000-50000")
-        ) {
+        if (range.includes("mid-range") || range.includes("20000-50000")) {
           return tourPrice >= 20000 && tourPrice <= 50000;
         }
-        if (
-          range.includes("luxury") ||
-          range.includes("above-50000")
-        ) {
+        if (range.includes("luxury") || range.includes("above-50000")) {
           return tourPrice > 50000;
         }
 
@@ -327,9 +306,7 @@ toursRouter.post("/api/tour", async (req, res) => {
     // Save the document to the database
     await newTour.save();
 
-    res
-      .status(201)
-      .json({ message: "Tour created successfully!" });
+    res.status(201).json({ message: "Tour created successfully!" });
   } catch (error) {
     console.error("Error creating tour:", error);
     res.status(500).json({
@@ -377,9 +354,7 @@ toursRouter.delete("/api/tour/:id", async (req, res) => {
       return res.status(404).json({ message: "Tour not found" });
     }
 
-    res
-      .status(200)
-      .json({ message: "Tour deleted successfully!" });
+    res.status(200).json({ message: "Tour deleted successfully!" });
   } catch (error) {
     console.error("Error deleting tour:", error);
     res.status(500).json({
