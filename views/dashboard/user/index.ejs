@@ -2,48 +2,88 @@
 <html lang="en">
   <head>
     <meta charset="UTF-8" />
-    <meta
-      name="viewport"
-      content="width=device-width, initial-scale=1.0"
-    />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <link rel="icon" href="data:," />
     <title>Chasing Horizons - User Dashboard</title>
-    <link
-      href="/css/dashboard/user/index.css"
-      rel="stylesheet"
-    />
-    <link
-      href="/css/dashboard/user/styles.css"
-      rel="stylesheet"
-    />
-    <link
-      href="/css/dashboard/user/navBar.css"
-      rel="stylesheet"
-    />
-    <link
-      href="/css/dashboard/user/sidebar.css"
-      rel="stylesheet"
-    />
+    <link href="/css/dashboard/user/index.css" rel="stylesheet" />
+    <link href="/css/dashboard/user/styles.css" rel="stylesheet" />
+    <link href="/css/dashboard/user/navBar.css" rel="stylesheet" />
+    <link href="/css/dashboard/user/sidebar.css" rel="stylesheet" />
     <link href="/css/header.css" rel="stylesheet" />
     <script defer src="/js/header.js"></script>
     <link
       rel="stylesheet"
       href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css"
     />
+
+    <!-- Chart.js -->
+    <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+
+    <style>
+      .charts-container {
+        display: grid;
+        grid-template-columns: repeat(auto-fit, minmax(320px, 1fr));
+        gap: 1.5rem;
+        margin-top: 32px;
+        align-items: start;
+      }
+
+      .chart-card {
+        background: #fff;
+        border-radius: 12px;
+        box-shadow: 0 6px 18px rgba(12, 20, 38, 0.06);
+        padding: 18px;
+        text-align: center;
+      }
+
+      .chart-card h3 {
+        margin: 0 0 12px 0;
+        color: #2d3748;
+        font-size: 18px;
+      }
+
+      .dashboard {
+        display: flex;
+        flex-wrap: wrap;
+        gap: 1.25rem;
+        justify-content: center;
+        margin-top: 18px;
+      }
+
+      .card {
+        width: 220px;
+        background: #fff;
+        padding: 16px;
+        border-radius: 12px;
+        box-shadow: 0 6px 14px rgba(12, 20, 38, 0.06);
+      }
+
+      .card-title {
+        font-size: 14px;
+        color: #4a5568;
+      }
+
+      .card-value {
+        font-size: 20px;
+        color: #2b6cb0;
+        margin-top: 6px;
+        font-weight: 600;
+      }
+
+      canvas {
+        width: 100% !important;
+        height: 280px !important;
+      }
+    </style>
   </head>
+
   <body>
     <div class="app-container">
-      <header>
-        <%- include('../../partials/header.ejs') %>
-      </header>
+      <header><%- include('../../partials/header.ejs') %></header>
 
       <div class="main-content">
         <nav class="sidebar">
-          <a
-            href="/dashboard"
-            class="nav-item active"
-            data-tab="overview"
-          >
+          <a href="/dashboard" class="nav-item active" data-tab="overview">
             <i class="fas fa-globe"></i>
             <span>Overview</span>
           </a>
@@ -71,43 +111,157 @@
             <i class="fas fa-map-marked-alt"></i>
             <span>Tour Bookings</span>
           </a>
-          <a
-            href="/dashboard/settings"
-            class="nav-item"
-            data-tab="settings"
-          >
+          <a href="/dashboard/settings" class="nav-item" data-tab="settings">
             <i class="fas fa-cog"></i>
             <span>Settings</span>
           </a>
         </nav>
 
-        <div class="dashboard">
-          <div class="card">
-            <div class="card-title">Total Trips Booked</div>
-            <div class="card-value">
-              <%=userAnalytics.totalTours%>
+        <main>
+          <div class="dashboard">
+            <div class="card">
+              <div class="card-title">Total Trips Booked</div>
+              <div class="card-value"><%= userAnalytics.totalTours %></div>
+            </div>
+            <div class="card">
+              <div class="card-title">Total Trips Cost</div>
+              <div class="card-value">
+                <%= userAnalytics.totalSpentOnTours %>
+              </div>
+            </div>
+            <div class="card">
+              <div class="card-title">Total Hotels Booked</div>
+              <div class="card-value"><%= userAnalytics.totalHotels %></div>
+            </div>
+            <div class="card">
+              <div class="card-title">Total Hotels Cost</div>
+              <div class="card-value">
+                <%= userAnalytics.totalSpentOnHotels %>
+              </div>
             </div>
           </div>
-          <div class="card">
-            <div class="card-title">Total Trips Cost</div>
-            <div class="card-value">
-              <%=userAnalytics.totalSpentOnTours%>
+
+          <!-- TWO PIE CHARTS: counts and amounts -->
+          <div class="charts-container">
+            <div class="chart-card">
+              <h3>Bookings: Tours vs Hotels (Count)</h3>
+              <canvas
+                id="countsPieChart"
+                aria-label="Bookings comparison chart"
+              ></canvas>
+            </div>
+
+            <div class="chart-card">
+              <h3>Spending: Tours vs Hotels (Amount)</h3>
+              <canvas
+                id="amountsPieChart"
+                aria-label="Spending comparison chart"
+              ></canvas>
             </div>
           </div>
-          <div class="card">
-            <div class="card-title">Total Hotels Booked</div>
-            <div class="card-value">
-              <%=userAnalytics.totalHotels%>
-            </div>
-          </div>
-          <div class="card">
-            <div class="card-title">Total Hotels Cost</div>
-            <div class="card-value">
-              <%=userAnalytics.totalSpentOnHotels%>
-            </div>
-          </div>
-        </div>
+        </main>
       </div>
     </div>
+
+    <script>
+      document.addEventListener("DOMContentLoaded", function () {
+        // Safe JSON injection of EJS values
+        const totalTours = <%- JSON.stringify(userAnalytics?.totalTours ?? 0) %>;
+        const totalHotels = <%- JSON.stringify(userAnalytics?.totalHotels ?? 0) %>;
+        const totalSpentOnTours = <%- JSON.stringify(userAnalytics?.totalSpentOnTours ?? 0) %>;
+        const totalSpentOnHotels = <%- JSON.stringify(userAnalytics?.totalSpentOnHotels ?? 0) %>;
+
+        if (typeof Chart === "undefined") {
+          console.error("Chart.js is not loaded.");
+          return;
+        }
+
+        // ---------- Helper formatters ----------
+        const formatRupee = (n) => {
+          const num = Number(n) || 0;
+          return "₹" + num.toLocaleString();
+        };
+
+        const safeNumber = (v) => Number(v) || 0;
+
+        // ---------- COUNTS PIE CHART ----------
+        (function renderCountsChart() {
+          const ctx = document.getElementById("countsPieChart");
+          if (!ctx) return;
+
+          const tours = safeNumber(totalTours);
+          const hotels = safeNumber(totalHotels);
+          const bothZero = tours === 0 && hotels === 0;
+
+          const labels = bothZero ? ["No bookings yet"] : ["Tours Booked", "Hotels Booked"];
+          const data = bothZero ? [1] : [tours, hotels];
+          const bg = bothZero ? ["#e2e8f0"] : ["#63b3ed", "#f6ad55"];
+
+          new Chart(ctx, {
+            type: "pie",
+            data: {
+              labels,
+              datasets: [{ data, backgroundColor: bg, borderColor: "#fff", borderWidth: 1 }],
+            },
+            options: {
+              responsive: true,
+              plugins: {
+                legend: { position: "bottom" },
+                tooltip: {
+                  callbacks: {
+                    label: function (context) {
+                      if (bothZero) return "No bookings yet";
+                      const total = tours + hotels || 1;
+                      const val = context.raw;
+                      const percent = (val / total) * 100;
+                      return `${context.label}: ${val} (${percent.toFixed(1)}%)`;
+                    },
+                  },
+                },
+              },
+            },
+          });
+        })();
+
+        // ---------- AMOUNTS PIE CHART ----------
+        (function renderAmountsChart() {
+          const ctx = document.getElementById("amountsPieChart");
+          if (!ctx) return;
+
+          const toursAmt = safeNumber(totalSpentOnTours);
+          const hotelsAmt = safeNumber(totalSpentOnHotels);
+          const bothZero = toursAmt === 0 && hotelsAmt === 0;
+
+          const labels = bothZero ? ["No spending recorded"] : ["Spent on Tours", "Spent on Hotels"];
+          const data = bothZero ? [1] : [toursAmt, hotelsAmt];
+          const bg = bothZero ? ["#edf2f7"] : ["#2b6cb0", "#c05621"];
+
+          new Chart(ctx, {
+            type: "pie",
+            data: {
+              labels,
+              datasets: [{ data, backgroundColor: bg, borderColor: "#fff", borderWidth: 1 }],
+            },
+            options: {
+              responsive: true,
+              plugins: {
+                legend: { position: "bottom" },
+                tooltip: {
+                  callbacks: {
+                    label: function (context) {
+                      if (bothZero) return "No spending recorded";
+                      const total = toursAmt + hotelsAmt || 1;
+                      const val = context.raw;
+                      const percent = (val / total) * 100;
+                      return `${context.label}: ${formatRupee(val)} (${percent.toFixed(1)}%)`;
+                    },
+                  },
+                },
+              },
+            },
+          });
+        })();
+      });
+    </script>
   </body>
 </html>
