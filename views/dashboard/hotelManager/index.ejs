@@ -8,7 +8,6 @@
     />
     <link rel="icon" href="data:," />
     <title>Chasing Horizons</title>
-
     <link
       rel="stylesheet"
       href="/css/dashboard/hotelManager/index.css"
@@ -21,7 +20,6 @@
       rel="stylesheet"
       href="/css/dashboard/hotelManager/styles.css"
     />
-
     <link
       rel="stylesheet"
       href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css"
@@ -31,7 +29,6 @@
       href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined"
     />
     <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
-
     <script
       defer
       src="/js/dashboard/hotelManager/sidebar.js"
@@ -62,19 +59,12 @@
           </div>
           <h5>Admin</h5>
           <h5><%=user.email%></h5>
-          <!-- <div class="admin-icons">
-            <span class="material-symbols-outlined">person</span>
-            <span class="material-symbols-outlined"
-              >settings</span
-            >
-            <span class="material-symbols-outlined">logout</span>
-          </div> -->
         </div>
         <hr />
         <br />
         <h5 class="dashboard-heading">DASHBOARDS</h5>
         <div class="sidenav">
-          <div class="link active">
+          <div class="link">
             <a href="/dashboard/hotelManager">
               <span class="material-symbols-outlined icon"
                 >dashboard</span
@@ -82,7 +72,6 @@
               Dashboard</a
             >
           </div>
-
           <div class="link">
             <a href="/dashboard/hotelManager/booking">
               <span class="material-symbols-outlined icon"
@@ -91,7 +80,6 @@
               Bookings</a
             >
           </div>
-
           <div class="link">
             <a href="/dashboard/hotelManager/addRoom">
               <span class="material-symbols-outlined icon"
@@ -100,12 +88,14 @@
               Rooms</a
             >
           </div>
-          <!-- <div class="dropdown-container">
-            <a href="/dashboard/hotelManager/rooms">All Rooms</a>
-            <a href="/dashboard/hotelManager/addRoom"
-              >Add Rooms</a
+          <div class="link">
+            <a href="/dashboard/hotelManager/myHotel">
+              <span class="material-symbols-outlined icon"
+                >hotel</span
+              >
+              My Hotel</a
             >
-          </div> -->
+          </div>
         </div>
       </div>
       <div class="main">
@@ -130,40 +120,16 @@
             <div class="card-content">
               <h4>New Booking</h4>
               <h5><%= hotelManagerAnalytics.totalBookings %></h5>
-              <!-- <p class="growth">
-                <span class="icon">⬆</span> +7.5%
-              </p> -->
             </div>
           </div>
-          <!-- <div class="card">
-            <div class="card-content">
-              <h4>Available Rooms</h4>
-              <h5>55</h5>
-              <p class="decline">
-                <span class="icon">⬇</span> -5.7%
-              </p>
-            </div>
-          </div> -->
           <div class="card">
             <div class="card-content">
               <h4>Revenue</h4>
               <h5>
                 <%= hotelManagerAnalytics.totalRevenue %> INR
               </h5>
-              <!-- <p class="growth">
-                <span class="icon">⬆</span> +5.3%
-              </p> -->
             </div>
           </div>
-          <!-- <div class="card">
-            <div class="card-content">
-              <h4>Checkout</h4>
-              <h5>567</h5>
-              <p class="decline">
-                <span class="icon">⬇</span> -2.4%
-              </p>
-            </div>
-          </div> -->
         </div>
 
         <!--available rooms -->
@@ -259,7 +225,8 @@
               ></canvas>
             </div>
           </div>
-        </div> -->
+        </div>
+        -->
       </div>
     </div>
   </body>

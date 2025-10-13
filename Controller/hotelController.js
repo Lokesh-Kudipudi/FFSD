@@ -18,6 +18,16 @@ async function getHotelById(hotelId) {
     if (!hotel) {
       throw new Error("Hotel not Found!");
     }
+
+    // Convert features Map to a regular object for JSON serialization
+    // Only convert if features is a Map or iterable
+    if (
+      hotel.features &&
+      typeof hotel.features[Symbol.iterator] === "function"
+    ) {
+      hotel.features = Object.fromEntries(hotel.features);
+    }
+
     return {
       status: "success",
       data: hotel,
@@ -26,6 +36,37 @@ async function getHotelById(hotelId) {
     throw new Error(
       "Error fetching Hotel by Id: " + error.message
     );
+  }
+}
+
+async function updateHotel(hotelId, hotelData) {
+  try {
+    // Convert features object to Map
+    if (hotelData.features) {
+      const featuresMap = new Map();
+      Object.entries(hotelData.features).forEach(
+        ([key, value]) => {
+          featuresMap.set(key, value);
+        }
+      );
+      hotelData.features = featuresMap;
+    }
+
+    const hotel = await Hotel.findByIdAndUpdate(
+      hotelId,
+      hotelData,
+      { new: true }
+    );
+    if (!hotel) {
+      throw new Error("Hotel not Found!");
+    }
+    return {
+      status: "success",
+      message: "Hotel updated successfully",
+      data: hotel,
+    };
+  } catch (error) {
+    throw new Error("Error updating hotel: " + error.message);
   }
 }
 
@@ -102,6 +143,7 @@ async function getRoomTypesByHotelId(hotelId) {
 module.exports = {
   getAllHotels,
   getHotelById,
+  updateHotel,
   addRoomType,
   updateRoomType,
   getRoomTypesByHotelId,

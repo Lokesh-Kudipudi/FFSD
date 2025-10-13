@@ -2,7 +2,7 @@ const { Owner } = require("../Model/ownerModel");
 
 async function getHotelIdsByOwnerId(ownerId) {
   try {
-    const owners = await Owner.find({ ownerId });
+    const owners = await Owner.find({ ownerId }).lean();
 
     return owners.map((owner) => owner.hotelId._id)[0];
   } catch (error) {
