@@ -15,12 +15,22 @@ const {
 } = require("./middleware/authentication");
 const { userRouter } = require("./routes/userRouter");
 const { autoSignIn } = require("./middleware/autoSignIn");
-const { createContactForm } = require("./Controller/contactController");
+const {
+  createContactForm,
+} = require("./Controller/contactController");
 dotenv.config();
+const cors = require("cors");
 
 // Set EJS as the templating engine
 app.set("views", path.join(__dirname, "views"));
 app.set("view engine", "ejs");
+
+app.use(
+  cors({
+    origin: "https://localhost:5173", // Adjust as needed
+    credentials: true,
+  })
+);
 
 // Cookie Parser
 app.use(cookieParser());
