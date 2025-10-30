@@ -52,15 +52,26 @@ userRouter.route("/users").get(getUsers).post(signUpAdmin);
 // Tours for recommendation
 let tours = [];
 
+// userRouter.route("/recommendation").get(async (req, res) => {
+//   const recommendedTours = await getRecommendedTours(
+//     tours.map((tour) => tour._id)
+//   );
+
+//   console.log("Recommended Tours:", recommendedTours);
+//   res.render("recommendation", {
+//     user: req.user,
+//     tours: recommendedTours.data,
+//   });
+// });
+
 userRouter.route("/recommendation").get(async (req, res) => {
   const recommendedTours = await getRecommendedTours(
     tours.map((tour) => tour._id)
   );
 
-  console.log("Recommended Tours:", recommendedTours);
-  res.render("recommendation", {
-    user: req.user,
-    tours: recommendedTours.data,
+  res.json({
+    status: "success",
+    data: recommendedTours.data,
   });
 });
 
