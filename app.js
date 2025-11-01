@@ -25,15 +25,13 @@ const cors = require("cors");
 app.set("views", path.join(__dirname, "views"));
 app.set("view engine", "ejs");
 
+app.use(cookieParser());
 app.use(
   cors({
-    origin: "https://localhost:5173", // Adjust as needed
+    origin: process.env.FRONTEND_URL, // Adjust as needed
     credentials: true,
   })
 );
-
-// Cookie Parser
-app.use(cookieParser());
 
 // Serve static files from the "public" directory
 app.use(express.static(path.join(__dirname, "public")));
@@ -94,6 +92,6 @@ async function connectMongoose() {
 
 connectMongoose();
 
-app.listen(process.env.PORT || 5500, () => {
+app.listen(5500, () => {
   console.log("Server is running on port 5500");
 });
